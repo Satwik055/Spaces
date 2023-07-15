@@ -1,23 +1,19 @@
-package com.satwik.spaces
+package com.satwik.spaces.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.satwik.spaces.ui.theme.SpacesTheme
+import com.satwik.spaces.presentation.home_screen.components.SpacesCard
+import com.satwik.spaces.presentation.theme.SpacesTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             SpacesTheme {
-
+                SpacesCard()
             }
         }
     }

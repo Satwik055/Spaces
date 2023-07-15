@@ -1,4 +1,4 @@
-package com.satwik.spaces.ui.theme
+package com.satwik.spaces.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
