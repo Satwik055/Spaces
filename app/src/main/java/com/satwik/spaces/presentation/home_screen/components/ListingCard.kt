@@ -1,6 +1,8 @@
 package com.satwik.spaces.presentation.home_screen.components
 
 
+import android.content.res.Resources
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -12,12 +14,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.modifier.modifierLocalOf
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,17 +35,22 @@ import com.satwik.spaces.presentation.theme.White
 
 
 @Composable
-fun SpacesCard(){
-    Card(shape = RoundedCornerShape(10.dp),
-        modifier = Modifier
-            .height(173.dp)
-            .width(287.dp),
+fun ListingCard(
+    propertyName:String,
+    propertyAddress:String,
+    @DrawableRes
+    backgroundImage:Int
+){
+    Surface(
+        shape = RoundedCornerShape(10.dp),
+        modifier = Modifier,
+        shadowElevation = 10.dp,
     ){
         Box(
             modifier = Modifier
                 .fillMaxSize()
         ){
-            val painter = painterResource(id = R.drawable.office_int)
+            val painter = painterResource(id = backgroundImage)
             Image(
                 painter = painter,
                 modifier = Modifier
@@ -58,18 +69,19 @@ fun SpacesCard(){
                     )
             )
             Column(
-                modifier = Modifier.align(Alignment.BottomStart)
+                modifier = Modifier
+                    .align(Alignment.BottomStart)
                     .padding(start = 7.dp, bottom = 7.dp)
             ) {
                 Text(
-                    text = "Cleo Cave",
+                    text = propertyName,
                     fontFamily = Montserrat,
                     fontWeight = FontWeight(400),
                     color = White,
                     fontSize = 20.sp,
                 )
                 Text(
-                    text = "323 Maple street, NY",
+                    text = propertyAddress,
                     fontFamily = Montserrat,
                     fontWeight = FontWeight(400),
                     color = White,
@@ -87,5 +99,8 @@ fun SpacesCard(){
 @Preview
 @Composable
 fun SpacesCardPreview(){
-    SpacesCard()
+    ListingCard(
+        "Cleo's Cave",
+        "323 Maple street, NY",
+        R.drawable.office_int)
 }
