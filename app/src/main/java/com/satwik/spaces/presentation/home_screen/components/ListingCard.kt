@@ -36,6 +36,7 @@ import com.satwik.spaces.presentation.theme.White
 
 @Composable
 fun ListingCard(
+    modifier:Modifier = Modifier,
     propertyName:String,
     propertyAddress:String,
     @DrawableRes
@@ -43,7 +44,9 @@ fun ListingCard(
 ){
     Surface(
         shape = RoundedCornerShape(10.dp),
-        modifier = Modifier,
+        modifier = modifier
+            .height(173.dp)
+            .width(287.dp),
         shadowElevation = 10.dp,
     ){
         Box(
@@ -100,7 +103,8 @@ fun ListingCard(
 @Composable
 fun SpacesCardPreview(){
     ListingCard(
-        "Cleo's Cave",
-        "323 Maple street, NY",
-        R.drawable.office_int)
+        propertyName = "Cleo's Cave",
+        propertyAddress = "323 Maple street, NY",
+        backgroundImage = R.drawable.office_int
+    )
 }
