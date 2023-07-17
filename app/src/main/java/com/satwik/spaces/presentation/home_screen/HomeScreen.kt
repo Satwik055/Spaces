@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -64,12 +65,38 @@ fun HomeScreen(){
         Spacer(modifier = Modifier.height(10.dp))
 
         LazyRow(
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
         ){items(DummyData.getDummyListing()){
             ListingCard(
                 propertyName = it.propertyName,
                 propertyAddress = it.propertyAddress,
-                backgroundImage = it.backgroundImage
+                backgroundImage = it.backgroundImage,
+            )
+        }
+        }
+
+        Spacer(modifier = Modifier.height(40.dp))
+
+        Text(
+            text = "Near You",
+            fontFamily = Montserrat,
+            fontWeight = FontWeight.Normal,
+            color = White,
+            fontSize = 16.sp,
+        )
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        LazyColumn(
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ){items(DummyData.getDummyListing()){
+            ListingCard(
+                propertyName = it.propertyName,
+                propertyAddress = it.propertyAddress,
+                backgroundImage = it.backgroundImage,
+                modifier = Modifier
+                    .height(204.dp)
+                    .width(380.dp)
             )
         }
         }
