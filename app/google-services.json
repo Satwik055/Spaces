@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "507948844102",
+    "project_id": "spaces-c4a39",
+    "storage_bucket": "spaces-c4a39.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507948844102:android:63afc678af29d877503647",
+        "android_client_info": {
+          "package_name": "com.satwik.spaces"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "507948844102-hgp4f6jkjefqo2on9oa5i75em8hnna40.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeCjb5XsDccCQhdSRzKA_A1oH4nsRzxzo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "507948844102-hgp4f6jkjefqo2on9oa5i75em8hnna40.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
