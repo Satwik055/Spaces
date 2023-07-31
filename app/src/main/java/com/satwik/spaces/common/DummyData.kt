@@ -5,15 +5,16 @@ import com.satwik.spaces.domain.model.Property
 
 object DummyData {
 
+
     fun getDummyListing():ArrayList<Property>{
 
         val list = ArrayList<Property>()
 
-        val listing1 = Property("Cleo Heights","New York", R.drawable.office_int)
-        val listing2 = Property("Cleo Heights","New York", R.drawable.office_int)
-        val listing3 = Property("Cleo Heights","New York", R.drawable.office_int)
-        val listing4 = Property("Cleo Heights","New York", R.drawable.office_int)
-        val listing5 = Property("Cleo Heights","New York", R.drawable.office_int)
+        val listing1 = Property("Cleo Heights","New York", arrayListOf("https://officedesigner.com/wp-content/uploads/2023/03/office-designer-london.jpeg"))
+        val listing2 = Property("Cleo Heights","New York", arrayListOf("https://officedesigner.com/wp-content/uploads/2023/03/office-designer-london.jpeg"))
+        val listing3 = Property("Cleo Heights","New York", arrayListOf("https://officedesigner.com/wp-content/uploads/2023/03/office-designer-london.jpeg"))
+        val listing4 = Property("Cleo Heights","New York", arrayListOf("https://officedesigner.com/wp-content/uploads/2023/03/office-designer-london.jpeg"))
+        val listing5 = Property("Cleo Heights","New York", arrayListOf("https://officedesigner.com/wp-content/uploads/2023/03/office-designer-london.jpeg"))
 
         list.add(listing1)
         list.add(listing2)
@@ -23,4 +24,6 @@ object DummyData {
 
         return list
     }
+
+
 }

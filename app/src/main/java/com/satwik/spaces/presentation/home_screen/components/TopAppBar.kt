@@ -1,6 +1,7 @@
 package com.satwik.spaces.presentation.home_screen.components
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -31,7 +32,8 @@ fun TopAppBar(
     navDrawerIcon:Int = R.drawable.ic_hamburger,
     @DrawableRes
     searchIcon:Int = R.drawable.ic_search,
-    iconSize: Dp = 28.dp
+    iconSize: Dp = 28.dp,
+    searchOnClick:() -> Unit
 ){
     Box(
         modifier = modifier.fillMaxWidth()
@@ -49,7 +51,7 @@ fun TopAppBar(
             )
         }
 
-        IconButton(onClick = { /*TODO*/ },
+        IconButton(onClick = searchOnClick,
             modifier = Modifier
                 .align(Alignment.CenterEnd)
                 .size(iconSize)
@@ -58,7 +60,6 @@ fun TopAppBar(
                 painter = painterResource(id = searchIcon),
                 contentDescription = null,
                 tint = White,
-
             )
         }
         CurrentLocation(

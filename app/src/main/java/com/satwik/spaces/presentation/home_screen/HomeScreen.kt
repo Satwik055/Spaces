@@ -2,11 +2,9 @@ package com.satwik.spaces.presentation.home_screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -15,23 +13,30 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.satwik.spaces.R
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.satwik.spaces.common.DummyData
 import com.satwik.spaces.presentation.home_screen.components.ListingCard
 import com.satwik.spaces.presentation.home_screen.components.TopAppBar
+import com.satwik.spaces.presentation.navigation.Screen
+import com.satwik.spaces.presentation.search_screen.components.SearchBar
 import com.satwik.spaces.presentation.theme.Black
 import com.satwik.spaces.presentation.theme.Montserrat
-import com.satwik.spaces.presentation.theme.Purple
 import com.satwik.spaces.presentation.theme.White
 
 
 @Composable
-fun HomeScreen(){
+fun HomeScreen(navController:NavController){
+
     Column  (
         modifier = Modifier
             .fillMaxSize()
@@ -40,7 +45,7 @@ fun HomeScreen(){
     ){
         Spacer(modifier = Modifier.height(10.dp))
 
-        TopAppBar()
+        TopAppBar(searchOnClick = {navController.navigate(Screen.Search.route)})
 
         Spacer(modifier = Modifier.height(30.dp))
 
@@ -68,10 +73,10 @@ fun HomeScreen(){
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ){items(DummyData.getDummyListing()){
             ListingCard(
-                propertyName = it.propertyName,
-                propertyAddress = it.propertyAddress,
-                backgroundImage = it.backgroundImage,
-            )
+                propertyName = it.name,
+                propertyAddress = it.address,
+                imageUrl = it.imageUrls.first()
+            ) { navController.navigate(Screen.Detail.route) }
         }
         }
 
@@ -91,24 +96,23 @@ fun HomeScreen(){
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ){items(DummyData.getDummyListing()){
             ListingCard(
-                propertyName = it.propertyName,
-                propertyAddress = it.propertyAddress,
-                backgroundImage = it.backgroundImage,
+                propertyName = it.name,
+                propertyAddress = it.address,
+                imageUrl = it.imageUrls.first(),
+                onClick = { navController.navigate(Screen.Detail.route) },
                 modifier = Modifier
                     .height(204.dp)
                     .width(380.dp)
             )
         }
         }
+
+
     }
 }
-
-
-
-
 
 @Preview
 @Composable
 fun HomeScreenPreview(){
-    HomeScreen()
+    HomeScreen(navController = rememberNavController())
 }

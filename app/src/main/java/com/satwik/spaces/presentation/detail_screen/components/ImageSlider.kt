@@ -1,4 +1,4 @@
-package com.satwik.spaces.presentation.detail_screen
+package com.satwik.spaces.presentation.detail_screen.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxWidth
