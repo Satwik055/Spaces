@@ -3,6 +3,7 @@
 
     <style name="Theme.Spaces" parent="android:Theme.Material.Light.NoActionBar" >
         <item name="android:statusBarColor">#090909</item>
+        <item name="android:windowBackground">#090909</item>
     </style>
 
 </resources>

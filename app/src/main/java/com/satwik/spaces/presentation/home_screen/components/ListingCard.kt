@@ -58,7 +58,7 @@ fun ListingCard(
             SubcomposeAsyncImage(
                 model = imageUrl,
                 contentScale = ContentScale.Crop,
-                loading = { CircularProgressIndicator(color= Purple, modifier = Modifier.size(40.dp)) },
+                loading = { CircularProgressIndicator(color= Purple, modifier = Modifier.height(40.dp).width(10.dp)) },
                 contentDescription = null,
                 modifier = Modifier.matchParentSize()
             )

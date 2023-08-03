@@ -1,6 +1,5 @@
 package com.satwik.spaces.presentation.detail_screen
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,23 +18,27 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.satwik.spaces.common.DummyApi
+import com.satwik.spaces.data.repository.PropertiesRepositoryImpl
+import com.satwik.spaces.domain.repository.PropertiesRepository
 import com.satwik.spaces.presentation.detail_screen.components.FeatureSection
 import com.satwik.spaces.presentation.detail_screen.components.ImageSlider
 import com.satwik.spaces.presentation.detail_screen.components.PropertyInfoSection
-import com.satwik.spaces.presentation.search_screen.components.SearchBar
 import com.satwik.spaces.presentation.theme.Black
 import com.satwik.spaces.presentation.theme.Montserrat
 import com.satwik.spaces.presentation.theme.Purple
 import com.satwik.spaces.presentation.theme.White
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import javax.annotation.Nonnull
+import com.satwik.spaces.domain.use_case.getProperties.GetProperties as GetProperties1
 
-@OptIn(ExperimentalFoundationApi::class)
+
 @Composable
-fun DetailScreen(navController:NavController){
-    val images = listOf(
-        "https://officeinteriordesign.com/wp-content/uploads/2022/08/Your-smartest-investment-1.jpg",
-        "https://officedesigner.com/wp-content/uploads/2023/03/office-designer-london.jpeg",
-        "https://penkethgroup.com/wp-content/uploads/2022/10/1-29.jpg"
-    )
+fun DetailScreen(navController:NavController, propertyId:Int){
+
+    val property = DummyApi.getPropertyById(propertyId)
 
     Column(
         modifier = Modifier
@@ -44,21 +47,16 @@ fun DetailScreen(navController:NavController){
             .padding(start = 8.dp, end = 8.dp)
     ) {
 
-        ImageSlider(listOfUrl = images)
 
-        
-
-        
-
-
+        ImageSlider(listOfUrl = property!!.imageUrls)
 
         Spacer(modifier = Modifier.height(30.dp))
 
-        PropertyInfoSection(propertyName = "Binari Greenwich", propertyAddress = "232 Maple Street, New York", rating = "5.0")
+        PropertyInfoSection(propertyName = property.name, propertyAddress = property.address,rating = property.rating)
 
         Spacer(modifier = Modifier.height(30.dp))
 
-        FeatureSection(floor = "25th", people="5" ,sqft = "250")
+        FeatureSection(floor = property.floor, people = property.people ,sqft = property.carpetArea)
 
         Spacer(modifier = Modifier.height(30.dp))
 
@@ -108,5 +106,5 @@ fun DetailScreen(navController:NavController){
 @Preview
 @Composable
 fun DetailScreenPreview(){
-    DetailScreen(navController = rememberNavController())
+    DetailScreen(navController = rememberNavController(), propertyId = 1)
 }

@@ -11,20 +11,27 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.satwik.spaces.R
+import com.satwik.spaces.presentation.theme.Black
 import com.satwik.spaces.presentation.theme.Montserrat
+import com.satwik.spaces.presentation.theme.Purple
 import com.satwik.spaces.presentation.theme.White
 
 
@@ -35,46 +42,69 @@ fun SearchBar(
     query: String,
     onQueryChange: (String) -> Unit,
     placeholder:String,
-    backButtonOnClick:() -> Unit,
-    cancelButtonOnClick:() ->Unit,
+    fontFamily:FontFamily = Montserrat,
+    leadingButtonOnClick:() -> Unit,
+    trailButtonOnClick:() ->Unit,
     @DrawableRes
-    backButtonIcon:Int = R.drawable.ic_arrow_left,
+    leadingButtonIcon:Int = R.drawable.ic_arrow_left,
     @DrawableRes
-    cancelButtonIcon:Int = R.drawable.ic_hamburger
-){
+    trailButtonIcon:Int = R.drawable.ic_cross,
+    autoFocus:Boolean = false
 
+){
+    val focusRequester = remember{FocusRequester()}
+    if(autoFocus){
+        LaunchedEffect(Unit){
+            focusRequester.requestFocus()
+        }
+    }
     TextField(
         modifier = modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .focusRequester(focusRequester),
+
         value = query,
+
         onValueChange = onQueryChange,
+
+        colors = TextFieldDefaults.textFieldColors(
+            cursorColor = Purple,
+            containerColor = Black,
+            focusedIndicatorColor = Purple,
+            unfocusedIndicatorColor = White
+        ),
         singleLine = true,
-        textStyle = TextStyle(fontFamily = Montserrat, fontWeight = FontWeight.Normal),
+
+        textStyle = TextStyle(fontFamily = fontFamily, fontWeight = FontWeight.Normal),
+
         trailingIcon = {
-            IconButton(onClick = backButtonOnClick,
+            IconButton(onClick = trailButtonOnClick,
             ) {
                 Icon(
-                    painter = painterResource(id = backButtonIcon),
+                    painter = painterResource(id = trailButtonIcon),
                     contentDescription = null,
                     tint = White,
                 )
-            } },
+            }
+        },
         leadingIcon = {
-            IconButton(onClick = cancelButtonOnClick,
+            IconButton(onClick = leadingButtonOnClick,
             ) {
                 Icon(
-                    painter = painterResource(id = cancelButtonIcon),
+                    painter = painterResource(id = leadingButtonIcon),
                     contentDescription = null,
                     tint = White,
                 )
-            } },
+            }
+        },
+
         placeholder = {
             Text(
                 text = placeholder,
-                fontFamily = Montserrat,
+                fontFamily = fontFamily,
                 fontWeight = FontWeight.Normal
-            ) },
-
+            )
+        },
     )
 }
 
@@ -96,6 +126,6 @@ fun SearchBarPreview(){
         query = text,
         onQueryChange = {text = it},
         placeholder = "Search for workspaces",
-        backButtonOnClick = { /*TODO*/ },
-        cancelButtonOnClick = { /*TODO*/ })
+        trailButtonOnClick = { /*TODO*/ },
+        leadingButtonOnClick = { /*TODO*/ })
 }

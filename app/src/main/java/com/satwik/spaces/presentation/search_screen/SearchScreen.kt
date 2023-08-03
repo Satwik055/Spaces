@@ -36,8 +36,10 @@ fun SearchScreen(navController:NavController){
             query = text,
             onQueryChange = {text = it},
             placeholder = "Search for workspaces",
-            backButtonOnClick = { /*TODO*/ },
-            cancelButtonOnClick = { /*TODO*/ })
+            leadingButtonOnClick = { navController.popBackStack() },
+            trailButtonOnClick = { text = "" },
+            autoFocus = true
+        )
 
     }
 }
