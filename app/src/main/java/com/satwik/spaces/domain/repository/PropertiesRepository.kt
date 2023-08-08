@@ -5,5 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 
 interface PropertiesRepository{
-    suspend fun getPropertiesFromFirestore(): List<Property>
+    suspend fun getAllProperties(): List<Property>
+
+    suspend fun getPropertyById(id:Int):Property
 }

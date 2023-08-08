@@ -1,5 +1,6 @@
 package com.satwik.spaces.presentation.home_screen
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,19 +19,34 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.satwik.spaces.common.Constants
 import com.satwik.spaces.common.DummyApi
+import com.satwik.spaces.domain.model.Property
 import com.satwik.spaces.presentation.home_screen.components.ListingCard
 import com.satwik.spaces.presentation.home_screen.components.TopAppBar
 import com.satwik.spaces.presentation.navigation.Screen
 import com.satwik.spaces.presentation.theme.Black
 import com.satwik.spaces.presentation.theme.Montserrat
 import com.satwik.spaces.presentation.theme.White
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.tasks.await
 
 
 @Composable
-fun HomeScreen(navController:NavController){
+fun HomeScreen(
+    navController:NavController,
+    viewModel:HomeScreenViewModel = hiltViewModel()
+){
+
+    val state = viewModel.state.value
 
     Column  (
         modifier = Modifier
@@ -66,12 +82,13 @@ fun HomeScreen(navController:NavController){
 
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ){items(DummyApi.getAllProperties()){
+        ){items(state.properties){
             ListingCard(
                 propertyName = it.name,
                 propertyAddress = it.address,
-                imageUrl = it.imageUrls.first()
-            ) { navController.navigate(Screen.Detail.passId(it.id)) }
+                imageUrl = it.imageUrls.first(),
+                onClick = { navController.navigate(Screen.Detail.passId(it.id))}
+            )
         }
         }
 
@@ -89,12 +106,12 @@ fun HomeScreen(navController:NavController){
 
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(8.dp)
-        ){items(DummyApi.getAllProperties()){
+        ){items(state.properties){
             ListingCard(
                 propertyName = it.name,
                 propertyAddress = it.address,
                 imageUrl = it.imageUrls.first(),
-                onClick = { navController.navigate("detail_screen/" + 2)},
+                onClick = { navController.navigate(Screen.Detail.passId(it.id))},
                 modifier = Modifier
                     .height(204.dp)
                     .width(380.dp)

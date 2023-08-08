@@ -6,6 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.satwik.spaces.common.Constants
 import com.satwik.spaces.presentation.detail_screen.DetailScreen
 import com.satwik.spaces.presentation.home_screen.HomeScreen
 import com.satwik.spaces.presentation.search_screen.SearchScreen
@@ -23,11 +24,11 @@ fun SetupNavGraph(navController:NavHostController){
 
         composable(
             route = Screen.Detail.route,
-            arguments = listOf(navArgument(DETAIL_SCREEN_ARGUMENT_KEY){
+            arguments = listOf(navArgument(Constants.DETAIL_SCREEN_ARGUMENT_KEY){
                 type = NavType.IntType
         })
         ) {
-            DetailScreen(navController = navController, it.arguments!!.getInt(DETAIL_SCREEN_ARGUMENT_KEY))
+            DetailScreen()
         }
 
         composable(route = Screen.Search.route){

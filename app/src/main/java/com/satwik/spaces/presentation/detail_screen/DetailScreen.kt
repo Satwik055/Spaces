@@ -16,29 +16,26 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.satwik.spaces.common.DummyApi
-import com.satwik.spaces.data.repository.PropertiesRepositoryImpl
-import com.satwik.spaces.domain.repository.PropertiesRepository
 import com.satwik.spaces.presentation.detail_screen.components.FeatureSection
 import com.satwik.spaces.presentation.detail_screen.components.ImageSlider
 import com.satwik.spaces.presentation.detail_screen.components.PropertyInfoSection
+import com.satwik.spaces.presentation.home_screen.HomeScreenViewModel
 import com.satwik.spaces.presentation.theme.Black
 import com.satwik.spaces.presentation.theme.Montserrat
 import com.satwik.spaces.presentation.theme.Purple
 import com.satwik.spaces.presentation.theme.White
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import javax.annotation.Nonnull
-import com.satwik.spaces.domain.use_case.getProperties.GetProperties as GetProperties1
 
 
 @Composable
-fun DetailScreen(navController:NavController, propertyId:Int){
-
-    val property = DummyApi.getPropertyById(propertyId)
+fun DetailScreen(
+    viewModel: DetailScreenViewModel = hiltViewModel()
+){
+    val state = viewModel.state.value
+    //val property = DummyApi.getPropertyById(propertyId)
 
     Column(
         modifier = Modifier
@@ -48,15 +45,15 @@ fun DetailScreen(navController:NavController, propertyId:Int){
     ) {
 
 
-        ImageSlider(listOfUrl = property!!.imageUrls)
+        ImageSlider(listOfUrl = state.property!!.imageUrls)
 
         Spacer(modifier = Modifier.height(30.dp))
 
-        PropertyInfoSection(propertyName = property.name, propertyAddress = property.address,rating = property.rating)
+        PropertyInfoSection(propertyName =  state.property.name, propertyAddress = state.property.address,rating = state.property.rating)
 
         Spacer(modifier = Modifier.height(30.dp))
 
-        FeatureSection(floor = property.floor, people = property.people ,sqft = property.carpetArea)
+        FeatureSection(floor = state.property.floor, people = state.property.people ,sqft = state.property.carpetArea)
 
         Spacer(modifier = Modifier.height(30.dp))
 
@@ -77,7 +74,6 @@ fun DetailScreen(navController:NavController, propertyId:Int){
             color = White,
             fontSize = 15.sp,
         )
-
 
         Spacer(modifier = Modifier.height(30.dp))
 
@@ -106,5 +102,5 @@ fun DetailScreen(navController:NavController, propertyId:Int){
 @Preview
 @Composable
 fun DetailScreenPreview(){
-    DetailScreen(navController = rememberNavController(), propertyId = 1)
+    DetailScreen()
 }

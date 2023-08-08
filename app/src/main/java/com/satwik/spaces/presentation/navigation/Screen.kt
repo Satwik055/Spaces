@@ -1,11 +1,11 @@
 package com.satwik.spaces.presentation.navigation
 
+import com.satwik.spaces.common.Constants
 
-const val DETAIL_SCREEN_ARGUMENT_KEY ="id"
 
 sealed class Screen(val route:String){
     object Home:Screen(route = "home_screen")
-    object Detail:Screen(route = "detail_screen/{${DETAIL_SCREEN_ARGUMENT_KEY}}"){
+    object Detail:Screen(route = "detail_screen/{${Constants.DETAIL_SCREEN_ARGUMENT_KEY}}"){
         fun passId(id:Int): String {
             return "detail_screen/${id}"
         }
