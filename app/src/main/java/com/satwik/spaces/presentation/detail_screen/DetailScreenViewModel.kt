@@ -23,12 +23,12 @@ class DetailScreenViewModel@Inject constructor(
     val state:State<PropertyState> = _state
 
     init {
-        savedStateHandle.get<Int>(Constants.DETAIL_SCREEN_ARGUMENT_KEY)?.let {
+        savedStateHandle.get<String>(Constants.DETAIL_SCREEN_ARGUMENT_KEY)?.let {
                 propertyId-> getPropertyById(propertyId)
         }
     }
 
-    private fun getPropertyById(propertyId:Int){
+    private fun getPropertyById(propertyId: String){
         getPropertyByIdUseCase(propertyId).onEach { result->
             when(result){
                 is Resource.Success-> {

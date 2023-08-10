@@ -2,6 +2,7 @@ package com.satwik.spaces.presentation
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
@@ -23,6 +24,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 
 @AndroidEntryPoint
@@ -33,9 +35,6 @@ class MainActivity : ComponentActivity() {
             SpacesTheme {
                 SetupNavGraph(navController = rememberNavController())
             }
-
-            //----Testing Area----//
-
 
         }
     }

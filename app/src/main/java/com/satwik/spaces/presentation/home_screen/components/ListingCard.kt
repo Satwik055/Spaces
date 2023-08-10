@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.SubcomposeAsyncImage
 import com.satwik.spaces.R
+import com.satwik.spaces.domain.model.Property
 import com.satwik.spaces.presentation.theme.Montserrat
 import com.satwik.spaces.presentation.theme.Purple
 import com.satwik.spaces.presentation.theme.White

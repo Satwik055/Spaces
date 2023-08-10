@@ -1,13 +1,11 @@
 package com.satwik.spaces.domain.model
 
-import androidx.annotation.DrawableRes
-
 data class Property(
-    val id:Int,
+    val id:String = "",
     val name:String = "",
     val address:String = "",
     val description:String = "",
-    val imageUrls:List<String>,
+    val imageUrls:List<String> = emptyList(),
     val price:String = "",
     val rating:String = "",
     val people:String = "",

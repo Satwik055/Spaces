@@ -25,7 +25,7 @@ fun SetupNavGraph(navController:NavHostController){
         composable(
             route = Screen.Detail.route,
             arguments = listOf(navArgument(Constants.DETAIL_SCREEN_ARGUMENT_KEY){
-                type = NavType.IntType
+                type = NavType.StringType
         })
         ) {
             DetailScreen()

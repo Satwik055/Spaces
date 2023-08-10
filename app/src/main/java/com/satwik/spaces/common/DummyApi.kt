@@ -5,7 +5,7 @@ import com.satwik.spaces.domain.model.Property
 object DummyApi {
 
     private val listing1 = Property(
-        1,
+        "1",
         "Cleo Heights",
         "New York",
         "This is description, the property poster is supposed to write something here and fill this nigga up",
@@ -22,7 +22,7 @@ object DummyApi {
     )
 
     private val listing2 = Property(
-        2,
+        "2",
         "Cleo Heights",
         "New York",
         "This is description, the property poster is supposed to write something here and fill this nigga up",
@@ -39,7 +39,7 @@ object DummyApi {
     )
 
     private val listing3 = Property(
-        3,
+        "3",
         "Cleo Heights",
         "New York",
         "This is description, the property poster is supposed to write something here and fill this nigga up",
@@ -56,7 +56,7 @@ object DummyApi {
     )
 
     private val listing4 = Property(
-        4,
+        "4",
         "Cleo Heights",
         "New York",
         "This is description, the property poster is supposed to write something here and fill this nigga up",
@@ -73,7 +73,7 @@ object DummyApi {
     )
 
     private val listing5 = Property(
-        5,
+        "5",
         "Cleo Heights",
         "New York",
         "This is description, the property poster is supposed to write something here and fill this nigga up",
@@ -90,7 +90,7 @@ object DummyApi {
     )
 
     private val listing6 = Property(
-        6,
+        "6",
         "Cleo Heights",
         "New York",
         "This is description, the property poster is supposed to write something here and fill this nigga up",
@@ -113,7 +113,7 @@ object DummyApi {
         return properties
     }
 
-    fun getPropertyById(id:Int): Property? {
+    fun getPropertyById(id:String): Property? {
         return properties.find { it.id == id }
     }
 

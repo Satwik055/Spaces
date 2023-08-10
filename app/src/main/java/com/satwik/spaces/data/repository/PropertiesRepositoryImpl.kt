@@ -2,6 +2,7 @@ package com.satwik.spaces.data.repository
 
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.satwik.spaces.common.Constants
 import com.satwik.spaces.common.DummyApi
@@ -19,16 +20,41 @@ class PropertiesRepositoryImpl @Inject constructor(
     private val collectionRef:CollectionReference
 ):PropertiesRepository {
 
-    override suspend fun getAllProperties() = DummyApi.getAllProperties()
-    override suspend fun getPropertyById(id: Int) = DummyApi.getPropertyById(id)!!
+    override suspend fun getAllProperties(): List<Property> {
+        val querySnapshot = collectionRef.get().await()
+        val properties = mutableListOf<Property>()
+        for(document in querySnapshot.documents){
+            val property = document.toObject<Property>()
+            property?.let { properties.add(it) }
+        }
+        return properties
+    }
+
+    override suspend fun getPropertyById(id: String):Property?{
+        val docSnapshot = collectionRef.document(id).get().await()
+        return docSnapshot.toObject<Property>()
+    }
+
 
 }
 
 
 
+/*
+        val querySnapshot = collectionRef.get().await()
+        val properties = mutableListOf<Property>()
+        for(document in querySnapshot.documents){
+            val property = document.toObject<Property>()
+            property?.let { properties.add(it) }
+        }
+        return properties
+
+*/
 
 
-
+/*
+= DummyApi.getPropertyById(id)!!
+*/
 
 /*
         val properties = arrayListOf<Property>()

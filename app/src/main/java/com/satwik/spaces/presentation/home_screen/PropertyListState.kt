@@ -5,5 +5,5 @@ import com.satwik.spaces.domain.model.Property
 data class PropertyListState(
     val isLoading:Boolean = false,
     val properties:List<Property> = emptyList(),
-    val error:String= ""
+    val error:String = ""
 )
