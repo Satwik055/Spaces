@@ -15,7 +15,9 @@ import com.google.firebase.ktx.Firebase
 import com.satwik.spaces.common.Constants
 import com.satwik.spaces.domain.model.Property
 import com.satwik.spaces.presentation.home_screen.HomeScreen
+import com.satwik.spaces.presentation.login_screen.LoginScreen
 import com.satwik.spaces.presentation.navigation.SetupNavGraph
+import com.satwik.spaces.presentation.signup_screen.SignUpScreen
 import com.satwik.spaces.presentation.theme.SpacesTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -33,7 +35,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SpacesTheme {
-                SetupNavGraph(navController = rememberNavController())
+                //SetupNavGraph(navController = rememberNavController())
+                LoginScreen()
             }
 
         }
