@@ -1,6 +1,6 @@
 package com.satwik.spaces.common
 
-import com.satwik.spaces.domain.model.Property
+import com.satwik.spaces.properties.domain.model.Property
 
 object DummyApi {
 

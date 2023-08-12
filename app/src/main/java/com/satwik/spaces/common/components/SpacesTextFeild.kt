@@ -12,9 +12,9 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import com.satwik.spaces.presentation.theme.Grey
-import com.satwik.spaces.presentation.theme.Montserrat
-import com.satwik.spaces.presentation.theme.Purple
+import com.satwik.spaces.properties.presentation.theme.Grey
+import com.satwik.spaces.properties.presentation.theme.Montserrat
+import com.satwik.spaces.properties.presentation.theme.Purple
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
