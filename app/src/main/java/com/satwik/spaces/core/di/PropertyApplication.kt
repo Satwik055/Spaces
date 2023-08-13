@@ -1,4 +1,4 @@
-package com.satwik.spaces.common.di
+package com.satwik.spaces.core.di
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

@@ -25,15 +25,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.satwik.spaces.R
-import com.satwik.spaces.common.components.SpacesTextField
+import com.satwik.spaces.core.components.SpacesTextField
 import com.satwik.spaces.properties.presentation.theme.Black
 import com.satwik.spaces.properties.presentation.theme.Montserrat
 import com.satwik.spaces.properties.presentation.theme.Purple
 import com.satwik.spaces.properties.presentation.theme.White
 
 @Composable
-fun LoginScreen(){
+fun LoginScreen(
+    navController:NavController
+){
     Box (
         modifier = Modifier
             .fillMaxSize()

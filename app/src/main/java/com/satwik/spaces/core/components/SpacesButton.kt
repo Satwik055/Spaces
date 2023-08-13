@@ -1,4 +1,4 @@
-package com.satwik.spaces.common.components
+package com.satwik.spaces.core.components
 
 import androidx.compose.runtime.Composable
 

@@ -1,4 +1,4 @@
-package com.satwik.spaces.common.components
+package com.satwik.spaces.core.components
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField

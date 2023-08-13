@@ -1,4 +1,4 @@
-package com.satwik.spaces.properties.presentation.navigation
+package com.satwik.spaces.core.navigation
 
 import com.satwik.spaces.properties.common.Constants
 
@@ -11,5 +11,7 @@ sealed class Screen(val route:String){
         }
     }
     object Search: Screen(route = "search_screen")
+    object Signup: Screen(route = "signup_screen")
+    object Login: Screen(route = "login_screen")
 
 }

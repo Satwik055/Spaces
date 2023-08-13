@@ -4,7 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.satwik.spaces.common.Resource
+import com.satwik.spaces.core.utils.Resource
 import com.satwik.spaces.properties.domain.use_case.get_all_properties.GetAllPropertiesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn

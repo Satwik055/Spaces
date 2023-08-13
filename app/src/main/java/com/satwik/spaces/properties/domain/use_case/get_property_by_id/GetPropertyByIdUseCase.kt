@@ -1,6 +1,6 @@
 package com.satwik.spaces.properties.domain.use_case.get_property_by_id
 
-import com.satwik.spaces.common.Resource
+import com.satwik.spaces.core.utils.Resource
 import com.satwik.spaces.properties.domain.repository.PropertiesRepository
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

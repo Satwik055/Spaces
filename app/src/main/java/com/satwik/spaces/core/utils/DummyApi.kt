@@ -1,4 +1,4 @@
-package com.satwik.spaces.common
+package com.satwik.spaces.core.utils
 
 import com.satwik.spaces.properties.domain.model.Property
 

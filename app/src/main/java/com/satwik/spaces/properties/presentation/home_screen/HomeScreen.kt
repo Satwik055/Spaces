@@ -26,7 +26,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.satwik.spaces.properties.presentation.home_screen.components.ListingCard
 import com.satwik.spaces.properties.presentation.home_screen.components.TopAppBar
-import com.satwik.spaces.properties.presentation.navigation.Screen
+import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.properties.presentation.theme.Black
 import com.satwik.spaces.properties.presentation.theme.Montserrat
 import com.satwik.spaces.properties.presentation.theme.Purple
