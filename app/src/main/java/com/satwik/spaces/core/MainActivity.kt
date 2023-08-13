@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.satwik.spaces.authentication.presentation.login_screen.LoginScreen
 import com.satwik.spaces.authentication.presentation.signup_screen.SignUpScreen
 import com.satwik.spaces.properties.presentation.theme.SpacesTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,16 +24,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             SpacesTheme {
                 //SetupNavGraph(navController = rememberNavController())
-                SignUpScreen(navController = rememberNavController())
+                LoginScreen(navController = rememberNavController())
             }
 
             //----Testing Area----//
-            fun signupWithFirebase(email:String, password:String) = CoroutineScope(Dispatchers.IO).launch {
-                val auth = FirebaseAuth.getInstance()
-                auth.createUserWithEmailAndPassword(email, password).await()
-            }
 
-            signupWithFirebase("test02@gmail.com", "123456")
+
 
         }
     }

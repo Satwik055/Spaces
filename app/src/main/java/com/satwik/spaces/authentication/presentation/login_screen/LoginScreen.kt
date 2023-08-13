@@ -1,6 +1,8 @@
 package com.satwik.spaces.authentication.presentation.login_screen
 
+import android.widget.Toast
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -12,22 +14,30 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.satwik.spaces.R
+import com.satwik.spaces.authentication.presentation.signup_screen.SignupScreenViewModel
 import com.satwik.spaces.core.components.SpacesTextField
+import com.satwik.spaces.core.navigation.Screen
+import com.satwik.spaces.core.utils.Resource
 import com.satwik.spaces.properties.presentation.theme.Black
 import com.satwik.spaces.properties.presentation.theme.Montserrat
 import com.satwik.spaces.properties.presentation.theme.Purple
@@ -35,8 +45,11 @@ import com.satwik.spaces.properties.presentation.theme.White
 
 @Composable
 fun LoginScreen(
-    navController:NavController
+    navController:NavController,
+    viewModel:LoginScreenViewModel = hiltViewModel()
 ){
+    val loginFlow = viewModel.loginFlow.collectAsState()
+
     Box (
         modifier = Modifier
             .fillMaxSize()
@@ -83,7 +96,7 @@ fun LoginScreen(
                 placeholder = "Email",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(50.dp)
+
             )
 
             Spacer(modifier = Modifier.height(30.dp))
@@ -95,13 +108,13 @@ fun LoginScreen(
                 placeholder = "Password",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(50.dp)
+
             )
 
             Spacer(modifier = Modifier.height(30.dp))
 
             Button(
-                onClick = { /*TODO*/ },
+                onClick = { viewModel.login(emailText, passwordText) },
                 modifier= Modifier.fillMaxWidth().height(50.dp),
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Purple)
@@ -113,6 +126,34 @@ fun LoginScreen(
                     color = White,
                     fontSize = 18.sp,
                 )
+            }
+            Text(
+                text = "Don't have an account ? Signup",
+                fontFamily = Montserrat,
+                fontWeight = FontWeight.Normal,
+                color = White,
+                fontSize = 16.sp,
+                modifier = Modifier
+                    .clickable { navController.navigate(Screen.Signup.route) }
+            )
+        }
+
+
+
+        loginFlow.value?.let {
+            when(it){
+                is Resource.Loading->{
+                    CircularProgressIndicator(
+                        modifier = Modifier.align(Alignment.Center),
+                        color = Purple
+                    )
+                }
+                is Resource.Success->{
+                    navController.navigate(Screen.Home.route)
+                }
+                is Resource.Error->{
+                    Toast.makeText(LocalContext.current, it.message, Toast.LENGTH_LONG ).show()
+                }
             }
         }
     }
