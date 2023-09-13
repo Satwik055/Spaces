@@ -54,9 +54,11 @@ fun LoginScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(Black)
-            .padding(start = 8.dp, end = 8.dp)
+            .padding(start = 16.dp, end = 16.dp)
     ){
         Column {
+
+            Spacer(modifier = Modifier.height(14.dp))
 
             IconButton(onClick = { /*TODO*/} ,
                 modifier = Modifier
@@ -87,7 +89,7 @@ fun LoginScreen(
                 fontSize = 16.sp,
             )
 
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(53.dp))
 
             var emailText by remember { mutableStateOf("") }
             SpacesTextField(
@@ -111,13 +113,15 @@ fun LoginScreen(
 
             )
 
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(75.dp))
 
             Button(
                 onClick = { viewModel.login(emailText, passwordText) },
-                modifier= Modifier.fillMaxWidth().height(50.dp),
                 shape = RoundedCornerShape(10.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Purple)
+                colors = ButtonDefaults.buttonColors(containerColor = Purple),
+                modifier= Modifier
+                    .fillMaxWidth()
+                    .height(55.dp)
             ) {
                 Text(
                     text = "Login",
@@ -127,18 +131,18 @@ fun LoginScreen(
                     fontSize = 18.sp,
                 )
             }
-            Text(
-                text = "Don't have an account ? Signup",
-                fontFamily = Montserrat,
-                fontWeight = FontWeight.Normal,
-                color = White,
-                fontSize = 16.sp,
-                modifier = Modifier
-                    .clickable { /*navController.navigate(Screen.Signup.route)*/ }
-            )
         }
 
-
+        Text(
+            text = "Don't have an account ? Signup",
+            fontFamily = Montserrat,
+            fontWeight = FontWeight.Medium,
+            color = White,
+            fontSize = 13.sp,
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .clickable { /*navController.navigate(Screen.Signup.route)*/ }
+        )
 
         loginFlow.value?.let {
             when(it){
