@@ -17,7 +17,7 @@ import com.satwik.spaces.properties.presentation.search_screen.SearchScreen
 fun SetupNavGraph(navController:NavHostController){
     NavHost(
         navController = navController,
-        startDestination = Screen.Login.route
+        startDestination = Screen.Signup.route
     ){
         composable(
             route = Screen.Home.route){

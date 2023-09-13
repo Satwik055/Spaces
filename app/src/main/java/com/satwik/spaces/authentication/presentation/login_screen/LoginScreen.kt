@@ -19,6 +19,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -34,7 +35,6 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.satwik.spaces.R
-import com.satwik.spaces.authentication.presentation.signup_screen.SignupScreenViewModel
 import com.satwik.spaces.core.components.SpacesTextField
 import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.core.utils.Resource
@@ -141,7 +141,7 @@ fun LoginScreen(
             fontSize = 13.sp,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .clickable { /*navController.navigate(Screen.Signup.route)*/ }
+                .clickable { navController.navigate(Screen.Signup.route) }
         )
 
         loginFlow.value?.let {
@@ -153,7 +153,11 @@ fun LoginScreen(
                     )
                 }
                 is Resource.Success->{
-                    navController.navigate(Screen.Home.route)
+                    LaunchedEffect(Unit){
+                        navController.navigate(Screen.Home.route){
+                            popUpTo(Screen.Home.route) {inclusive=true}
+                        }
+                    }
                 }
                 is Resource.Error->{
                     Toast.makeText(LocalContext.current, it.message, Toast.LENGTH_LONG ).show()
