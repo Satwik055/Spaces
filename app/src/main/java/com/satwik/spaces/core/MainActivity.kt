@@ -9,6 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.satwik.spaces.authentication.presentation.login_screen.LoginScreen
 import com.satwik.spaces.authentication.presentation.signup_screen.SignUpScreen
+import com.satwik.spaces.core.navigation.SetupNavGraph
 import com.satwik.spaces.properties.presentation.theme.SpacesTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -23,8 +24,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SpacesTheme {
-                //SetupNavGraph(navController = rememberNavController())
-                LoginScreen(navController = rememberNavController())
+                SetupNavGraph(navController = rememberNavController())
+
             }
 
             //----Testing Area----//

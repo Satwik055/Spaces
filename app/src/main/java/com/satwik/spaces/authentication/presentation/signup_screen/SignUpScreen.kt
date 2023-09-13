@@ -32,15 +32,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.satwik.spaces.R
 import com.satwik.spaces.core.components.SpacesTextField
 import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.core.utils.Resource
-import com.satwik.spaces.properties.presentation.detail_screen.DetailScreenViewModel
-import com.satwik.spaces.properties.presentation.home_screen.HomeScreenViewModel
 import com.satwik.spaces.properties.presentation.theme.Black
 import com.satwik.spaces.properties.presentation.theme.Montserrat
 import com.satwik.spaces.properties.presentation.theme.Purple
@@ -54,18 +50,19 @@ fun SignUpScreen(
 
     val signupFlow = viewModel.signupFlow.collectAsState()
 
-
     Box (
         modifier = Modifier
             .fillMaxSize()
             .background(Black)
-            .padding(start = 8.dp, end = 8.dp)
+            .padding(start = 16.dp, end = 16.dp)
     ){
+
+
         Column {
 
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(14.dp))
 
-            IconButton(onClick = { /*TODO*/} ,
+            IconButton(onClick = { /*TODO*/},
                 modifier = Modifier
                     .size(45.dp).align(Alignment.Start)
             ) {
@@ -94,7 +91,7 @@ fun SignUpScreen(
                 fontSize = 16.sp,
             )
 
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(53.dp))
 
             var nameText by remember { mutableStateOf("") }
             SpacesTextField(
@@ -103,7 +100,6 @@ fun SignUpScreen(
                 placeholder = "Name",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(50.dp)
             )
 
             Spacer(modifier = Modifier.height(30.dp))
@@ -115,7 +111,6 @@ fun SignUpScreen(
                 placeholder = "Email",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(50.dp)
             )
 
             Spacer(modifier = Modifier.height(30.dp))
@@ -127,37 +122,39 @@ fun SignUpScreen(
                 placeholder = "Password",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(50.dp)
+
             )
 
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(75.dp))
 
             Button(
                 onClick = { viewModel.signup(emailText, passwordText) },
                 modifier= Modifier
                     .fillMaxWidth()
-                    .height(50.dp),
+                    .height(55.dp),
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Purple)
             ) {
                 Text(
-                    text = "SignUp",
+                    text = "Signup",
                     fontFamily = Montserrat,
-                    fontWeight = FontWeight.Normal,
+                    fontWeight = FontWeight.Medium,
                     color = White,
                     fontSize = 18.sp,
                 )
             }
-            Text(
-                text = "Already have an account ? Login",
-                fontFamily = Montserrat,
-                fontWeight = FontWeight.Normal,
-                color = White,
-                fontSize = 16.sp,
-                modifier = Modifier
-                    .clickable { navController.navigate(Screen.Login.route) }
-            )
         }
+
+        Text(
+            text = "Already have an account ? Login",
+            fontFamily = Montserrat,
+            fontWeight = FontWeight.Medium,
+            color = White,
+            fontSize = 13.sp,
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .clickable { /*navController.navigate(Screen.Login.route)*/ }
+        )
 
         signupFlow.value?.let {
             when(it){
@@ -174,7 +171,6 @@ fun SignUpScreen(
                 is Resource.Error->{
                     Toast.makeText(LocalContext.current, it.message, Toast.LENGTH_LONG ).show()
                 }
-
             }
         }
     }

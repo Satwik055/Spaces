@@ -134,7 +134,7 @@ fun LoginScreen(
                 color = White,
                 fontSize = 16.sp,
                 modifier = Modifier
-                    .clickable { navController.navigate(Screen.Signup.route) }
+                    .clickable { /*navController.navigate(Screen.Signup.route)*/ }
             )
         }
 
