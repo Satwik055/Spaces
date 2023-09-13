@@ -11,9 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -35,7 +32,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.satwik.spaces.R
-import com.satwik.spaces.authentication.presentation.auth_viewmodel.AuthViewModel
+import com.satwik.spaces.core.components.SpacesButton
 import com.satwik.spaces.core.components.SpacesTextField
 import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.core.utils.Resource
@@ -51,6 +48,8 @@ fun SignUpScreen(
 ){
 
     val signupFlow = viewModel.signupFlow.collectAsState()
+    var errorText by remember { mutableStateOf("") }
+    var isError by remember { mutableStateOf(false) }
 
     Box (
         modifier = Modifier
@@ -122,6 +121,8 @@ fun SignUpScreen(
                 text = passwordText,
                 onValueChange ={passwordText=it},
                 placeholder = "Password",
+                errorText = errorText,
+                isError = isError,
                 modifier = Modifier
                     .fillMaxWidth()
 
@@ -129,22 +130,10 @@ fun SignUpScreen(
 
             Spacer(modifier = Modifier.height(75.dp))
 
-            Button(
-                onClick = { viewModel.signup(emailText, passwordText) },
-                modifier= Modifier
-                    .fillMaxWidth()
-                    .height(55.dp),
-                shape = RoundedCornerShape(10.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Purple)
-            ) {
-                Text(
-                    text = "Signup",
-                    fontFamily = Montserrat,
-                    fontWeight = FontWeight.Medium,
-                    color = White,
-                    fontSize = 18.sp,
-                )
-            }
+            SpacesButton(
+                text = "Signup",
+                onClick = {viewModel.signup(emailText, passwordText)}
+            )
         }
 
         Text(
@@ -174,7 +163,8 @@ fun SignUpScreen(
                     }
                 }
                 is Resource.Error->{
-                    Toast.makeText(LocalContext.current, it.message, Toast.LENGTH_LONG ).show()
+                    isError = true
+                    errorText = it.message.toString()
                 }
             }
         }

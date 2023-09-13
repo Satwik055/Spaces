@@ -12,6 +12,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import com.google.android.gms.common.internal.FallbackServiceBroker
 import com.satwik.spaces.properties.presentation.theme.Grey
 import com.satwik.spaces.properties.presentation.theme.Montserrat
 import com.satwik.spaces.properties.presentation.theme.Purple
@@ -23,20 +24,27 @@ fun SpacesTextField(
     text:String,
     fontFamily: FontFamily = Montserrat,
     onValueChange: (String) -> Unit,
-    placeholder:String
+    placeholder:String,
+    errorText: String = "",
+    isError:Boolean = false
+
+
 ){
 
     OutlinedTextField(
         modifier = modifier,
         value = text,
         onValueChange = onValueChange,
+        isError = isError,
         colors = TextFieldDefaults.outlinedTextFieldColors(
             cursorColor = Purple,
             containerColor = Color.Transparent,
             focusedBorderColor = Purple,
-            unfocusedBorderColor = Grey
+            unfocusedBorderColor = Grey,
+            errorBorderColor = Color.Red
         ),
         singleLine = true,
+        supportingText = { Text(text = errorText, color = Color.Red, fontSize = 13.sp)},
         textStyle = TextStyle(fontFamily = fontFamily, fontWeight = FontWeight.Normal, fontSize = 16.sp),
         placeholder = {
             Text(
