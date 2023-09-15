@@ -1,0 +1,219 @@
+package com.satwik.spaces.payments.presentation.confirmation_screen.components
+
+import androidx.annotation.DrawableRes
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Divider
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.satwik.spaces.R
+import com.satwik.spaces.properties.presentation.theme.Grey
+import com.satwik.spaces.properties.presentation.theme.Montserrat
+import com.satwik.spaces.properties.presentation.theme.White
+
+@Composable
+fun DetailSection(
+    name:String,
+    address:String,
+    @DrawableRes
+    thumbNail:Int,
+    startDate:String,
+    endDate:String,
+    people:String,
+    currency:String,
+    price:String
+){
+    Column(
+        modifier = Modifier
+            .border(1.dp, Grey, RoundedCornerShape(10.dp))
+    ) {
+        NameSection(
+            name = name,
+            address = address,
+            thumbnail = thumbNail
+        )
+        Divider(thickness = 1.dp, color = Grey)
+        DateSection(
+            startDate = startDate,
+            endDate = endDate,
+            people = people
+        )
+        Divider(thickness = 1.dp, color = Grey)
+        Spacer(modifier = Modifier.height(5.dp))
+        PriceSection(
+            currency = currency,
+            price = price
+        )
+    }
+}
+
+@Composable
+fun NameSection(
+    modifier:Modifier = Modifier,
+    name:String,
+    address:String,
+    @DrawableRes
+    thumbnail:Int
+){
+    Row(
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(15.dp)
+    ) {
+        Column {
+            Text(
+                text = name,
+                fontFamily = Montserrat,
+                fontWeight = FontWeight.Medium,
+                color = White,
+                fontSize = 17.sp,
+            )
+            Text(
+                text = address,
+                fontFamily = Montserrat,
+                fontWeight = FontWeight.Medium,
+                color = Grey,
+                fontSize = 15.sp,
+            )
+        }
+        Image(
+            painter = painterResource(id = thumbnail),
+            contentScale = ContentScale.Crop,
+            contentDescription = null,
+            modifier = Modifier
+                .height(72.dp)
+                .width(52.dp)
+        )
+    }
+}
+
+@Composable
+fun DateSection(
+    startDate:String,
+    endDate:String,
+    people:String,
+    modifier:Modifier = Modifier,
+    ){
+    Column(
+        modifier = modifier.padding(15.dp)
+    ) {
+        Box (
+            modifier = Modifier.fillMaxWidth()
+        ){
+            Row(
+                modifier = Modifier.align(Alignment.CenterStart)
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_clock),
+                    contentDescription = null,
+                    modifier = Modifier.size(24.dp)
+                )
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                Text(
+                    text = startDate,
+                    fontFamily = Montserrat,
+                    fontWeight = FontWeight.Medium,
+                    color = White,
+                    fontSize = 15.sp,
+                )
+            }
+
+            Image(
+                painter = painterResource(id = R.drawable.ic_arrowright),
+                contentDescription = null,
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .size(20.dp)
+            )
+
+            Text(
+                text = endDate,
+                fontFamily = Montserrat,
+                fontWeight = FontWeight.Medium,
+                color = White,
+                fontSize = 15.sp,
+                modifier = Modifier.align(Alignment.CenterEnd)
+            )
+        }
+        Spacer(modifier = Modifier.height(10.dp))
+
+
+        Row {
+            Image(painter = painterResource(id = R.drawable.ic_users), contentDescription = null)
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(
+                text = "$people people",
+                fontFamily = Montserrat,
+                fontWeight = FontWeight.Medium,
+                color = White,
+                fontSize = 15.sp,
+            )
+        }
+    }
+}
+
+@Composable
+fun PriceSection(
+    currency:String,
+    price:String,
+    modifier: Modifier = Modifier
+){
+    Row(
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = modifier.padding(15.dp).fillMaxWidth()
+    ){
+        Text(
+            text = "Total($currency)",
+            fontFamily = Montserrat,
+            fontWeight = FontWeight.SemiBold,
+            color = White,
+            fontSize = 16.sp,
+        )
+
+        Text(
+            text = price,
+            fontFamily = Montserrat,
+            fontWeight = FontWeight.SemiBold,
+            color = White,
+            fontSize = 16.sp,
+        )
+    }
+
+}
+
+@Preview(showBackground = true, )
+@Composable
+fun DetailSectionPreview(){
+    DetailSection(
+        "Sunny Meadows",
+        "2455 Ave, South Park, NY",
+        R.drawable.office_int,
+        "24 Mar 2023",
+        "25 Mar 2023",
+        "5",
+        "USD",
+        "$799.99"
+    )
+}

@@ -1,6 +1,6 @@
 package com.satwik.spaces.authentication.presentation.signup_screen
 
-import android.widget.Toast
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -33,6 +34,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.satwik.spaces.R
 import com.satwik.spaces.core.components.SpacesButton
+import com.satwik.spaces.core.components.SpacesDivider
 import com.satwik.spaces.core.components.SpacesTextField
 import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.core.utils.Resource
@@ -58,14 +60,14 @@ fun SignUpScreen(
             .padding(start = 16.dp, end = 16.dp)
     ){
 
-
         Column {
 
             Spacer(modifier = Modifier.height(14.dp))
 
             IconButton(onClick = { /*TODO*/},
                 modifier = Modifier
-                    .size(45.dp).align(Alignment.Start)
+                    .size(45.dp)
+                    .align(Alignment.Start)
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_caretleft),
@@ -125,14 +127,27 @@ fun SignUpScreen(
                 isError = isError,
                 modifier = Modifier
                     .fillMaxWidth()
-
             )
 
-            Spacer(modifier = Modifier.height(75.dp))
+            Spacer(modifier = Modifier.height(30.dp))
 
             SpacesButton(
                 text = "Signup",
                 onClick = {viewModel.signup(emailText, passwordText)}
+            )
+
+            Spacer(modifier = Modifier.height(50.dp))
+
+            Divider()
+
+            Spacer(modifier = Modifier.height(30.dp))
+
+            SpacesButton(
+                text = "Continue with google",
+                color = White,
+                fontSize = 16.sp,
+                textColor = Black,
+                onClick = { TODO() }
             )
         }
 
