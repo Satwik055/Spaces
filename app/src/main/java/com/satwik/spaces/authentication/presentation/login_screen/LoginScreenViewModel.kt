@@ -19,12 +19,6 @@ class LoginScreenViewModel @Inject constructor(
     private val _loginFlow = MutableStateFlow<Resource<FirebaseUser>?>(null)
     val loginFlow : StateFlow<Resource<FirebaseUser>?> = _loginFlow
 
-    init {
-        if(authRepository.getCurrentUser() != null){
-            _loginFlow.value = Resource.Success(authRepository.getCurrentUser()!!)
-        }
-    }
-
     fun login(email: String, password: String) = viewModelScope.launch {
         _loginFlow.value = Resource.Loading()
         val result = authRepository.login(email, password)

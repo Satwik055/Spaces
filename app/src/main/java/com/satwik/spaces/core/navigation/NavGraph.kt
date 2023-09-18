@@ -6,6 +6,8 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.satwik.spaces.authentication.presentation.login_screen.LoginScreen
 import com.satwik.spaces.authentication.presentation.signup_screen.SignUpScreen
 import com.satwik.spaces.properties.common.Constants
@@ -15,6 +17,40 @@ import com.satwik.spaces.properties.presentation.search_screen.SearchScreen
 
 @Composable
 fun SetupNavGraph(navController:NavHostController){
+    NavHost(
+        navController = navController,
+        startDestination = Screen.Home.route
+    ){
+        composable(
+            route = Screen.Home.route){
+            HomeScreen(navController = navController)
+        }
+
+        composable(
+            route = Screen.Detail.route,
+            arguments = listOf(navArgument(Constants.DETAIL_SCREEN_ARGUMENT_KEY){
+                type = NavType.StringType
+        })
+        ) {
+            DetailScreen()
+        }
+
+        composable(route = Screen.Search.route){
+            SearchScreen(navController = navController)
+        }
+
+        composable(route = Screen.Signup.route){
+            SignUpScreen(navController = navController)
+        }
+
+        composable(route = Screen.Login.route){
+            LoginScreen(navController = navController)
+        }
+    }
+}
+
+@Composable
+fun SetupNavGraphWithAuth(navController:NavHostController){
     NavHost(
         navController = navController,
         startDestination = Screen.Signup.route
@@ -28,7 +64,7 @@ fun SetupNavGraph(navController:NavHostController){
             route = Screen.Detail.route,
             arguments = listOf(navArgument(Constants.DETAIL_SCREEN_ARGUMENT_KEY){
                 type = NavType.StringType
-        })
+            })
         ) {
             DetailScreen()
         }

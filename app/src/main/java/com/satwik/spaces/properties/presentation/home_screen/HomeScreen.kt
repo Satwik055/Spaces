@@ -24,6 +24,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.satwik.spaces.properties.presentation.home_screen.components.ListingCard
 import com.satwik.spaces.properties.presentation.home_screen.components.TopAppBar
 import com.satwik.spaces.core.navigation.Screen
