@@ -1,6 +1,5 @@
 package com.satwik.spaces.authentication.presentation.login_screen
 
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -9,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
@@ -24,7 +24,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -61,7 +60,7 @@ fun LoginScreen(
 
             Spacer(modifier = Modifier.height(14.dp))
 
-            IconButton(onClick = { /*TODO*/} ,
+            IconButton(onClick = {/*TODO*/} ,
                 modifier = Modifier
                     .size(45.dp)
             ) {
@@ -69,6 +68,8 @@ fun LoginScreen(
                     painter = painterResource(id = R.drawable.ic_caretleft),
                     contentDescription = null,
                     tint = White,
+                    modifier = Modifier.offset(x= (-10).dp)
+
                 )
             }
 
@@ -93,8 +94,6 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(53.dp))
 
             var emailText by remember { mutableStateOf("") }
-
-
             SpacesTextField(
                 text = emailText,
                 onValueChange ={emailText=it},
@@ -106,7 +105,7 @@ fun LoginScreen(
 
             )
 
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(15.dp))
 
             var passwordText by remember { mutableStateOf("") }
             SpacesTextField(

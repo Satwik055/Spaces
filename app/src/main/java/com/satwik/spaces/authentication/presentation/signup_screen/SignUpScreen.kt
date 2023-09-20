@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
@@ -73,6 +74,7 @@ fun SignUpScreen(
                     painter = painterResource(id = R.drawable.ic_caretleft),
                     contentDescription = null,
                     tint = White,
+                    modifier = Modifier.offset(x= (-10).dp)
                 )
             }
 
@@ -105,7 +107,7 @@ fun SignUpScreen(
                     .fillMaxWidth()
             )
 
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(15.dp))
 
             var emailText by remember { mutableStateOf("") }
             SpacesTextField(
@@ -116,7 +118,7 @@ fun SignUpScreen(
                     .fillMaxWidth()
             )
 
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(15.dp))
 
             var passwordText by remember { mutableStateOf("") }
             SpacesTextField(

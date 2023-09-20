@@ -15,4 +15,5 @@ val Black = Color(0xFF090909)
 val Purple = Color(0xFF510AC9)
 val Grey = Color(0xFF676767)
 val Zeus = Color(0xFF1D1B20)
+val LightGrey = Color(0xFF444444)
 

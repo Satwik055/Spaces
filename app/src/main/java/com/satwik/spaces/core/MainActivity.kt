@@ -14,6 +14,7 @@ import com.satwik.spaces.authentication.presentation.signup_screen.SignUpScreen
 import com.satwik.spaces.core.navigation.SetupNavGraph
 import com.satwik.spaces.core.navigation.SetupNavGraphWithAuth
 import com.satwik.spaces.payments.presentation.confirmation_screen.ConfirmationScreen
+import com.satwik.spaces.properties.presentation.search_screen.SearchScreen
 import com.satwik.spaces.properties.presentation.theme.SpacesTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -28,12 +29,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SpacesTheme {
-                if(Firebase.auth.currentUser != null){
-                    SetupNavGraph(navController = rememberNavController())
-                }
-                else{
-                    SetupNavGraphWithAuth(navController = rememberNavController())
-                }
+//                SearchScreen(navController = rememberNavController())
+                SignUpScreen(navController = rememberNavController())
+//                LoginScreen(navController = rememberNavController())
+//                if(Firebase.auth.currentUser != null){
+//                    SetupNavGraph(navController = rememberNavController())
+//                }
+//                else{
+//                    SetupNavGraphWithAuth(navController = rememberNavController())
+//                }
             }
         }
     }

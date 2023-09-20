@@ -84,7 +84,6 @@ fun HomeScreen(
                     color = White,
                     fontSize = 34.sp,
                 )
-
                 Spacer(modifier = Modifier.height(40.dp))
 
                 Text(

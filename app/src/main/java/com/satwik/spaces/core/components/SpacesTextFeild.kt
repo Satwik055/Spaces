@@ -14,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.google.android.gms.common.internal.FallbackServiceBroker
 import com.satwik.spaces.properties.presentation.theme.Grey
+import com.satwik.spaces.properties.presentation.theme.LightGrey
 import com.satwik.spaces.properties.presentation.theme.Montserrat
 import com.satwik.spaces.properties.presentation.theme.Purple
 
@@ -49,6 +50,7 @@ fun SpacesTextField(
         placeholder = {
             Text(
                 text = placeholder,
+                color = LightGrey,
                 fontFamily = fontFamily,
                 fontWeight = FontWeight.Normal
             )

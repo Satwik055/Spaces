@@ -12,6 +12,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.satwik.spaces.core.components.AnimatedShimmer
 import com.satwik.spaces.properties.presentation.search_screen.components.SearchBar
 import com.satwik.spaces.properties.presentation.theme.Black
 
@@ -25,6 +26,7 @@ fun SearchScreen(navController:NavController){
             .padding(start = 8.dp, end = 8.dp)
 
     ) {
+        AnimatedShimmer()
         var text by remember { mutableStateOf("") }
         SearchBar(
             query = text,
