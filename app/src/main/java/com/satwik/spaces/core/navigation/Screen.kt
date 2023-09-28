@@ -13,5 +13,6 @@ sealed class Screen(val route:String){
     object Search: Screen(route = "search_screen")
     object Signup: Screen(route = "signup_screen")
     object Login: Screen(route = "login_screen")
+    object Confirmation: Screen(route = "confirmation_screen")
 
 }

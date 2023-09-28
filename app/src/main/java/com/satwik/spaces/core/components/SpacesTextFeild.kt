@@ -46,7 +46,7 @@ fun SpacesTextField(
         ),
         singleLine = true,
         supportingText = { Text(text = errorText, color = Color.Red, fontSize = 13.sp)},
-        textStyle = TextStyle(fontFamily = fontFamily, fontWeight = FontWeight.Normal, fontSize = 16.sp),
+        textStyle = TextStyle(fontFamily = fontFamily, fontWeight = FontWeight.Normal, fontSize = 16.sp, color = Color.White),
         placeholder = {
             Text(
                 text = placeholder,

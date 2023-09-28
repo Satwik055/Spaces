@@ -79,6 +79,7 @@ fun HomeScreen(
 
                 Text(
                     text = "Explore a suitable workplace for you",
+                    lineHeight = 35.sp,
                     fontFamily = Montserrat,
                     fontWeight = FontWeight.Normal,
                     color = White,

@@ -93,7 +93,7 @@ fun NameSection(
                 fontFamily = Montserrat,
                 fontWeight = FontWeight.Medium,
                 color = Grey,
-                fontSize = 15.sp,
+                fontSize = 14.sp,
             )
         }
         Image(
@@ -136,7 +136,7 @@ fun DateSection(
                     fontFamily = Montserrat,
                     fontWeight = FontWeight.Medium,
                     color = White,
-                    fontSize = 15.sp,
+                    fontSize = 14.sp,
                 )
             }
 
@@ -153,14 +153,16 @@ fun DateSection(
                 fontFamily = Montserrat,
                 fontWeight = FontWeight.Medium,
                 color = White,
-                fontSize = 15.sp,
+                fontSize = 14.sp,
                 modifier = Modifier.align(Alignment.CenterEnd)
             )
         }
         Spacer(modifier = Modifier.height(10.dp))
 
 
-        Row {
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Image(painter = painterResource(id = R.drawable.ic_users), contentDescription = null)
             Spacer(modifier = Modifier.width(8.dp))
             Text(
@@ -168,7 +170,7 @@ fun DateSection(
                 fontFamily = Montserrat,
                 fontWeight = FontWeight.Medium,
                 color = White,
-                fontSize = 15.sp,
+                fontSize = 14.sp,
             )
         }
     }

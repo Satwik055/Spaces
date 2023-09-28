@@ -20,6 +20,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.properties.presentation.detail_screen.components.FeatureSection
 import com.satwik.spaces.properties.presentation.detail_screen.components.ImageSlider
 import com.satwik.spaces.properties.presentation.detail_screen.components.PropertyInfoSection
@@ -31,6 +34,7 @@ import com.satwik.spaces.properties.presentation.theme.White
 
 @Composable
 fun DetailScreen(
+    navController: NavController,
     viewModel: DetailScreenViewModel = hiltViewModel()
 ){
     val state = viewModel.state.value
@@ -98,7 +102,7 @@ fun DetailScreen(
                 Spacer(modifier = Modifier.height(30.dp))
 
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = { navController.navigate(Screen.Confirmation.route) },
                     modifier= Modifier,
                     shape = RoundedCornerShape(10.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = Purple)
@@ -121,5 +125,5 @@ fun DetailScreen(
 @Preview
 @Composable
 fun DetailScreenPreview(){
-    DetailScreen()
+    DetailScreen(navController = rememberNavController())
 }

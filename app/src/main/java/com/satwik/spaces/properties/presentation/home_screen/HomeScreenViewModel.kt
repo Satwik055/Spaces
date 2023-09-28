@@ -35,6 +35,7 @@ class HomeScreenViewModel @Inject constructor(
                 is Resource.Loading-> {
                     _state.value = PropertyListState(isLoading = true)
                 }
+
             }
         }.launchIn(viewModelScope)
     }

@@ -31,15 +31,12 @@ class DetailScreenViewModel@Inject constructor(
     private fun getPropertyById(propertyId: String){
         getPropertyByIdUseCase(propertyId).onEach { result->
             when(result){
-                is Resource.Success-> {
-                    _state.value= PropertyState(property = result.data)
-                }
-                is Resource.Error-> {
-                    _state.value= PropertyState(error = result.message?:"An unexpected error occurred")
-                }
-                is Resource.Loading->{
-                    _state.value= PropertyState(isLoading = true)
-                }
+                is Resource.Success-> _state.value= PropertyState(property = result.data)
+
+                is Resource.Error-> _state.value= PropertyState(error = result.message?:"An unexpected error occurred")
+
+                is Resource.Loading-> _state.value= PropertyState(isLoading = true)
+
             }
 
 

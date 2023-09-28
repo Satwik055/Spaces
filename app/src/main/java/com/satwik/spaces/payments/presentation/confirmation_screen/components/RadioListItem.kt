@@ -45,7 +45,7 @@ fun RadioListItem(
                 fontFamily = Montserrat,
                 fontWeight = FontWeight.Normal,
                 color = White,
-                fontSize = 16.sp,
+                fontSize = 15.sp,
             )
         }
 
