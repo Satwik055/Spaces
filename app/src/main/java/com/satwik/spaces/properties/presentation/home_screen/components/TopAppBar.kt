@@ -1,6 +1,7 @@
 package com.satwik.spaces.properties.presentation.home_screen.components
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,10 +20,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.satwik.spaces.R
-import com.satwik.spaces.properties.presentation.theme.Montserrat
-import com.satwik.spaces.properties.presentation.theme.Purple
-import com.satwik.spaces.properties.presentation.theme.White
+import com.satwik.spaces.core.navigation.Screen
+import com.satwik.spaces.core.theme.Montserrat
+import com.satwik.spaces.core.theme.Purple
+import com.satwik.spaces.core.theme.White
 
 @Composable
 fun TopAppBar(
@@ -62,6 +67,7 @@ fun TopAppBar(
             )
         }
         CurrentLocation(
+            navController = rememberNavController(),
             modifier =  Modifier.align(Alignment.TopCenter),
             area = "Lower Manhattan",
             city= "New York"
@@ -73,6 +79,7 @@ fun TopAppBar(
 
 @Composable
 fun CurrentLocation(
+    navController: NavController,
     modifier:Modifier = Modifier,
     city:String,
     area:String,
@@ -80,8 +87,8 @@ fun CurrentLocation(
     mapPinIcon:Int = R.drawable.ic_map_pin
 ){
     Row(
-        modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically
+        modifier = modifier.clickable { navController.navigate(Screen.Location.route)},
+        verticalAlignment = Alignment.CenterVertically,
     ){
         Icon(
             painter = painterResource(id = mapPinIcon ),

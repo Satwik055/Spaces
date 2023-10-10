@@ -1,4 +1,4 @@
-package com.satwik.spaces.properties.presentation.theme
+package com.satwik.spaces.core.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

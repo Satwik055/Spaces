@@ -19,10 +19,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.satwik.spaces.R
-import com.satwik.spaces.properties.presentation.theme.Grey
-import com.satwik.spaces.properties.presentation.theme.Montserrat
-import com.satwik.spaces.properties.presentation.theme.Purple
-import com.satwik.spaces.properties.presentation.theme.White
+import com.satwik.spaces.core.theme.Grey
+import com.satwik.spaces.core.theme.Montserrat
+import com.satwik.spaces.core.theme.Purple
+import com.satwik.spaces.core.theme.White
 
 @Composable
 fun RadioListItem(

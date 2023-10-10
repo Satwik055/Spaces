@@ -21,22 +21,26 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.SubcomposeAsyncImage
-import com.satwik.spaces.properties.presentation.theme.Montserrat
-import com.satwik.spaces.properties.presentation.theme.Purple
-import com.satwik.spaces.properties.presentation.theme.White
+import com.satwik.spaces.core.components.AnimatedShimmer
+import com.satwik.spaces.core.components.ShimmerCard
+import com.satwik.spaces.core.theme.Montserrat
+import com.satwik.spaces.core.theme.Purple
+import com.satwik.spaces.core.theme.White
 
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ListingCard(
     modifier:Modifier = Modifier,
     propertyName:String,
     propertyAddress:String,
     imageUrl:String,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    titleFontSize:TextUnit = 20.sp,
+    addressFontSize:TextUnit = 11.sp
 ){
     Surface(
         shape = RoundedCornerShape(10.dp),
@@ -54,7 +58,7 @@ fun ListingCard(
             SubcomposeAsyncImage(
                 model = imageUrl,
                 contentScale = ContentScale.Crop,
-                loading = { CircularProgressIndicator(color= Purple, modifier = Modifier.height(40.dp).width(10.dp)) },
+                loading = { TODO() },
                 contentDescription = null,
                 modifier = Modifier.matchParentSize()
             )
@@ -79,14 +83,14 @@ fun ListingCard(
                     fontFamily = Montserrat,
                     fontWeight = FontWeight(400),
                     color = White,
-                    fontSize = 20.sp,
+                    fontSize = titleFontSize,
                 )
                 Text(
                     text = propertyAddress,
                     fontFamily = Montserrat,
                     fontWeight = FontWeight(400),
                     color = White,
-                    fontSize = 11.sp,
+                    fontSize = addressFontSize,
                 )
             }
         }

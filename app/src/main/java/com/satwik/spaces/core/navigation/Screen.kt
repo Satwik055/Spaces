@@ -14,5 +14,6 @@ sealed class Screen(val route:String){
     object Signup: Screen(route = "signup_screen")
     object Login: Screen(route = "login_screen")
     object Confirmation: Screen(route = "confirmation_screen")
+    object Location:Screen(route = "location_screen")
 
 }

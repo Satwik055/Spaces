@@ -1,12 +1,15 @@
 package com.satwik.spaces.properties.presentation.detail_screen.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,9 +20,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.satwik.spaces.R
-import com.satwik.spaces.properties.presentation.theme.Grey
-import com.satwik.spaces.properties.presentation.theme.Montserrat
-import com.satwik.spaces.properties.presentation.theme.White
+import com.satwik.spaces.core.theme.DarkGrey
+import com.satwik.spaces.core.theme.Grey
+import com.satwik.spaces.core.theme.Montserrat
+import com.satwik.spaces.core.theme.White
 
 @Composable
 fun PropertyInfoSection(
@@ -39,7 +43,7 @@ fun PropertyInfoSection(
                 fontFamily = Montserrat,
                 fontWeight = FontWeight.Normal,
                 color = White,
-                fontSize = 28.sp,
+                fontSize = 26.sp,
             )
 
             Row{
@@ -49,12 +53,13 @@ fun PropertyInfoSection(
                     tint = Grey,
                     modifier = Modifier.size(20.dp)
                 )
+                Spacer(modifier = modifier.width(3.dp))
                 Text(
                     text = propertyAddress,
                     fontFamily = Montserrat,
                     fontWeight = FontWeight.Normal,
                     color = Grey,
-                    fontSize = 15.sp,
+                    fontSize = 13.sp,
                 )
             }
         }
@@ -68,7 +73,8 @@ fun PropertyInfoSection(
 @Composable
 fun Rating(rating:String){
     Row(
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.background(color = DarkGrey, shape = RoundedCornerShape(5.dp)).padding(7.dp)
     ){
         Icon(
             painter = painterResource(id = R.drawable.ic_star),
@@ -81,7 +87,7 @@ fun Rating(rating:String){
             fontFamily = Montserrat,
             fontWeight = FontWeight.Normal,
             color = White,
-            fontSize = 18.sp,
+            fontSize = 16.sp,
         )
     }
 }

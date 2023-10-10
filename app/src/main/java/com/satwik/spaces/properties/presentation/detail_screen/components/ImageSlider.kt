@@ -15,7 +15,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
-import com.satwik.spaces.properties.presentation.theme.Purple
+import com.satwik.spaces.core.theme.Purple
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

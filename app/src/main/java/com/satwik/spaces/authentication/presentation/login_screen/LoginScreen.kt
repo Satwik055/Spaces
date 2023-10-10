@@ -35,10 +35,10 @@ import com.satwik.spaces.core.components.SpacesButton
 import com.satwik.spaces.core.components.SpacesTextField
 import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.core.utils.Resource
-import com.satwik.spaces.properties.presentation.theme.Black
-import com.satwik.spaces.properties.presentation.theme.Montserrat
-import com.satwik.spaces.properties.presentation.theme.Purple
-import com.satwik.spaces.properties.presentation.theme.White
+import com.satwik.spaces.core.theme.Black
+import com.satwik.spaces.core.theme.Montserrat
+import com.satwik.spaces.core.theme.Purple
+import com.satwik.spaces.core.theme.White
 
 @Composable
 fun LoginScreen(

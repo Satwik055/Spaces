@@ -1,16 +1,25 @@
 package com.satwik.spaces.properties.presentation.detail_screen
 
+import android.annotation.SuppressLint
+import android.widget.ScrollView
 import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,14 +31,17 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.satwik.spaces.R
+import com.satwik.spaces.core.components.AmenitiesChip
+import com.satwik.spaces.core.components.SpacesButton
 import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.properties.presentation.detail_screen.components.FeatureSection
 import com.satwik.spaces.properties.presentation.detail_screen.components.ImageSlider
 import com.satwik.spaces.properties.presentation.detail_screen.components.PropertyInfoSection
-import com.satwik.spaces.properties.presentation.theme.Black
-import com.satwik.spaces.properties.presentation.theme.Montserrat
-import com.satwik.spaces.properties.presentation.theme.Purple
-import com.satwik.spaces.properties.presentation.theme.White
+import com.satwik.spaces.core.theme.Black
+import com.satwik.spaces.core.theme.Montserrat
+import com.satwik.spaces.core.theme.Purple
+import com.satwik.spaces.core.theme.White
 
 
 @Composable
@@ -43,7 +55,8 @@ fun DetailScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(color = Black)
-            .padding(start = 8.dp, end = 8.dp)
+            .padding(start = 16.dp, end = 16.dp)
+
     ) {
 
         if(state.isLoading){
@@ -64,9 +77,14 @@ fun DetailScreen(
             )
         }
 
+
         state.property?.let {
+
+
             Column(
-                modifier = Modifier.matchParentSize()
+                modifier = Modifier
+                    .matchParentSize()
+                    .verticalScroll(rememberScrollState())
             ){
 
                 ImageSlider(listOfUrl = state.property.imageUrls)
@@ -77,8 +95,13 @@ fun DetailScreen(
 
                 Spacer(modifier = Modifier.height(30.dp))
 
-                FeatureSection(floor = state.property.floor, people = state.property.people ,sqft = state.property.carpetArea)
-
+                Row (
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ){
+                    AmenitiesChip(name = "8th Floor", icon = R.drawable.ic_building)
+                    AmenitiesChip(name = "250 sqft", icon = R.drawable.ic_area)
+                    AmenitiesChip(name = "4 People", icon = R.drawable.ic_people)
+                }
                 Spacer(modifier = Modifier.height(30.dp))
 
                 Text(
@@ -86,35 +109,31 @@ fun DetailScreen(
                     fontFamily = Montserrat,
                     fontWeight = FontWeight.Normal,
                     color = White,
-                    fontSize = 20.sp,
+                    fontSize = 18.sp,
                 )
 
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(10.dp))
 
                 Text(
-                    text = "This is description, the property poster is supposed to write something here and fill this nigga up",
+                    text = "This is description, the property poster is supposed to write something here and fill this nigga upThis is description, the property poster is supposed to write something here and fill this nigga upThis is description, the property poster is supposed to write something here and fill this nigga upThis is description, the property poster is supposed to write something here and fill this nigga up  ",
                     fontFamily = Montserrat,
                     fontWeight = FontWeight.Normal,
                     color = White,
-                    fontSize = 15.sp,
+                    fontSize = 14.sp,
+
                 )
 
                 Spacer(modifier = Modifier.height(30.dp))
 
-                Button(
-                    onClick = { navController.navigate(Screen.Confirmation.route) },
-                    modifier= Modifier,
-                    shape = RoundedCornerShape(10.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = Purple)
-                ) {
-                    Text(
-                        text = "Book now",
-                        fontFamily = Montserrat,
-                        fontWeight = FontWeight.Normal,
-                        color = White,
-                        fontSize = 18.sp,
-                    )
-                }
+                SpacesButton(
+                    text = "Book Now",
+                    onClick = { TODO() },
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Medium,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                )
+
             }
         }
     }
@@ -126,4 +145,5 @@ fun DetailScreen(
 @Composable
 fun DetailScreenPreview(){
     DetailScreen(navController = rememberNavController())
+
 }

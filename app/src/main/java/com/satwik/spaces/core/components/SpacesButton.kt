@@ -13,9 +13,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.satwik.spaces.properties.presentation.theme.Montserrat
-import com.satwik.spaces.properties.presentation.theme.Purple
-import com.satwik.spaces.properties.presentation.theme.White
+import com.satwik.spaces.core.theme.Montserrat
+import com.satwik.spaces.core.theme.Purple
+import com.satwik.spaces.core.theme.White
 
 @Composable
 fun SpacesButton(
@@ -24,6 +24,7 @@ fun SpacesButton(
     textColor:Color = White,
     text:String,
     fontSize:TextUnit = 18.sp,
+    fontWeight: FontWeight = FontWeight.Normal,
     onClick: () -> Unit
 ){
     Button(
@@ -37,7 +38,7 @@ fun SpacesButton(
         Text(
             text = text,
             fontFamily = Montserrat,
-            fontWeight = FontWeight.Normal,
+            fontWeight = fontWeight,
             color = textColor,
             fontSize = fontSize,
         )

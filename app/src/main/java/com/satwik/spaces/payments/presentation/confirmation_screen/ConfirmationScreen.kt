@@ -32,10 +32,10 @@ import com.satwik.spaces.R
 import com.satwik.spaces.core.components.SpacesButton
 import com.satwik.spaces.payments.presentation.confirmation_screen.components.DetailSection
 import com.satwik.spaces.payments.presentation.confirmation_screen.components.RadioListItem
-import com.satwik.spaces.properties.presentation.theme.Black
-import com.satwik.spaces.properties.presentation.theme.Grey
-import com.satwik.spaces.properties.presentation.theme.Montserrat
-import com.satwik.spaces.properties.presentation.theme.White
+import com.satwik.spaces.core.theme.Black
+import com.satwik.spaces.core.theme.Grey
+import com.satwik.spaces.core.theme.Montserrat
+import com.satwik.spaces.core.theme.White
 import java.nio.file.WatchEvent
 
 @Composable

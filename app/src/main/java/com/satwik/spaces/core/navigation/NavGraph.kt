@@ -1,5 +1,7 @@
 package com.satwik.spaces.core.navigation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -18,9 +20,11 @@ import com.satwik.spaces.payments.presentation.confirmation_screen.ConfirmationS
 import com.satwik.spaces.properties.common.Constants
 import com.satwik.spaces.properties.presentation.detail_screen.DetailScreen
 import com.satwik.spaces.properties.presentation.home_screen.HomeScreen
+import com.satwik.spaces.properties.presentation.location_screen.LocationScreen
 import com.satwik.spaces.properties.presentation.search_screen.SearchScreen
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun SetupNavGraph(navController:NavHostController){
 
@@ -63,8 +67,12 @@ fun SetupNavGraph(navController:NavHostController){
             LoginScreen(navController = navController)
         }
 
-        composable(route= Screen.Confirmation.route){
+        composable(route = Screen.Confirmation.route){
             ConfirmationScreen(navController=navController)
+        }
+
+        composable(route = Screen.Location.route){
+            LocationScreen(navController = navController)
         }
     }
 }

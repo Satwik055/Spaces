@@ -8,7 +8,7 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.satwik.spaces.properties.presentation.theme.Grey
+import com.satwik.spaces.core.theme.Grey
 
 @Composable
 fun SpacesDivider(){

@@ -2,6 +2,7 @@ package com.satwik.spaces.core.components
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -13,12 +14,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.google.android.gms.common.internal.FallbackServiceBroker
-import com.satwik.spaces.properties.presentation.theme.Grey
-import com.satwik.spaces.properties.presentation.theme.LightGrey
-import com.satwik.spaces.properties.presentation.theme.Montserrat
-import com.satwik.spaces.properties.presentation.theme.Purple
+import com.satwik.spaces.core.theme.Grey
+import com.satwik.spaces.core.theme.LightGrey
+import com.satwik.spaces.core.theme.Montserrat
+import com.satwik.spaces.core.theme.Purple
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SpacesTextField(
     modifier: Modifier = Modifier,
@@ -28,21 +28,20 @@ fun SpacesTextField(
     placeholder:String,
     errorText: String = "",
     isError:Boolean = false
-
-
 ){
-
     OutlinedTextField(
         modifier = modifier,
         value = text,
         onValueChange = onValueChange,
         isError = isError,
-        colors = TextFieldDefaults.outlinedTextFieldColors(
+        colors = OutlinedTextFieldDefaults.colors(
+            focusedContainerColor = Color.Transparent,
+            unfocusedContainerColor = Color.Transparent,
+            disabledContainerColor = Color.Transparent,
             cursorColor = Purple,
-            containerColor = Color.Transparent,
             focusedBorderColor = Purple,
             unfocusedBorderColor = Grey,
-            errorBorderColor = Color.Red
+            errorBorderColor = Color.Red,
         ),
         singleLine = true,
         supportingText = { Text(text = errorText, color = Color.Red, fontSize = 13.sp)},

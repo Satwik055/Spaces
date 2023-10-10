@@ -24,15 +24,13 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.satwik.spaces.properties.presentation.home_screen.components.ListingCard
 import com.satwik.spaces.properties.presentation.home_screen.components.TopAppBar
 import com.satwik.spaces.core.navigation.Screen
-import com.satwik.spaces.properties.presentation.theme.Black
-import com.satwik.spaces.properties.presentation.theme.Montserrat
-import com.satwik.spaces.properties.presentation.theme.Purple
-import com.satwik.spaces.properties.presentation.theme.White
+import com.satwik.spaces.core.theme.Black
+import com.satwik.spaces.core.theme.Montserrat
+import com.satwik.spaces.core.theme.Purple
+import com.satwik.spaces.core.theme.White
 
 
 @Composable
@@ -46,7 +44,7 @@ fun HomeScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(Black)
-            .padding(start = 8.dp, end = 8.dp)
+            .padding(start = 16.dp, end = 16.dp)
     ){
 
         if(state.isLoading){
@@ -97,12 +95,15 @@ fun HomeScreen(
 
                 Spacer(modifier = Modifier.height(10.dp))
 
+                // Popular section
                 LazyRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ){items(state.properties){
                     ListingCard(
                         propertyName = it.name,
                         propertyAddress = it.address,
+                        titleFontSize = 17.sp,
+                        addressFontSize = 10.sp,
                         imageUrl = it.imageUrls.first(),
                         onClick = { navController.navigate(Screen.Detail.passId(it.id))}
                     )
@@ -121,6 +122,7 @@ fun HomeScreen(
 
                 Spacer(modifier = Modifier.height(10.dp))
 
+                // NearYou Section
                 LazyColumn(
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ){items(state.properties){
