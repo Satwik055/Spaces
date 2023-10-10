@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -38,33 +39,24 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 @RequiresApi(Build.VERSION_CODES.O)
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DateField(
-    hint:String,
-    useCaseState:UseCaseState,
+fun DateFeild(
+    text:String,
+    onClick: () -> Unit
 ){
-    var selectedDate by remember { mutableStateOf("") }
-
-    CalendarDialog(state = useCaseState, selection = CalendarSelection.Date {
-            date ->  selectedDate = date.format(
-                DateTimeFormatter.ofPattern("dd MMM yyy"))
-        }
-    )
-
     Box(
         modifier = Modifier
             .width(183.dp)
             .height(53.dp)
-            .background(color = DarkGrey, shape = RoundedCornerShape(10.dp))
-            .clickable { useCaseState.show() }
+            .background(color = DarkGrey, shape = RoundedCornerShape(5.dp))
+            .clickable { onClick.invoke() }
     ) {
         Text(
-            text = selectedDate,
+            text = text,
             fontFamily = Montserrat,
             fontWeight = FontWeight.Normal,
             color = Color.White,
-            fontSize = 16.sp,
+            fontSize = 15.sp,
             modifier = Modifier
                 .align(Alignment.CenterStart)
                 .padding(start = 10.dp)
@@ -73,15 +65,10 @@ fun DateField(
     }
 }
 
-
-
-
-
-
 @RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
 fun DateFieldPreview(){
-    val calenderState = rememberUseCaseState()
-    DateField(hint = "From", useCaseState = calenderState)
+
+
 }

@@ -58,7 +58,6 @@ fun ListingCard(
             SubcomposeAsyncImage(
                 model = imageUrl,
                 contentScale = ContentScale.Crop,
-                loading = { TODO() },
                 contentDescription = null,
                 modifier = Modifier.matchParentSize()
             )

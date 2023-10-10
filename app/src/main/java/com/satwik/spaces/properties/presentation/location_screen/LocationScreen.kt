@@ -1,7 +1,11 @@
 package com.satwik.spaces.properties.presentation.location_screen
 
+import android.icu.util.LocaleData
 import android.os.Build
+import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -22,6 +26,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -37,15 +42,19 @@ import androidx.navigation.compose.rememberNavController
 import com.maxkeppeker.sheets.core.models.base.UseCaseState
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
 import com.maxkeppeler.sheets.calendar.CalendarDialog
+import com.maxkeppeler.sheets.calendar.models.CalendarConfig
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import com.satwik.spaces.R
-import com.satwik.spaces.core.components.DateField
+import com.satwik.spaces.core.components.DateFeild
 import com.satwik.spaces.core.components.SpacesButton
 import com.satwik.spaces.core.components.SpacesTextField
 import com.satwik.spaces.core.theme.Black
 import com.satwik.spaces.core.theme.Montserrat
 import com.satwik.spaces.core.theme.White
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
+@OptIn(ExperimentalMaterial3Api::class)
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun LocationScreen(
@@ -106,15 +115,42 @@ fun LocationScreen(
                 modifier = Modifier.padding(bottom = 5.dp)
             )
 
-            Row{
 
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween
+            ){
+                //From Date
                 val calenderState1 = rememberUseCaseState()
-                DateField(hint = "From", useCaseState = calenderState1)
+                var selectedDate1 by remember { mutableStateOf(LocalDate.now()) }
+                val formattedDate1 by remember { derivedStateOf { DateTimeFormatter.ofPattern("dd MMM yyy").format(selectedDate1) } }
 
+                CalendarDialog(
+                    state = calenderState1,
+                    selection = CalendarSelection.Date{ selectedDate1 = it}
+                )
+                DateFeild(
+                    text = formattedDate1,
+                    onClick = { calenderState1.show() }
+                )
+
+                //To Date
+                val calenderState2 = rememberUseCaseState()
+                var selectedDate2 by remember { mutableStateOf(LocalDate.now().plusDays(2)) }
+                val formattedDate2 by remember { derivedStateOf { DateTimeFormatter.ofPattern("dd MMM yyy").format(selectedDate2) } }
+
+                CalendarDialog(
+                    state = calenderState2,
+                    selection = CalendarSelection.Date{ selectedDate2 = it}
+                )
                 Spacer(modifier = Modifier.width(14.dp))
 
-                val calenderState2 = rememberUseCaseState()
-                DateField(hint = "To", useCaseState =  calenderState2)
+                DateFeild(
+                    text = formattedDate2,
+                    onClick = { calenderState2.show() }
+                )
+
+
+
             }
 
             Spacer(modifier = Modifier.height(15.dp))
@@ -148,6 +184,7 @@ fun LocationScreen(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview(showBackground = true)
 @Composable
 fun MyPreview() {
