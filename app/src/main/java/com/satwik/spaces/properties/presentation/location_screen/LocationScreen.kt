@@ -1,11 +1,7 @@
 package com.satwik.spaces.properties.presentation.location_screen
 
-import android.icu.util.LocaleData
 import android.os.Build
-import android.util.Log
-import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,18 +15,18 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberModalBottomSheetState
-import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -39,16 +35,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.maxkeppeker.sheets.core.models.base.UseCaseState
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
 import com.maxkeppeler.sheets.calendar.CalendarDialog
-import com.maxkeppeler.sheets.calendar.models.CalendarConfig
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import com.satwik.spaces.R
 import com.satwik.spaces.core.components.DateFeild
 import com.satwik.spaces.core.components.SpacesButton
+import com.satwik.spaces.core.components.SpacesIconButton
 import com.satwik.spaces.core.components.SpacesTextField
 import com.satwik.spaces.core.theme.Black
+import com.satwik.spaces.core.theme.Grey
 import com.satwik.spaces.core.theme.Montserrat
 import com.satwik.spaces.core.theme.White
 import java.time.LocalDate
@@ -149,27 +145,41 @@ fun LocationScreen(
                     onClick = { calenderState2.show() }
                 )
 
-
-
             }
 
             Spacer(modifier = Modifier.height(15.dp))
-            Text(
-                text = "Guests",
-                fontFamily = Montserrat,
-                fontWeight = FontWeight.Normal,
-                color = White,
-                fontSize = 16.sp,
-                modifier = Modifier.padding(bottom = 5.dp)
-            )
 
-            var guests by remember { mutableStateOf("") }
-            SpacesTextField(
-                text = guests,
-                onValueChange ={guests=it},
-                placeholder = "1 People",
+            //People Section
+            Box(
                 modifier = Modifier.fillMaxWidth()
-            )
+            ) {
+                Text(
+                    text = "People",
+                    fontFamily = Montserrat,
+                    fontWeight = FontWeight.Normal,
+                    color = White,
+                    fontSize = 18.sp,
+                    modifier = Modifier.align(Alignment.CenterStart)
+                )
+
+                Row (
+                    modifier = Modifier.align(Alignment.CenterEnd)
+                ){
+                    var peopleCount by remember { mutableStateOf(1) }
+                    SpacesIconButton(
+                        icon = R.drawable.ic_plus,
+                        onClick = { peopleCount++ }
+                    )
+                    SpacesIconButton(
+                        icon = R.drawable.ic_minus,
+                        onClick = {
+                            if(peopleCount > 1 ) {
+                                peopleCount--
+                            }
+                        }
+                    )
+                }
+            }
 
             Spacer(modifier = Modifier.height(75.dp))
             SpacesButton(

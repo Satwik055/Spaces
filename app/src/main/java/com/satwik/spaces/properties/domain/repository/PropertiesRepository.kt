@@ -7,4 +7,5 @@ interface PropertiesRepository{
     suspend fun getAllProperties(): List<Property>
 
     suspend fun getPropertyById(id:String): Property?
+
 }

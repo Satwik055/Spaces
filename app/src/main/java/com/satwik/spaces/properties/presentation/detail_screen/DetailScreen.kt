@@ -1,14 +1,11 @@
 package com.satwik.spaces.properties.presentation.detail_screen
 
-import android.annotation.SuppressLint
 import android.os.Build
 import android.widget.ScrollView
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,13 +17,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -40,7 +31,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -68,6 +61,8 @@ import com.satwik.spaces.core.theme.Grey
 import com.satwik.spaces.core.theme.Montserrat
 import com.satwik.spaces.core.theme.Purple
 import com.satwik.spaces.core.theme.White
+import com.satwik.spaces.core.theme.Zeus
+import com.satwik.spaces.properties.presentation.detail_screen.components.BottomBarSection
 import com.satwik.spaces.properties.presentation.detail_screen.components.PeopleSection
 import java.nio.file.WatchEvent
 import java.time.LocalDate
@@ -87,7 +82,6 @@ fun DetailScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(color = Black)
-            .padding(start = 16.dp, end = 16.dp)
 
     ) {
 
@@ -112,136 +106,123 @@ fun DetailScreen(
 
         state.property?.let {
 
-
-            Column(
-                modifier = Modifier
-                    .matchParentSize()
-                    .verticalScroll(rememberScrollState())
+            Box(
+                modifier = Modifier.fillMaxSize()
             ){
-
-                ImageSlider(listOfUrl = state.property.imageUrls)
-
-                Spacer(modifier = Modifier.height(30.dp))
-
-                PropertyInfoSection(propertyName =  state.property.name, propertyAddress = state.property.address,rating = state.property.rating)
-
-                Spacer(modifier = Modifier.height(30.dp))
-
-                Row (
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ){
-                    AmenitiesChip(name = "8th Floor", icon = R.drawable.ic_building)
-                    AmenitiesChip(name = "250 sqft", icon = R.drawable.ic_area)
-                    AmenitiesChip(name = "4 People", icon = R.drawable.ic_people)
-                }
-                Spacer(modifier = Modifier.height(30.dp))
-
-                Text(
-                    text = "Description",
-                    fontFamily = Montserrat,
-                    fontWeight = FontWeight.Normal,
-                    color = White,
-                    fontSize = 18.sp,
-                )
-
-                Spacer(modifier = Modifier.height(10.dp))
-
-                Text(
-                    text = "This is description, the property poster is supposed to write something here and fill this nigga upThis is description, the property poster is supposed to write something here and fill this nigga upThis is description, the property poster is supposed to write something here and fill this nigga upThis is description, the property poster is supposed to write something here and fill this nigga up  ",
-                    fontFamily = Montserrat,
-                    fontWeight = FontWeight.Normal,
-                    color = White,
-                    fontSize = 14.sp,
-                )
-
-                Spacer(modifier = Modifier.height(40.dp))
-
-                Text(
-                    text = "Booking Date",
-                    fontFamily = Montserrat,
-                    fontWeight = FontWeight.Normal,
-                    color = White,
-                    fontSize = 18.sp,
-                )
-
-                Spacer(modifier = Modifier.height(20.dp))
-
-                //----------------------------Date Section----------------------------------//
-
-                Row {
-                    //From Date
-                    val calenderState1 = rememberUseCaseState()
-                    var selectedDate1 by remember { mutableStateOf(LocalDate.now()) }
-                    val formattedDate1 by remember { derivedStateOf { DateTimeFormatter.ofPattern("dd MMM yyy").format(selectedDate1) } }
-
-                    CalendarDialog(
-                        state = calenderState1,
-                        selection = CalendarSelection.Date{ selectedDate1 = it}
-                    )
-                    DateFeild(
-                        text = formattedDate1,
-                        onClick = { calenderState1.show() }
-                    )
-
-                    //To Date
-                    val calenderState2 = rememberUseCaseState()
-                    var selectedDate2 by remember { mutableStateOf(LocalDate.now().plusDays(2)) }
-                    val formattedDate2 by remember { derivedStateOf { DateTimeFormatter.ofPattern("dd MMM yyy").format(selectedDate2) } }
-
-                    CalendarDialog(
-                        state = calenderState2,
-                        selection = CalendarSelection.Date{ selectedDate2 = it}
-                    )
-                    Spacer(modifier = Modifier.width(14.dp))
-
-                    DateFeild(
-                        text = formattedDate2,
-                        onClick = { calenderState2.show() }
-                    )
-
-                }
-
-                //----------------------------------------------------------------------//
-
-                Spacer(modifier = Modifier.height(30.dp))
-
-                PeopleSection()
-
-                Spacer(modifier = Modifier.height(30.dp))
-
-                InfoCard(
-                    title = "Cancellation Policy",
-                    content ="Cancel 24hrs before check in to get full refund and cancellation before 12hrs check in will get partial refund"
-                )
-
-                Spacer(modifier = Modifier.height(30.dp))
-
-
-                Box (
+                Column(
                     modifier = Modifier
-                        .fillMaxWidth()
+                        .matchParentSize()
+                        .verticalScroll(rememberScrollState())
+                        .padding(start = 16.dp, end = 16.dp)
+
                 ){
+
+                    ImageSlider(listOfUrl = state.property.imageUrls)
+
+                    Spacer(modifier = Modifier.height(30.dp))
+
+                    PropertyInfoSection(propertyName =  state.property.name, propertyAddress = state.property.address,rating = state.property.rating)
+
+                    Spacer(modifier = Modifier.height(30.dp))
+
+                    Row (
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ){
+                        AmenitiesChip(name = "8th Floor", icon = R.drawable.ic_building)
+                        AmenitiesChip(name = "250 sqft", icon = R.drawable.ic_area)
+                        AmenitiesChip(name = "4 People", icon = R.drawable.ic_people)
+                    }
+                    Spacer(modifier = Modifier.height(30.dp))
+
                     Text(
-                        text = "3400$/Day",
+                        text = "Description",
                         fontFamily = Montserrat,
                         fontWeight = FontWeight.Normal,
                         color = White,
-                        fontSize = 17.sp,
-                        modifier = Modifier.align(Alignment.CenterStart)
+                        fontSize = 18.sp,
                     )
 
-                    SpacesButton(
-                        text = "Book Now",
-                        onClick = { TODO() },
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Medium,
-                        modifier = Modifier
-                            .width(188.dp)
-                            .align(Alignment.CenterEnd)
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Text(
+                        text = state.property.description,
+                        fontFamily = Montserrat,
+                        fontWeight = FontWeight.Normal,
+                        color = White,
+                        fontSize = 14.sp,
                     )
+
+                    Spacer(modifier = Modifier.height(40.dp))
+
+                    Text(
+                        text = "Booking Date",
+                        fontFamily = Montserrat,
+                        fontWeight = FontWeight.Normal,
+                        color = White,
+                        fontSize = 18.sp,
+                    )
+
+                    Spacer(modifier = Modifier.height(20.dp))
+
+                    //----------------------------Date Section----------------------------------//
+
+                    Row {
+                        //From Date
+                        val calenderState1 = rememberUseCaseState()
+                        var selectedDate1 by remember { mutableStateOf(LocalDate.now()) }
+                        val formattedDate1 by remember { derivedStateOf { DateTimeFormatter.ofPattern("dd MMM yyy").format(selectedDate1) } }
+
+                        CalendarDialog(
+                            state = calenderState1,
+                            selection = CalendarSelection.Date{ selectedDate1 = it}
+                        )
+                        DateFeild(
+                            text = formattedDate1,
+                            onClick = { calenderState1.show() }
+                        )
+
+                        //To Date
+                        val calenderState2 = rememberUseCaseState()
+                        var selectedDate2 by remember { mutableStateOf(LocalDate.now().plusDays(2)) }
+                        val formattedDate2 by remember { derivedStateOf { DateTimeFormatter.ofPattern("dd MMM yyy").format(selectedDate2) } }
+
+                        CalendarDialog(
+                            state = calenderState2,
+                            selection = CalendarSelection.Date{ selectedDate2 = it}
+                        )
+                        Spacer(modifier = Modifier.width(14.dp))
+
+                        DateFeild(
+                            text = formattedDate2,
+                            onClick = { calenderState2.show() }
+                        )
+
+                    }
+
+                    //----------------------------------------------------------------------//
+
+                    Spacer(modifier = Modifier.height(30.dp))
+                    PeopleSection()
+
+                    Spacer(modifier = Modifier.height(30.dp))
+
+                    InfoCard(
+                        title = "Cancellation Policy",
+                        content ="Cancel 24hrs before check in to get full refund and cancellation before 12hrs check in will get partial refund"
+                    )
+
+                    Spacer(modifier = Modifier.height(100.dp))
+
+
+
+
                 }
-
             }
+            BottomBarSection(
+                price = state.property.price + "$/Day",
+                modifier = Modifier.align(Alignment.BottomCenter)
+            )
+
         }
     }
 }
