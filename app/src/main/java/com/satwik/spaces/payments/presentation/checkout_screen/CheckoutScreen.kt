@@ -1,47 +1,47 @@
-package com.satwik.spaces.payments.presentation.confirmation_screen
+package com.satwik.spaces.payments.presentation.checkout_screen
 
-import android.graphics.Paint.Align
-import androidx.compose.foundation.Image
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.modifier.modifierLocalMapOf
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.satwik.spaces.R
 import com.satwik.spaces.core.components.SpacesButton
-import com.satwik.spaces.payments.presentation.confirmation_screen.components.DetailSection
-import com.satwik.spaces.payments.presentation.confirmation_screen.components.RadioListItem
+import com.satwik.spaces.payments.presentation.checkout_screen.components.RadioListItem
 import com.satwik.spaces.core.theme.Black
-import com.satwik.spaces.core.theme.Grey
 import com.satwik.spaces.core.theme.Montserrat
 import com.satwik.spaces.core.theme.White
-import java.nio.file.WatchEvent
+import com.satwik.spaces.payments.presentation.checkout_screen.components.BookingReviewSection
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun ConfirmationScreen(
-    navController: NavController
+fun CheckoutScreen(
+    navController: NavController,
+    viewModel: CheckoutScreenViewModel = hiltViewModel()
 ){
+    val propertyState = viewModel.propertyState.value
+    val bookingInfoState = viewModel.bookingInfoState.value
+
     Box (
         modifier = Modifier
             .fillMaxSize()
@@ -53,7 +53,7 @@ fun ConfirmationScreen(
             Spacer(modifier = Modifier.height(14.dp))
 
             IconButton(
-                onClick = { /*TODO*/ },
+                onClick = { navController.popBackStack() },
                 modifier = Modifier
                     .size(45.dp)
             ) {
@@ -84,16 +84,19 @@ fun ConfirmationScreen(
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            DetailSection(
-                "Sunny Meadows",
-                "2455 Ave, South Park, NY",
-                R.drawable.office_int,
-                "24 Mar 2023",
-                "25 Mar 2023",
-                "5",
-                "USD",
-                "$799.99"
-            )
+            propertyState.property?.let {
+                BookingReviewSection(
+                    name = propertyState.property.name,
+                    address = propertyState.property.address,
+                    thumbnailUrl = propertyState.property.imageUrls.first(),
+                    startDate = bookingInfoState.startDate.toString(),
+                    endDate = bookingInfoState.endDate.toString(),
+                    people = bookingInfoState.people.toString(),
+                    currency = "USD",
+                    price = "$" + propertyState.property.price
+                )
+            }
+
             Spacer(modifier = Modifier.height(35.dp))
 
             Text(
@@ -132,10 +135,11 @@ fun ConfirmationScreen(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
-fun ConfirmationScreenPreview(){
-    ConfirmationScreen(navController = rememberNavController())
+fun CheckoutScreenPreview(){
+    CheckoutScreen(navController = rememberNavController())
 }
 
 

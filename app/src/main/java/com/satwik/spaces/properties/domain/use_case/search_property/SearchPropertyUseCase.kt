@@ -1,17 +1,17 @@
-package com.satwik.spaces.properties.domain.use_case.get_property_by_id
+package com.satwik.spaces.properties.domain.use_case.search_property
 
 import com.satwik.spaces.core.utils.Resource
 import com.satwik.spaces.properties.domain.repository.PropertiesRepository
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class GetPropertyByIdUseCase @Inject constructor(private val repository: PropertiesRepository) {
+class SearchPropertyUseCase @Inject constructor(private val repository: PropertiesRepository) {
 
-    operator fun invoke(propertyId:String) = flow{
-        try{
+    operator fun invoke(name:String)= flow {
+        try {
             emit(Resource.Loading())
-            val property= repository.getPropertyById(propertyId)
-            emit(Resource.Success(property))
+            val searchResult = repository.searchProperty(name)
+            emit(Resource.Success(searchResult))
         }
         catch (e:Exception){
             emit(Resource.Error(e.localizedMessage?:"An unexpected error occurred"))

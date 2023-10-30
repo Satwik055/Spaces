@@ -22,7 +22,8 @@ import com.satwik.spaces.core.theme.White
 @Composable
 fun BottomBarSection(
     price:String,
-    modifier:Modifier = Modifier
+    modifier:Modifier = Modifier,
+    onClick: () -> Unit
 ){
     Box (
         modifier = modifier
@@ -48,7 +49,7 @@ fun BottomBarSection(
 
         SpacesButton(
             text = "Book Now",
-            onClick = { TODO() },
+            onClick = { onClick.invoke()},
             fontSize = 16.sp,
             fontWeight = FontWeight.Medium,
             modifier = Modifier

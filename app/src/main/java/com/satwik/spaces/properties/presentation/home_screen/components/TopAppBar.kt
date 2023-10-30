@@ -37,7 +37,8 @@ fun TopAppBar(
     @DrawableRes
     searchIcon:Int = R.drawable.ic_search,
     iconSize: Dp = 28.dp,
-    searchOnClick:() -> Unit
+    searchOnClick:() -> Unit,
+    locationOnClick:() -> Unit
 ){
     Box(
         modifier = modifier.fillMaxWidth()
@@ -67,10 +68,10 @@ fun TopAppBar(
             )
         }
         CurrentLocation(
-            navController = rememberNavController(),
             modifier =  Modifier.align(Alignment.TopCenter),
             area = "Lower Manhattan",
-            city= "New York"
+            city= "New York",
+            onClick = locationOnClick
         )
 
     }
@@ -79,15 +80,15 @@ fun TopAppBar(
 
 @Composable
 fun CurrentLocation(
-    navController: NavController,
     modifier:Modifier = Modifier,
+    onClick:() -> Unit,
     city:String,
     area:String,
     @DrawableRes
     mapPinIcon:Int = R.drawable.ic_map_pin
 ){
     Row(
-        modifier = modifier.clickable { navController.navigate(Screen.Location.route)},
+        modifier = modifier.clickable {onClick.invoke()},
         verticalAlignment = Alignment.CenterVertically,
     ){
         Icon(
@@ -113,6 +114,5 @@ fun CurrentLocation(
                 fontSize = 14.sp,
             )
         }
-
     }
 }

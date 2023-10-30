@@ -1,4 +1,4 @@
-package com.satwik.spaces.payments.presentation.confirmation_screen.components
+package com.satwik.spaces.payments.presentation.checkout_screen.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.RadioButton
-import androidx.compose.material3.RadioButtonColors
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,9 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.satwik.spaces.R
-import com.satwik.spaces.core.theme.Grey
 import com.satwik.spaces.core.theme.Montserrat
-import com.satwik.spaces.core.theme.Purple
 import com.satwik.spaces.core.theme.White
 
 @Composable

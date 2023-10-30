@@ -8,4 +8,6 @@ interface PropertiesRepository{
 
     suspend fun getPropertyById(id:String): Property?
 
+    suspend fun searchProperty(name:String): List<Property>?
+
 }

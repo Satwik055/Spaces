@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeScreenViewModel @Inject constructor(
-    private val getAllPropertiesUseCase: GetAllPropertiesUseCase,
+    private val getAllPropertiesUseCase: GetAllPropertiesUseCase
 ): ViewModel() {
 
     private val _state = mutableStateOf(PropertyListState())

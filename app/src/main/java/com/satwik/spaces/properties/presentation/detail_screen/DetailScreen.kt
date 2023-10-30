@@ -196,7 +196,6 @@ fun DetailScreen(
                             text = formattedDate2,
                             onClick = { calenderState2.show() }
                         )
-
                     }
 
                     //----------------------------------------------------------------------//
@@ -208,19 +207,22 @@ fun DetailScreen(
 
                     InfoCard(
                         title = "Cancellation Policy",
-                        content ="Cancel 24hrs before check in to get full refund and cancellation before 12hrs check in will get partial refund"
+                        content = "Cancel 24hrs before check in to get full refund and cancellation before 12hrs check in will get partial refund"
                     )
 
                     Spacer(modifier = Modifier.height(100.dp))
-
-
-
 
                 }
             }
             BottomBarSection(
                 price = state.property.price + "$/Day",
-                modifier = Modifier.align(Alignment.BottomCenter)
+                modifier = Modifier.align(Alignment.BottomCenter),
+                onClick = { navController.navigate(Screen.Checkout.passBookingInfo(
+                    id = state.property.id,
+                    startDate = "24 March 2011",
+                    endDate = "11 April 2011",
+                    people = "7"
+                )) }
             )
 
         }
@@ -229,6 +231,7 @@ fun DetailScreen(
 
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
 fun DetailScreenPreview(){

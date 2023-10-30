@@ -97,10 +97,13 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
 
-
     //Calender Dialog (GH: maxkeppeler)
     implementation ("com.maxkeppeler.sheets-compose-dialogs:core:1.2.0")
     implementation ("com.maxkeppeler.sheets-compose-dialogs:calendar:1.2.0")
+
+    //Google location API
+    implementation ("com.google.android.gms:play-services-location:15.0.1")
+
 
 
 

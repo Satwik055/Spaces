@@ -71,7 +71,10 @@ fun HomeScreen(
             ){
                 Spacer(modifier = Modifier.height(10.dp))
 
-                TopAppBar(searchOnClick = {navController.navigate(Screen.Search.route)})
+                TopAppBar(
+                    searchOnClick = {navController.navigate(Screen.Search.route)},
+                    locationOnClick = {navController.navigate(Screen.Location.route)}
+                )
 
                 Spacer(modifier = Modifier.height(30.dp))
 

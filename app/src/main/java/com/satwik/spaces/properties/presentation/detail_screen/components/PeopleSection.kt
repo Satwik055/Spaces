@@ -58,9 +58,9 @@ fun PeopleSection(){
                 icon = R.drawable.ic_minus,
                 onClick = {
                     if(peopleCount > 1 ) {
-                    peopleCount--
-                }
+                        peopleCount--
                     }
+                }
             )
         }
     }

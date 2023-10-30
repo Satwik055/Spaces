@@ -36,9 +36,7 @@ class DetailScreenViewModel@Inject constructor(
                 is Resource.Error-> _state.value= PropertyState(error = result.message?:"An unexpected error occurred")
 
                 is Resource.Loading-> _state.value= PropertyState(isLoading = true)
-
             }
-
 
         }.launchIn(viewModelScope)
     }

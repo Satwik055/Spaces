@@ -28,8 +28,6 @@ import com.satwik.spaces.core.theme.Montserrat
 import com.satwik.spaces.core.theme.Purple
 import com.satwik.spaces.core.theme.White
 
-
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchBar(
     modifier:Modifier = Modifier,
@@ -61,15 +59,17 @@ fun SearchBar(
 
         onValueChange = onQueryChange,
 
-        colors = TextFieldDefaults.textFieldColors(
+        colors = TextFieldDefaults.colors(
+            focusedContainerColor = Black,
+            unfocusedContainerColor = Black,
+            disabledContainerColor = Black,
             cursorColor = Purple,
-            containerColor = Black,
             focusedIndicatorColor = Purple,
-            unfocusedIndicatorColor = White
+            unfocusedIndicatorColor = White,
         ),
         singleLine = true,
 
-        textStyle = TextStyle(fontFamily = fontFamily, fontWeight = FontWeight.Normal),
+        textStyle = TextStyle(fontFamily = fontFamily, fontWeight = FontWeight.Normal, color = White),
 
         trailingIcon = {
             IconButton(onClick = trailButtonOnClick,
@@ -101,13 +101,6 @@ fun SearchBar(
         },
     )
 }
-
-
-
-
-
-
-
 
 
 

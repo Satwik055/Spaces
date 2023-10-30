@@ -7,6 +7,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -16,8 +17,9 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.satwik.spaces.authentication.presentation.login_screen.LoginScreen
 import com.satwik.spaces.authentication.presentation.signup_screen.SignUpScreen
-import com.satwik.spaces.payments.presentation.confirmation_screen.ConfirmationScreen
+import com.satwik.spaces.payments.presentation.checkout_screen.CheckoutScreen
 import com.satwik.spaces.properties.common.Constants
+import com.satwik.spaces.properties.common.Constants.CHECKOUT_SCREEN_ARGUMENT_KEYS
 import com.satwik.spaces.properties.presentation.detail_screen.DetailScreen
 import com.satwik.spaces.properties.presentation.home_screen.HomeScreen
 import com.satwik.spaces.properties.presentation.location_screen.LocationScreen
@@ -48,9 +50,9 @@ fun SetupNavGraph(navController:NavHostController){
 
         composable(
             route = Screen.Detail.route,
-            arguments = listOf(navArgument(Constants.DETAIL_SCREEN_ARGUMENT_KEY){
-                type = NavType.StringType
-        })
+            arguments = listOf(
+                navArgument(Constants.DETAIL_SCREEN_ARGUMENT_KEY){ type = NavType.StringType }
+            )
         ) {
             DetailScreen(navController = navController)
         }
@@ -67,8 +69,16 @@ fun SetupNavGraph(navController:NavHostController){
             LoginScreen(navController = navController)
         }
 
-        composable(route = Screen.Confirmation.route){
-            ConfirmationScreen(navController=navController)
+        composable(
+            route = Screen.Checkout.route,
+            arguments = listOf(
+                navArgument(CHECKOUT_SCREEN_ARGUMENT_KEYS[0]){ type = NavType.StringType },
+                navArgument(CHECKOUT_SCREEN_ARGUMENT_KEYS[1]){ type = NavType.StringType },
+                navArgument(CHECKOUT_SCREEN_ARGUMENT_KEYS[2]){ type = NavType.StringType },
+                navArgument(CHECKOUT_SCREEN_ARGUMENT_KEYS[3]){ type = NavType.StringType }
+            )
+        ) {
+            CheckoutScreen(navController=navController)
         }
 
         composable(route = Screen.Location.route){

@@ -1,4 +1,4 @@
-package com.satwik.spaces.payments.presentation.confirmation_screen.components
+package com.satwik.spaces.payments.presentation.checkout_screen.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
@@ -25,17 +25,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.SubcomposeAsyncImage
 import com.satwik.spaces.R
 import com.satwik.spaces.core.theme.Grey
 import com.satwik.spaces.core.theme.Montserrat
 import com.satwik.spaces.core.theme.White
 
 @Composable
-fun DetailSection(
+fun BookingReviewSection(
     name:String,
     address:String,
-    @DrawableRes
-    thumbNail:Int,
+    thumbnailUrl:String,
     startDate:String,
     endDate:String,
     people:String,
@@ -49,7 +49,7 @@ fun DetailSection(
         NameSection(
             name = name,
             address = address,
-            thumbnail = thumbNail
+            thumbnailUrl = thumbnailUrl
         )
         Divider(thickness = 1.dp, color = Grey)
         DateSection(
@@ -71,8 +71,7 @@ fun NameSection(
     modifier:Modifier = Modifier,
     name:String,
     address:String,
-    @DrawableRes
-    thumbnail:Int
+    thumbnailUrl:String
 ){
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -96,8 +95,8 @@ fun NameSection(
                 fontSize = 14.sp,
             )
         }
-        Image(
-            painter = painterResource(id = thumbnail),
+        SubcomposeAsyncImage(
+            model = thumbnailUrl,
             contentScale = ContentScale.Crop,
             contentDescription = null,
             modifier = Modifier
@@ -205,13 +204,13 @@ fun PriceSection(
 
 }
 
-@Preview(showBackground = true, )
+@Preview(showBackground = true)
 @Composable
-fun DetailSectionPreview(){
-    DetailSection(
+fun BookingReviewPreview(){
+    BookingReviewSection(
         "Sunny Meadows",
         "2455 Ave, South Park, NY",
-        R.drawable.office_int,
+        "https://penkethgroup.com/wp-content/uploads/2022/09/ombudsman-carousel.jpg",
         "24 Mar 2023",
         "25 Mar 2023",
         "5",
