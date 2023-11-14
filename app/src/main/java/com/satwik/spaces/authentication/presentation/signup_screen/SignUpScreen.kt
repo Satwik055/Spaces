@@ -16,6 +16,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -26,21 +27,21 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.satwik.spaces.R
 import com.satwik.spaces.core.components.SpacesButton
-import com.satwik.spaces.core.components.SpacesDivider
 import com.satwik.spaces.core.components.SpacesTextField
 import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.core.utils.Resource
 import com.satwik.spaces.core.theme.Black
-import com.satwik.spaces.core.theme.Montserrat
 import com.satwik.spaces.core.theme.Purple
 import com.satwik.spaces.core.theme.White
 
@@ -82,18 +83,12 @@ fun SignUpScreen(
 
             Text(
                 text = "Sign Up",
-                fontFamily = Montserrat,
-                fontWeight = FontWeight.Normal,
-                color = White,
-                fontSize = 34.sp,
+                style = MaterialTheme.typography.headlineLarge
             )
 
             Text(
                 text = "Please signup to continue",
-                fontFamily = Montserrat,
-                fontWeight = FontWeight.Normal,
-                color = White,
-                fontSize = 16.sp,
+                style = MaterialTheme.typography.titleMedium
             )
 
             Spacer(modifier = Modifier.height(53.dp))
@@ -134,8 +129,26 @@ fun SignUpScreen(
             Spacer(modifier = Modifier.height(30.dp))
 
             SpacesButton(
-                text = "Signup",
-                onClick = {viewModel.signup(emailText, passwordText)}
+                text = "Signup"
+            ) { viewModel.signup(emailText, passwordText) }
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+
+            Text(
+                text = buildAnnotatedString {
+                    append("By signing up you agree our ")
+                    withStyle(style = SpanStyle(color = Purple)){
+                        append("Privacy Policy ")
+                    }
+                    append("and ")
+                    withStyle(style = SpanStyle(color = Purple)){
+                        append("Terms and Conditions")
+                    }
+                },
+                style = MaterialTheme.typography.labelSmall,
+                modifier = Modifier
+                    .clickable { navController.navigate(Screen.Login.route) }
             )
 
             Spacer(modifier = Modifier.height(50.dp))
@@ -148,21 +161,23 @@ fun SignUpScreen(
                 text = "Continue with google",
                 color = White,
                 fontSize = 16.sp,
-                textColor = Black,
-                onClick = { TODO() }
-            )
+                textColor = Black
+            ) { TODO() }
         }
 
         Text(
-            text = "Already have an account ? Login",
-            fontFamily = Montserrat,
-            fontWeight = FontWeight.Medium,
-            color = White,
-            fontSize = 13.sp,
+            text = buildAnnotatedString {
+                append("Already have an account ? ")
+                withStyle(style = SpanStyle(color = Purple)){
+                    append("Login")
+                }
+            },
+            style = MaterialTheme.typography.labelSmall,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .clickable { navController.navigate(Screen.Login.route) }
         )
+
 
         signupFlow.value?.let {
             when(it){

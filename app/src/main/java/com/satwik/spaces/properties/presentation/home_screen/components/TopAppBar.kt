@@ -31,6 +31,8 @@ import com.satwik.spaces.core.theme.White
 
 @Composable
 fun TopAppBar(
+    currentCity:String,
+    currentState:String,
     modifier: Modifier = Modifier,
     @DrawableRes
     navDrawerIcon:Int = R.drawable.ic_hamburger,
@@ -69,8 +71,8 @@ fun TopAppBar(
         }
         CurrentLocation(
             modifier =  Modifier.align(Alignment.TopCenter),
-            area = "Lower Manhattan",
-            city= "New York",
+            state = currentState,
+            city= currentCity,
             onClick = locationOnClick
         )
 
@@ -83,7 +85,7 @@ fun CurrentLocation(
     modifier:Modifier = Modifier,
     onClick:() -> Unit,
     city:String,
-    area:String,
+    state:String,
     @DrawableRes
     mapPinIcon:Int = R.drawable.ic_map_pin
 ){
@@ -100,7 +102,7 @@ fun CurrentLocation(
         Spacer(modifier=  Modifier.width(10.dp))
         Column{
             Text(
-                text = area,
+                text = state,
                 fontFamily = Montserrat,
                 fontWeight = FontWeight.Normal,
                 color = White,

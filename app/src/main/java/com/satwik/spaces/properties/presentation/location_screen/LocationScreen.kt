@@ -1,8 +1,5 @@
 package com.satwik.spaces.properties.presentation.location_screen
 
-import android.os.Build
-import android.util.Log
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,13 +13,12 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -30,41 +26,25 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
 import com.maxkeppeler.sheets.calendar.CalendarDialog
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import com.satwik.spaces.R
-import com.satwik.spaces.core.MainActivity
 import com.satwik.spaces.core.components.DateFeild
 import com.satwik.spaces.core.components.SpacesButton
 import com.satwik.spaces.core.components.SpacesIconButton
 import com.satwik.spaces.core.components.SpacesTextField
 import com.satwik.spaces.core.theme.Black
-import com.satwik.spaces.core.theme.Grey
-import com.satwik.spaces.core.theme.Montserrat
 import com.satwik.spaces.core.theme.White
-import com.satwik.spaces.core.utils.DefaultLocationClient
-import com.satwik.spaces.core.utils.LocationClient
-import com.satwik.spaces.properties.presentation.home_screen.HomeScreenViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalMaterial3Api::class)
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun LocationScreen(
     navController: NavController,
@@ -97,10 +77,7 @@ fun LocationScreen(
 
             Text(
                 text = "Location",
-                fontFamily = Montserrat,
-                fontWeight = FontWeight.Normal,
-                color = White,
-                fontSize = 34.sp,
+                style = MaterialTheme.typography.headlineLarge
             )
 
             Spacer(modifier = Modifier.height(20.dp))
@@ -118,13 +95,9 @@ fun LocationScreen(
 
             Text(
                 text = "Dates",
-                fontFamily = Montserrat,
-                fontWeight = FontWeight.Normal,
-                color = White,
-                fontSize = 16.sp,
+                style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.padding(bottom = 5.dp)
             )
-
 
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween
@@ -169,10 +142,7 @@ fun LocationScreen(
             ) {
                 Text(
                     text = "People",
-                    fontFamily = Montserrat,
-                    fontWeight = FontWeight.Normal,
-                    color = White,
-                    fontSize = 18.sp,
+                    style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.align(Alignment.CenterStart)
                 )
 
@@ -197,14 +167,12 @@ fun LocationScreen(
 
             Spacer(modifier = Modifier.height(75.dp))
             SpacesButton(
-                text = "Search",
-                onClick = { TODO() }
-            )
+                text = "Search"
+            ) { TODO() }
         }
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Preview(showBackground = true)
 @Composable
 fun MyPreview() {

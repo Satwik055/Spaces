@@ -80,14 +80,14 @@ fun ListingCard(
                 Text(
                     text = propertyName,
                     fontFamily = Montserrat,
-                    fontWeight = FontWeight(400),
+                    fontWeight = FontWeight.Normal,
                     color = White,
                     fontSize = titleFontSize,
                 )
                 Text(
                     text = propertyAddress,
                     fontFamily = Montserrat,
-                    fontWeight = FontWeight(400),
+                    fontWeight = FontWeight.Normal,
                     color = White,
                     fontSize = addressFontSize,
                 )
@@ -103,5 +103,9 @@ fun ListingCard(
 @Preview
 @Composable
 fun SpacesCardPreview(){
-
+    ListingCard(
+        propertyName = "Cleo County",
+        propertyAddress = "233 Ave St. Central park, NY 31091",
+        imageUrl = "https://img.freepik.com/premium-photo/3d-rendering-modern-luxury-home-interior_674881-465.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699401600&semt=ais",
+        onClick = { /*TODO*/ })
 }

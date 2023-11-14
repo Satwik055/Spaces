@@ -8,33 +8,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.satwik.spaces.R
 
-// Set of Material typography styles to start with
-val Typography = Typography(
-    bodyLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
-    )
-    /* Other default text styles to override
-    titleLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
-    ),
-    labelSmall = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
-    )
-    */
-)
-
 val Montserrat = FontFamily(
     Font(R.font.montserrat_light, FontWeight.Light),
     Font(R.font.montserrat_regular, FontWeight.Normal),
@@ -43,3 +16,55 @@ val Montserrat = FontFamily(
     Font(R.font.montserrat_bold, FontWeight.Bold),
     Font(R.font.montserrat_thin, FontWeight.Thin)
 )
+
+val Typography = Typography(
+
+    headlineLarge = TextStyle(
+        lineHeight = 35.sp,
+        fontFamily = Montserrat,
+        fontWeight = FontWeight.Normal,
+        color = White,
+        fontSize = 34.sp,
+    ),
+
+    headlineMedium = TextStyle(
+        fontFamily = Montserrat,
+        fontWeight = FontWeight.Normal,
+        color = White,
+        fontSize = 26.sp,
+    ),
+
+    headlineSmall = TextStyle(
+        fontFamily = Montserrat,
+        fontWeight = FontWeight.Normal,
+        color = White,
+        fontSize = 20.sp,
+    ),
+
+    titleMedium = TextStyle(
+        fontFamily = Montserrat,
+        fontWeight = FontWeight.Normal,
+        color = White,
+        fontSize = 16.sp,
+    ),
+
+    labelLarge = TextStyle(
+        fontFamily = Montserrat,
+        fontWeight = FontWeight.Normal,
+        color = White,
+        fontSize = 18.sp,
+    ) ,
+
+
+    labelSmall = TextStyle(
+        fontFamily = Montserrat,
+        fontWeight = FontWeight.Medium,
+        color = White,
+        fontSize = 13.sp,
+    ),
+
+
+
+
+)
+
