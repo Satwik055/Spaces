@@ -25,8 +25,6 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.SubcomposeAsyncImage
-import com.satwik.spaces.core.components.AnimatedShimmer
-import com.satwik.spaces.core.components.ShimmerCard
 import com.satwik.spaces.core.theme.Montserrat
 import com.satwik.spaces.core.theme.Purple
 import com.satwik.spaces.core.theme.White

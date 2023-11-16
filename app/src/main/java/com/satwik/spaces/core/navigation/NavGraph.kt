@@ -22,6 +22,7 @@ import com.satwik.spaces.properties.common.Constants
 import com.satwik.spaces.properties.common.Constants.CHECKOUT_SCREEN_ARGUMENT_KEYS
 import com.satwik.spaces.properties.presentation.detail_screen.DetailScreen
 import com.satwik.spaces.properties.presentation.home_screen.HomeScreen
+import com.satwik.spaces.properties.presentation.home_screen.tabs.MeetingroomTabScreen
 import com.satwik.spaces.properties.presentation.location_screen.LocationScreen
 import com.satwik.spaces.properties.presentation.search_screen.SearchScreen
 
@@ -83,6 +84,10 @@ fun SetupNavGraph(navController:NavHostController){
 
         composable(route = Screen.Location.route){
             LocationScreen(navController = navController)
+        }
+
+        composable(route = Screen.MeetingRoomTabScreen.route){
+            MeetingroomTabScreen(navController = navController)
         }
     }
 }

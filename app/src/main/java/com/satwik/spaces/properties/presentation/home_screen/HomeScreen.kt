@@ -1,46 +1,42 @@
+
 package com.satwik.spaces.properties.presentation.home_screen
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ScrollableTabRow
+import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.satwik.spaces.properties.presentation.home_screen.components.ListingCard
-import com.satwik.spaces.properties.presentation.home_screen.components.TopAppBar
+import com.satwik.spaces.core.components.AnimatedShimmerCard
 import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.core.theme.Black
-import com.satwik.spaces.core.theme.Montserrat
-import com.satwik.spaces.core.theme.Purple
+import com.satwik.spaces.core.theme.Grey
 import com.satwik.spaces.core.theme.White
+import com.satwik.spaces.properties.presentation.home_screen.components.TopAppBar
+import com.satwik.spaces.properties.presentation.home_screen.tabs.MeetingroomTabScreen
 
 
 @Composable
 fun HomeScreen(
     navController:NavController,
-    viewModel: HomeScreenViewModel = hiltViewModel()
 ){
-
-    val state = viewModel.state.value
     Box (
         modifier = Modifier
             .fillMaxSize()
@@ -48,102 +44,67 @@ fun HomeScreen(
             .padding(start = 16.dp, end = 16.dp)
     ){
 
-        if(state.isLoading){
-            CircularProgressIndicator(
-                modifier = Modifier.align(Alignment.Center),
-                color = Purple
-            )
-        }
+        Column  (
+            modifier = Modifier.matchParentSize()
+        ){
+            Spacer(modifier = Modifier.height(10.dp))
 
-        if(state.error.isNotBlank()) {
+            TopAppBar(
+                currentCity = "Lower Manhattan",
+                currentState = "New York",
+                searchOnClick = {navController.navigate(Screen.Search.route)},
+                locationOnClick = {navController.navigate(Screen.Location.route)}
+            )
+
+            Spacer(modifier = Modifier.height(30.dp))
+
             Text(
-                text = state.error,
-                fontFamily = Montserrat,
-                fontWeight = FontWeight.Normal,
-                color = White,
-                fontSize = 20.sp,
-                modifier = Modifier.align(Alignment.Center)
+                text = "Explore a suitable workplace for you",
+                style = MaterialTheme.typography.headlineLarge
             )
-        }
 
-        if(state.properties.isNotEmpty()){
-            Column  (
-                modifier = Modifier.matchParentSize()
-            ){
-                Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
-                TopAppBar(
-                    currentCity = "Lower Manhattan",
-                    currentState = "New York",
-                    searchOnClick = {navController.navigate(Screen.Search.route)},
-                    locationOnClick = {navController.navigate(Screen.Location.route)}
-                )
-
-                Spacer(modifier = Modifier.height(30.dp))
-
-                Text(
-                    text = "Explore a suitable workplace for you",
-                    style = MaterialTheme.typography.headlineLarge
-                )
-
-                Spacer(modifier = Modifier.height(40.dp))
-
-                Text(
-                    text = "Popular",
-                    fontFamily = Montserrat,
-                    fontWeight = FontWeight.Normal,
-                    color = White,
-                    fontSize = 16.sp,
-                )
-
-                Spacer(modifier = Modifier.height(10.dp))
-
-                // Popular section
-                LazyRow(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ){items(state.properties){
-                    ListingCard(
-                        propertyName = it.name,
-                        propertyAddress = it.address,
-                        titleFontSize = 17.sp,
-                        addressFontSize = 10.sp,
-                        imageUrl = it.imageUrls.first(),
-                        onClick = { navController.navigate(Screen.Detail.passId(it.id))}
+            val tabItems = listOf("Meeting room", "Workspace", "Coffeeshop", "Lounge")
+            var selectedTabIndex by remember { mutableStateOf(0) }
+            ScrollableTabRow(
+                selectedTabIndex = selectedTabIndex,
+                edgePadding = 0.dp,
+                containerColor = Color.Transparent,
+                divider = { null }
+            ) {
+                tabItems.forEachIndexed{ index, item ->
+                    Tab(
+                        selected = index == selectedTabIndex,
+                        onClick = { selectedTabIndex = index },
+                        text = {
+                            Text(
+                                text = item,
+                                fontSize = 16.sp,
+                                color = if(index==selectedTabIndex){White}
+                                else { Grey },
+                                style = MaterialTheme.typography.titleMedium)
+                        }
                     )
                 }
-                }
+            }
 
-                Spacer(modifier = Modifier.height(40.dp))
-
-                Text(
-                    text = "Near You",
-                    fontFamily = Montserrat,
-                    fontWeight = FontWeight.Normal,
-                    color = White,
-                    fontSize = 16.sp,
-                )
-
-                Spacer(modifier = Modifier.height(10.dp))
-
-                // NearYou Section
-                LazyColumn(
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ){items(state.properties){
-                    ListingCard(
-                        propertyName = it.name,
-                        propertyAddress = it.address,
-                        imageUrl = it.imageUrls.first(),
-                        onClick = { navController.navigate(Screen.Detail.passId(it.id))},
-                        modifier = Modifier
-                            .height(204.dp)
-                            .fillMaxWidth()
-                    )
-                }
+            Box{
+                when(selectedTabIndex){
+                    0 -> MeetingroomTabScreen(navController = rememberNavController())
                 }
             }
         }
     }
 }
+
+@Composable
+fun TestScreen(){
+    Box(modifier = Modifier
+        .background(color = Color.Red)
+        .fillMaxSize())
+}
+
 
 @Preview
 @Composable
