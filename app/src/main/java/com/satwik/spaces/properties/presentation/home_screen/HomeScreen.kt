@@ -30,7 +30,10 @@ import com.satwik.spaces.core.theme.Black
 import com.satwik.spaces.core.theme.Grey
 import com.satwik.spaces.core.theme.White
 import com.satwik.spaces.properties.presentation.home_screen.components.TopAppBar
+import com.satwik.spaces.properties.presentation.home_screen.tabs.CoffeeshopTabScreen
+import com.satwik.spaces.properties.presentation.home_screen.tabs.LoungeTabScreen
 import com.satwik.spaces.properties.presentation.home_screen.tabs.MeetingroomTabScreen
+import com.satwik.spaces.properties.presentation.home_screen.tabs.WorkspaceTabScreen
 
 
 @Composable
@@ -40,7 +43,6 @@ fun HomeScreen(
     Box (
         modifier = Modifier
             .fillMaxSize()
-            .background(Black)
             .padding(start = 16.dp, end = 16.dp)
     ){
 
@@ -82,8 +84,9 @@ fun HomeScreen(
                                 text = item,
                                 fontSize = 16.sp,
                                 color = if(index==selectedTabIndex){White}
-                                else { Grey },
-                                style = MaterialTheme.typography.titleMedium)
+                                else {Grey},
+                                style = MaterialTheme.typography.titleMedium
+                            )
                         }
                     )
                 }
@@ -91,18 +94,14 @@ fun HomeScreen(
 
             Box{
                 when(selectedTabIndex){
-                    0 -> MeetingroomTabScreen(navController = rememberNavController())
+                    0 -> MeetingroomTabScreen(navController = navController)
+                    1 -> WorkspaceTabScreen()
+                    2 -> CoffeeshopTabScreen()
+                    3 -> LoungeTabScreen()
                 }
             }
         }
     }
-}
-
-@Composable
-fun TestScreen(){
-    Box(modifier = Modifier
-        .background(color = Color.Red)
-        .fillMaxSize())
 }
 
 

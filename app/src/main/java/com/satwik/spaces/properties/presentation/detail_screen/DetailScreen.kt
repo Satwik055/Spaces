@@ -1,27 +1,20 @@
 package com.satwik.spaces.properties.presentation.detail_screen
 
 import android.os.Build
-import android.widget.ScrollView
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -31,12 +24,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.modifier.modifierLocalConsumer
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -50,21 +39,14 @@ import com.satwik.spaces.R
 import com.satwik.spaces.core.components.AmenitiesChip
 import com.satwik.spaces.core.components.DateFeild
 import com.satwik.spaces.core.components.InfoCard
-import com.satwik.spaces.core.components.SpacesButton
 import com.satwik.spaces.core.navigation.Screen
-import com.satwik.spaces.properties.presentation.detail_screen.components.FeatureSection
-import com.satwik.spaces.properties.presentation.detail_screen.components.ImageSlider
-import com.satwik.spaces.properties.presentation.detail_screen.components.PropertyInfoSection
-import com.satwik.spaces.core.theme.Black
-import com.satwik.spaces.core.theme.DarkGrey
-import com.satwik.spaces.core.theme.Grey
 import com.satwik.spaces.core.theme.Montserrat
 import com.satwik.spaces.core.theme.Purple
 import com.satwik.spaces.core.theme.White
-import com.satwik.spaces.core.theme.Zeus
 import com.satwik.spaces.properties.presentation.detail_screen.components.BottomBarSection
+import com.satwik.spaces.properties.presentation.detail_screen.components.ImageSlider
 import com.satwik.spaces.properties.presentation.detail_screen.components.PeopleSection
-import java.nio.file.WatchEvent
+import com.satwik.spaces.properties.presentation.detail_screen.components.PropertyInfoSection
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -81,7 +63,6 @@ fun DetailScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Black)
 
     ) {
 
@@ -98,14 +79,13 @@ fun DetailScreen(
                 fontFamily = Montserrat,
                 fontWeight = FontWeight.Normal,
                 color = White,
-                fontSize = 20.sp,
+                fontSize = 15.sp,
+                textAlign = TextAlign.Center,
                 modifier = Modifier.align(Alignment.Center)
             )
         }
 
-
         state.property?.let {
-
             Box(
                 modifier = Modifier.fillMaxSize()
             ){
