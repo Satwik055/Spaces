@@ -104,6 +104,10 @@ dependencies {
     //Google location API
     implementation ("com.google.android.gms:play-services-location:15.0.1")
 
+    //Splash Screen API
+    implementation ("androidx.core:core-splashscreen:1.0.1")
+
+
 
 
 

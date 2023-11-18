@@ -1,4 +1,4 @@
-package com.satwik.spaces.properties.presentation.home_screen.components
+package com.satwik.spaces.core.components
 
 
 import androidx.compose.foundation.background
@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,9 +22,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import coil.compose.SubcomposeAsyncImage
 import com.satwik.spaces.core.theme.Montserrat
-import com.satwik.spaces.core.theme.Purple
 import com.satwik.spaces.core.theme.White
 
 
@@ -53,7 +51,7 @@ fun ListingCard(
                 .fillMaxSize()
         ){
 
-            SubcomposeAsyncImage(
+            AsyncImage(
                 model = imageUrl,
                 contentScale = ContentScale.Crop,
                 contentDescription = null,
@@ -91,9 +89,7 @@ fun ListingCard(
                 )
             }
         }
-
     }
-
 }
 
 

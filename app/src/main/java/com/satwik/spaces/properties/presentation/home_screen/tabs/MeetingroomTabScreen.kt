@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,11 +22,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.core.theme.Montserrat
-import com.satwik.spaces.core.theme.Purple
 import com.satwik.spaces.core.theme.White
 import com.satwik.spaces.properties.presentation.home_screen.HomeScreenViewModel
 import com.satwik.spaces.properties.presentation.home_screen.ShimmerLoadingLayout
-import com.satwik.spaces.properties.presentation.home_screen.components.ListingCard
+import com.satwik.spaces.core.components.ListingCard
 
 @Composable
 fun MeetingroomTabScreen(
@@ -36,8 +34,11 @@ fun MeetingroomTabScreen(
 ){
     val state = viewModel.state.value
 
+
+
     Box(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
     ){
 
         if(state.isLoading){
@@ -59,6 +60,7 @@ fun MeetingroomTabScreen(
         if(state.properties.isNotEmpty()){
             Column(
                 modifier = Modifier.matchParentSize()
+
             ){
                 Spacer(modifier = Modifier.height(30.dp))
 
