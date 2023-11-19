@@ -1,4 +1,4 @@
-package com.satwik.spaces.properties.presentation.home_screen
+package com.satwik.spaces.properties.presentation.home_screen.components
 
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column

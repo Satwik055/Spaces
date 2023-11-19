@@ -11,8 +11,8 @@ class PropertiesRepositoryImpl @Inject constructor(
     private val collectionRef:CollectionReference
 ): PropertiesRepository {
 
-    override suspend fun getAllProperties(): List<Property> {
-        val querySnapshot = collectionRef.get().await()
+    override suspend fun getPropertiesByType(type:String): List<Property> {
+        val querySnapshot = collectionRef.whereEqualTo("type",type).get().await()
         val properties = mutableListOf<Property>()
         for(document in querySnapshot.documents){
             val property = document.toObject<Property>()

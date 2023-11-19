@@ -1,4 +1,4 @@
-package com.satwik.spaces.properties.presentation.home_screen.tabs
+package com.satwik.spaces.properties.presentation.home_screen.tabs.coffeeshop_tab
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -20,21 +20,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.satwik.spaces.core.components.ListingCard
 import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.core.theme.Montserrat
 import com.satwik.spaces.core.theme.White
-import com.satwik.spaces.properties.presentation.home_screen.HomeScreenViewModel
-import com.satwik.spaces.properties.presentation.home_screen.ShimmerLoadingLayout
-import com.satwik.spaces.core.components.ListingCard
+import com.satwik.spaces.properties.presentation.home_screen.components.ShimmerLoadingLayout
 
 @Composable
-fun MeetingroomTabScreen(
+fun CoffeeshopTabScreen(
     navController: NavController,
-    viewModel: HomeScreenViewModel = hiltViewModel()
+    viewModel: CoffeeshopTabScreenViewModel = hiltViewModel()
 ){
     val state = viewModel.state.value
-
-
 
     Box(
         modifier = Modifier
@@ -107,8 +104,8 @@ fun MeetingroomTabScreen(
                         modifier = Modifier
                             .height(204.dp)
                             .fillMaxWidth()
-                        )
-                    }
+                    )
+                }
                 }
             }
         }

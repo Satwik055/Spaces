@@ -1,16 +1,16 @@
-package com.satwik.spaces.properties.domain.use_case.get_all_properties
+package com.satwik.spaces.properties.domain.use_case.get_properties_by_type
 
 import com.satwik.spaces.core.utils.Resource
 import com.satwik.spaces.properties.domain.repository.PropertiesRepository
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class GetAllPropertiesUseCase @Inject constructor(private val repository: PropertiesRepository) {
+class GetPropertiesByTypeUseCase @Inject constructor(private val repository: PropertiesRepository) {
 
-    operator fun invoke() = flow{
+    operator fun invoke(type:String) = flow{
         try{
             emit(Resource.Loading())
-            val properties = repository.getAllProperties()
+            val properties = repository.getPropertiesByType(type)
             emit(Resource.Success(properties))
         }
         catch (e:Exception){

@@ -22,7 +22,10 @@ import com.satwik.spaces.properties.common.Constants
 import com.satwik.spaces.properties.common.Constants.CHECKOUT_SCREEN_ARGUMENT_KEYS
 import com.satwik.spaces.properties.presentation.detail_screen.DetailScreen
 import com.satwik.spaces.properties.presentation.home_screen.HomeScreen
-import com.satwik.spaces.properties.presentation.home_screen.tabs.MeetingroomTabScreen
+import com.satwik.spaces.properties.presentation.home_screen.tabs.coffeeshop_tab.CoffeeshopTabScreen
+import com.satwik.spaces.properties.presentation.home_screen.tabs.lounge_tab.LoungeTabScreen
+import com.satwik.spaces.properties.presentation.home_screen.tabs.meetingroom_tab.MeetingroomTabScreen
+import com.satwik.spaces.properties.presentation.home_screen.tabs.workspace_tab.WorkspaceTabScreen
 import com.satwik.spaces.properties.presentation.location_screen.LocationScreen
 import com.satwik.spaces.properties.presentation.search_screen.SearchScreen
 
@@ -89,5 +92,18 @@ fun SetupNavGraph(navController:NavHostController){
         composable(route = Screen.MeetingRoomTabScreen.route){
             MeetingroomTabScreen(navController = navController)
         }
+
+        composable(route = Screen.WorkspaceTabScreen.route){
+            WorkspaceTabScreen(navController = navController)
+        }
+
+        composable(route = Screen.LoungeTabScreen.route){
+            LoungeTabScreen(navController = navController)
+        }
+
+        composable(route = Screen.CoffeeshopTabScreen.route){
+            CoffeeshopTabScreen(navController = navController)
+        }
+
     }
 }

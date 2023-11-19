@@ -1,7 +1,6 @@
 
 package com.satwik.spaces.properties.presentation.home_screen
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,21 +18,21 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight.Companion.Thin
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.satwik.spaces.core.components.AnimatedShimmerCard
 import com.satwik.spaces.core.navigation.Screen
-import com.satwik.spaces.core.theme.Black
 import com.satwik.spaces.core.theme.Grey
 import com.satwik.spaces.core.theme.White
 import com.satwik.spaces.properties.presentation.home_screen.components.TopAppBar
-import com.satwik.spaces.properties.presentation.home_screen.tabs.CoffeeshopTabScreen
-import com.satwik.spaces.properties.presentation.home_screen.tabs.LoungeTabScreen
-import com.satwik.spaces.properties.presentation.home_screen.tabs.MeetingroomTabScreen
-import com.satwik.spaces.properties.presentation.home_screen.tabs.WorkspaceTabScreen
+import com.satwik.spaces.properties.presentation.home_screen.tabs.coffeeshop_tab.CoffeeshopTabScreen
+import com.satwik.spaces.properties.presentation.home_screen.tabs.lounge_tab.LoungeTabScreen
+import com.satwik.spaces.properties.presentation.home_screen.tabs.meetingroom_tab.MeetingroomTabScreen
+import com.satwik.spaces.properties.presentation.home_screen.tabs.workspace_tab.WorkspaceTabScreen
 
 
 @Composable
@@ -62,16 +61,20 @@ fun HomeScreen(
 
             Text(
                 text = "Explore a suitable workplace for you",
-                style = MaterialTheme.typography.headlineLarge
+                style = MaterialTheme.typography.headlineLarge,
+                fontWeight = Thin
+
             )
 
             Spacer(modifier = Modifier.height(20.dp))
 
             val tabItems = listOf("Meeting room", "Workspace", "Coffeeshop", "Lounge")
             var selectedTabIndex by remember { mutableStateOf(0) }
+
             ScrollableTabRow(
                 selectedTabIndex = selectedTabIndex,
                 edgePadding = 0.dp,
+                contentColor = Color.Transparent,
                 containerColor = Color.Transparent,
                 divider = { null }
             ) {
@@ -95,9 +98,9 @@ fun HomeScreen(
             Box{
                 when(selectedTabIndex){
                     0 -> MeetingroomTabScreen(navController = navController)
-                    1 -> WorkspaceTabScreen()
-                    2 -> CoffeeshopTabScreen()
-                    3 -> LoungeTabScreen()
+                    1 -> WorkspaceTabScreen(navController = navController)
+                    2 -> CoffeeshopTabScreen(navController = navController)
+                    3 -> LoungeTabScreen(navController = navController)
                 }
             }
         }
@@ -108,5 +111,5 @@ fun HomeScreen(
 @Preview
 @Composable
 fun HomeScreenPreview(){
-    HomeScreen(navController = rememberNavController())
+    //HomeScreen(navController = rememberNavController())
 }

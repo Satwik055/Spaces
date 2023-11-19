@@ -2,12 +2,10 @@ package com.satwik.spaces.properties.presentation.search_screen
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.satwik.spaces.core.utils.Resource
 import com.satwik.spaces.properties.domain.use_case.search_property.SearchPropertyUseCase
-import com.satwik.spaces.properties.presentation.home_screen.PropertyListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
