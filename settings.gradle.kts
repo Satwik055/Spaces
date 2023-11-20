@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Spaces"
 include(":app")
- 
+include(":benchmark")
