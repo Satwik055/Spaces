@@ -22,7 +22,6 @@ import androidx.compose.ui.text.font.FontWeight.Companion.Thin
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.satwik.spaces.core.navigation.Screen
@@ -33,7 +32,6 @@ import com.satwik.spaces.properties.presentation.home_screen.tabs.coffeeshop_tab
 import com.satwik.spaces.properties.presentation.home_screen.tabs.lounge_tab.LoungeTabScreen
 import com.satwik.spaces.properties.presentation.home_screen.tabs.meetingroom_tab.MeetingroomTabScreen
 import com.satwik.spaces.properties.presentation.home_screen.tabs.workspace_tab.WorkspaceTabScreen
-
 
 @Composable
 fun HomeScreen(
@@ -63,7 +61,6 @@ fun HomeScreen(
                 text = "Explore a suitable workplace for you",
                 style = MaterialTheme.typography.headlineLarge,
                 fontWeight = Thin
-
             )
 
             Spacer(modifier = Modifier.height(20.dp))
@@ -111,5 +108,24 @@ fun HomeScreen(
 @Preview
 @Composable
 fun HomeScreenPreview(){
-    //HomeScreen(navController = rememberNavController())
+    HomeScreen(navController = rememberNavController())
 }
+
+
+
+//   val pagerState = rememberPagerState()
+//                LaunchedEffect(selectedTabIndex){
+//                    pagerState.animateScrollToPage(selectedTabIndex)
+//                }
+//                LaunchedEffect(pagerState.currentPage){
+//                    selectedTabIndex = pagerState.currentPage
+//                }
+//
+//            HorizontalPager(
+//                pageCount = tabItems.size,
+//                state = pagerState,
+//                modifier = Modifier
+//                    .background(color= Color.Red)
+//            ){
+//
+//            }

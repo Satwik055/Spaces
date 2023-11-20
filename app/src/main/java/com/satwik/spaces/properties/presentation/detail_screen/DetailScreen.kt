@@ -40,9 +40,12 @@ import com.satwik.spaces.core.components.AmenitiesChip
 import com.satwik.spaces.core.components.DateFeild
 import com.satwik.spaces.core.components.InfoCard
 import com.satwik.spaces.core.navigation.Screen
+import com.satwik.spaces.core.theme.Black
 import com.satwik.spaces.core.theme.Montserrat
 import com.satwik.spaces.core.theme.Purple
 import com.satwik.spaces.core.theme.White
+import com.satwik.spaces.core.utils.DummyApi
+import com.satwik.spaces.properties.domain.model.Property
 import com.satwik.spaces.properties.presentation.detail_screen.components.BottomBarSection
 import com.satwik.spaces.properties.presentation.detail_screen.components.ImageSlider
 import com.satwik.spaces.properties.presentation.detail_screen.components.PeopleSection
@@ -56,9 +59,8 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun DetailScreen(
     navController: NavController,
-    viewModel: DetailScreenViewModel = hiltViewModel()
+    state:PropertyState
 ){
-    val state = viewModel.state.value
 
     Box(
         modifier = Modifier
@@ -212,9 +214,16 @@ fun DetailScreen(
 
 
 @RequiresApi(Build.VERSION_CODES.O)
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun DetailScreenPreview(){
-    DetailScreen(navController = rememberNavController())
+    DetailScreen(
+        navController = rememberNavController(),
+        state = PropertyState(
+            isLoading = false,
+            property = DummyApi.getPropertyById("2")
+        )
+    )
+
 
 }

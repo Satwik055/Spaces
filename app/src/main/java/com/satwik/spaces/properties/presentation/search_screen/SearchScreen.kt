@@ -37,10 +37,8 @@ import com.satwik.spaces.core.components.ListingCard
 @Composable
 fun SearchScreen(
     navController:NavController,
-    viewModel: SearchScreenViewModel = hiltViewModel()
+    state: SearchResultState
 ){
-
-    val state = viewModel.state.value
 
     Column {
         var text by remember { mutableStateOf("") }

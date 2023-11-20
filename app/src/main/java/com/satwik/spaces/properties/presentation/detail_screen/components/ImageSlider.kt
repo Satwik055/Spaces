@@ -39,9 +39,6 @@ fun ImageSlider(
             loading = { CircularProgressIndicator(color= Purple, modifier = Modifier.size(40.dp)) },
             contentDescription = null,
             modifier = modifier.height(364.dp).fillMaxWidth()
-
-
         )
-
     }
 }

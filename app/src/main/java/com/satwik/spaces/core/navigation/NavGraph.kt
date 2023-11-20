@@ -7,6 +7,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -16,11 +17,14 @@ import androidx.navigation.navArgument
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.satwik.spaces.authentication.presentation.login_screen.LoginScreen
+import com.satwik.spaces.authentication.presentation.login_screen.LoginScreenViewModel
 import com.satwik.spaces.authentication.presentation.signup_screen.SignUpScreen
+import com.satwik.spaces.authentication.presentation.signup_screen.SignupScreenViewModel
 import com.satwik.spaces.payments.presentation.checkout_screen.CheckoutScreen
 import com.satwik.spaces.properties.common.Constants
 import com.satwik.spaces.properties.common.Constants.CHECKOUT_SCREEN_ARGUMENT_KEYS
 import com.satwik.spaces.properties.presentation.detail_screen.DetailScreen
+import com.satwik.spaces.properties.presentation.detail_screen.DetailScreenViewModel
 import com.satwik.spaces.properties.presentation.home_screen.HomeScreen
 import com.satwik.spaces.properties.presentation.home_screen.tabs.coffeeshop_tab.CoffeeshopTabScreen
 import com.satwik.spaces.properties.presentation.home_screen.tabs.lounge_tab.LoungeTabScreen
@@ -28,6 +32,7 @@ import com.satwik.spaces.properties.presentation.home_screen.tabs.meetingroom_ta
 import com.satwik.spaces.properties.presentation.home_screen.tabs.workspace_tab.WorkspaceTabScreen
 import com.satwik.spaces.properties.presentation.location_screen.LocationScreen
 import com.satwik.spaces.properties.presentation.search_screen.SearchScreen
+import com.satwik.spaces.properties.presentation.search_screen.SearchScreenViewModel
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -58,11 +63,15 @@ fun SetupNavGraph(navController:NavHostController){
                 navArgument(Constants.DETAIL_SCREEN_ARGUMENT_KEY){ type = NavType.StringType }
             )
         ) {
-            DetailScreen(navController = navController)
+            val viewModel = hiltViewModel<DetailScreenViewModel>()
+            val state  = viewModel.state.value
+            DetailScreen(navController = navController, state = state )
         }
 
         composable(route = Screen.Search.route){
-            SearchScreen(navController = navController)
+            val viewModel = hiltViewModel<SearchScreenViewModel>()
+            val state  = viewModel.state.value
+            SearchScreen(navController = navController, state = state)
         }
 
         composable(route = Screen.Signup.route){

@@ -21,7 +21,7 @@ class WorkspaceTabScreenViewModel @Inject constructor(
     val state: State<TabScreenUIState> = _state
 
     init {
-        getPropertiesByType("coffeeshop")
+        getPropertiesByType("lounge")
     }
 
     private fun getPropertiesByType(type:String){
