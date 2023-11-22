@@ -1,5 +1,6 @@
 package com.satwik.spaces.authentication.presentation.login_screen
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -34,6 +35,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.satwik.spaces.R
+import com.satwik.spaces.authentication.domain.MockLoginViewModel
 import com.satwik.spaces.core.components.SpacesButton
 import com.satwik.spaces.core.components.SpacesTextField
 import com.satwik.spaces.core.navigation.Screen
@@ -43,13 +45,22 @@ import com.satwik.spaces.core.theme.White
 
 @Composable
 fun LoginScreen(
-    navController:NavController,
-    viewModel:LoginScreenViewModel = hiltViewModel()
+    navController: NavController,
+    viewModel: LoginScreenViewModel = hiltViewModel(),
+    mockViewModel: MockLoginViewModel = hiltViewModel()
 ){
 
     val loginFlow = viewModel.loginFlow.collectAsState()
+    val state = mockViewModel.state
+
     var errorText by remember { mutableStateOf("") }
     var isError by remember { mutableStateOf(false) }
+
+    Log.d("@@@", "Hear is your data my nigga${ state.value.user?.email.toString() }")
+    Log.d("@@@", "Hear is your data my nigga${ state.value.isLoading }")
+    Log.d("@@@", "Hear is your data my nigga${ state.value.error }")
+
+
 
     Box (
         modifier = Modifier
@@ -76,7 +87,7 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(30.dp))
 
             Text(
-                text = "Login",
+                text = state.value.user.toString(),
                 style = MaterialTheme.typography.headlineLarge
             )
 

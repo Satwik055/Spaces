@@ -39,8 +39,5 @@ class PropertiesRepositoryImpl @Inject constructor(
             properties.add(property)
         }
         return properties
-
     }
-
-
 }
