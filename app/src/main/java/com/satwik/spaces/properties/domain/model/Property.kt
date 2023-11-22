@@ -11,4 +11,5 @@ data class Property(
     val people:String = "",
     val floor:String = "",
     val carpetArea:String = "",
+    val type:String? = ""
 )

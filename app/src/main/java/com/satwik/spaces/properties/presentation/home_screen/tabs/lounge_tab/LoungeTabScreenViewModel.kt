@@ -4,6 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.satwik.spaces.core.utils.PropertyType
 import com.satwik.spaces.core.utils.Resource
 import com.satwik.spaces.properties.domain.use_case.get_properties_by_type.GetPropertiesByTypeUseCase
 import com.satwik.spaces.properties.presentation.home_screen.tabs.TabScreenUIState
@@ -21,10 +22,10 @@ class LoungeTabScreenViewModel @Inject constructor(
     val state: State<TabScreenUIState> = _state
 
     init {
-        getPropertiesByType("lounge")
+        getPropertiesByType(PropertyType.LOUNGE)
     }
 
-    private fun getPropertiesByType(type:String){
+    private fun getPropertiesByType(type:PropertyType){
         getPropertiesByTypeUseCase(type).onEach {result->
             when(result){
                 is Resource.Success-> {

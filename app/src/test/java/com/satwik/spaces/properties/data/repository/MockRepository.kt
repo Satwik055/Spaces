@@ -1,9 +1,26 @@
-package com.satwik.spaces.core.utils
+package com.satwik.spaces.properties.data.repository
 
+import com.satwik.spaces.core.utils.DummyApi
+import com.satwik.spaces.core.utils.PropertyType
 import com.satwik.spaces.properties.domain.model.Property
-import java.lang.Error
+import com.satwik.spaces.properties.domain.repository.PropertiesRepository
 
-object DummyApi {
+class MockRepository:PropertiesRepository {
+
+    override suspend fun getPropertiesByType(type: String): List<Property> {
+        return properties.filter { it.type == type }
+    }
+
+//    fun foo(type:PropertyType): List<Property> {
+//        return properties.filter { it.type.equals(type.name) }
+//    }
+    override suspend fun getPropertyById(id: String): Property? {
+        return properties.find { it.id == id }    }
+
+    override suspend fun searchProperty(name: String): List<Property>? {
+        return properties
+    }
+
 
     private val listing1 = Property(
         "1",
@@ -20,7 +37,7 @@ object DummyApi {
         "8",
         "24",
         "323",
-        "lounge"
+        "LOUNGE"
     )
 
     private val listing2 = Property(
@@ -115,16 +132,5 @@ object DummyApi {
 
     private val properties = listOf(listing1, listing2, listing3, listing4, listing5, listing6)
 
-    fun getAllProperties(): List<Property> {
-        return properties
-    }
-
-    fun getPropertyById(id:String): Property? {
-        return properties.find { it.id == id }
-    }
-
-    fun getPropertiesByType(type:String):List<Property>{
-        return properties.filter { it.type == type }
-    }
-
 }
+

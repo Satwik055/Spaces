@@ -75,7 +75,15 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics-ktx:21.3.0")
     implementation("com.google.firebase:firebase-auth:22.1.2")
 
+    //Local unit test
     testImplementation("junit:junit:4.13.2")
+    testImplementation ("com.google.truth:truth:1.1.3")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    testImplementation ("android.arch.core:core-testing:1.1.1")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
+
+
+    // Instrumentation tests
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
