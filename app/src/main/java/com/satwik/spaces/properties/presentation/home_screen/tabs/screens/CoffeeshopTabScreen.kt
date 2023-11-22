@@ -1,4 +1,4 @@
-package com.satwik.spaces.properties.presentation.home_screen.tabs.coffeeshop_tab
+package com.satwik.spaces.properties.presentation.home_screen.tabs.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -24,13 +25,19 @@ import com.satwik.spaces.core.components.ListingCard
 import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.core.theme.Montserrat
 import com.satwik.spaces.core.theme.White
+import com.satwik.spaces.core.utils.PropertyType
 import com.satwik.spaces.properties.presentation.home_screen.components.ShimmerLoadingLayout
+import com.satwik.spaces.properties.presentation.home_screen.tabs.TabScreenViewModel
 
 @Composable
 fun CoffeeshopTabScreen(
     navController: NavController,
-    viewModel: CoffeeshopTabScreenViewModel = hiltViewModel()
+    viewModel: TabScreenViewModel= hiltViewModel()
 ){
+    LaunchedEffect(Unit){
+        viewModel.getPropertiesByType(PropertyType.WORKSPACE)
+    }
+
     val state = viewModel.state.value
 
     Box(

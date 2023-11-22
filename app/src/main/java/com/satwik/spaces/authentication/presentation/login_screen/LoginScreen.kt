@@ -1,6 +1,5 @@
 package com.satwik.spaces.authentication.presentation.login_screen
 
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,7 +17,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,11 +33,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.satwik.spaces.R
-import com.satwik.spaces.authentication.domain.MockLoginViewModel
 import com.satwik.spaces.core.components.SpacesButton
 import com.satwik.spaces.core.components.SpacesTextField
 import com.satwik.spaces.core.navigation.Screen
-import com.satwik.spaces.core.utils.Resource
 import com.satwik.spaces.core.theme.Purple
 import com.satwik.spaces.core.theme.White
 
@@ -47,20 +43,12 @@ import com.satwik.spaces.core.theme.White
 fun LoginScreen(
     navController: NavController,
     viewModel: LoginScreenViewModel = hiltViewModel(),
-    mockViewModel: MockLoginViewModel = hiltViewModel()
 ){
 
-    val loginFlow = viewModel.loginFlow.collectAsState()
-    val state = mockViewModel.state
+    val state = viewModel.state.value
 
     var errorText by remember { mutableStateOf("") }
     var isError by remember { mutableStateOf(false) }
-
-    Log.d("@@@", "Hear is your data my nigga${ state.value.user?.email.toString() }")
-    Log.d("@@@", "Hear is your data my nigga${ state.value.isLoading }")
-    Log.d("@@@", "Hear is your data my nigga${ state.value.error }")
-
-
 
     Box (
         modifier = Modifier
@@ -87,7 +75,7 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(30.dp))
 
             Text(
-                text = state.value.user.toString(),
+                text = "Login",
                 style = MaterialTheme.typography.headlineLarge
             )
 
@@ -141,24 +129,21 @@ fun LoginScreen(
                 .clickable { navController.navigate(Screen.Signup.route) }
         )
 
-        loginFlow.value?.let {
-            when(it){
-                is Resource.Loading->{
-                    CircularProgressIndicator(
-                        modifier = Modifier.align(Alignment.Center),
-                        color = Purple
-                    )
-                }
-                is Resource.Success->{
-                    LaunchedEffect(Unit){
-                        navController.navigate(Screen.Home.route){
-                            popUpTo(Screen.Home.route) {inclusive=true}
-                        }
-                    }
-                }
-                is Resource.Error->{
-                    isError = true
-                    errorText = it.message.toString()
+        if(state.isLoading){
+            CircularProgressIndicator(
+                modifier = Modifier.align(Alignment.Center),
+                color = Purple
+            )
+        }
+        if (state.error?.isNotEmpty() == true){
+            isError = true
+            errorText = state.error.toString()
+        }
+
+        state.user?.let {
+            LaunchedEffect(Unit){
+                navController.navigate(Screen.Home.route){
+                    popUpTo(Screen.Home.route) {inclusive=true}
                 }
             }
         }

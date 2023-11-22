@@ -1,36 +1,31 @@
 package com.satwik.spaces.authentication.presentation.login_screen
 
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.auth.FirebaseUser
-import com.satwik.spaces.authentication.domain.repository.AuthRepository
+import com.satwik.spaces.authentication.domain.use_case.LoginUseCase
 import com.satwik.spaces.core.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginScreenViewModel @Inject constructor(
-    private  val authRepository: AuthRepository
+    private  val loginUseCase: LoginUseCase
 ) : ViewModel() {
 
-    private val _loginFlow = MutableStateFlow<Resource<FirebaseUser>?>(null)
-    val loginFlow : StateFlow<Resource<FirebaseUser>?> = _loginFlow
+    private val _state = mutableStateOf(LoginUiState())
+    val state: State<LoginUiState> = _state
 
-    fun login(email: String, password: String) = viewModelScope.launch {
-        _loginFlow.value = Resource.Loading()
-        val result = authRepository.login(email, password)
-        _loginFlow.value = result
+    fun login(email:String, password:String){
+        loginUseCase(email, password).onEach {result->
+            when(result){
+                is Resource.Error -> _state.value = LoginUiState(error = result.message)
+                is Resource.Loading -> _state.value = LoginUiState(isLoading = true)
+                is Resource.Success -> _state.value = LoginUiState(user = result.data)
+            }
+        }.launchIn(viewModelScope)
     }
-
-    fun getCurrentUser(){
-        authRepository.getCurrentUser()
-    }
-
-    fun logout(){
-        authRepository.logout()
-    }
-
 }

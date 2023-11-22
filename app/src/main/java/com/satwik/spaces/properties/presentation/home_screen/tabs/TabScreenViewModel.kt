@@ -1,4 +1,4 @@
-package com.satwik.spaces.properties.presentation.home_screen.tabs.lounge_tab
+package com.satwik.spaces.properties.presentation.home_screen.tabs
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -7,25 +7,20 @@ import androidx.lifecycle.viewModelScope
 import com.satwik.spaces.core.utils.PropertyType
 import com.satwik.spaces.core.utils.Resource
 import com.satwik.spaces.properties.domain.use_case.get_properties_by_type.GetPropertiesByTypeUseCase
-import com.satwik.spaces.properties.presentation.home_screen.tabs.TabScreenUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
-class LoungeTabScreenViewModel @Inject constructor(
-    private val getPropertiesByTypeUseCase: GetPropertiesByTypeUseCase
+class TabScreenViewModel @Inject constructor(
+    private val getPropertiesByTypeUseCase: GetPropertiesByTypeUseCase,
 ) :ViewModel() {
 
     private val _state = mutableStateOf(TabScreenUIState())
     val state: State<TabScreenUIState> = _state
 
-    init {
-        getPropertiesByType(PropertyType.LOUNGE)
-    }
-
-    private fun getPropertiesByType(type:PropertyType){
+    fun getPropertiesByType(type:PropertyType){
         getPropertiesByTypeUseCase(type).onEach {result->
             when(result){
                 is Resource.Success-> {

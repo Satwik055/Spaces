@@ -28,10 +28,10 @@ import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.core.theme.Grey
 import com.satwik.spaces.core.theme.White
 import com.satwik.spaces.properties.presentation.home_screen.components.TopAppBar
-import com.satwik.spaces.properties.presentation.home_screen.tabs.coffeeshop_tab.CoffeeshopTabScreen
-import com.satwik.spaces.properties.presentation.home_screen.tabs.lounge_tab.LoungeTabScreen
-import com.satwik.spaces.properties.presentation.home_screen.tabs.meetingroom_tab.MeetingroomTabScreen
-import com.satwik.spaces.properties.presentation.home_screen.tabs.workspace_tab.WorkspaceTabScreen
+import com.satwik.spaces.properties.presentation.home_screen.tabs.screens.CoffeeshopTabScreen
+import com.satwik.spaces.properties.presentation.home_screen.tabs.screens.LoungeTabScreen
+import com.satwik.spaces.properties.presentation.home_screen.tabs.screens.MeetingroomTabScreen
+import com.satwik.spaces.properties.presentation.home_screen.tabs.screens.WorkspaceTabScreen
 
 @Composable
 fun HomeScreen(

@@ -20,14 +20,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -37,10 +35,10 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.satwik.spaces.R
+import com.satwik.spaces.authentication.presentation.login_screen.LoginUiState
 import com.satwik.spaces.core.components.SpacesButton
 import com.satwik.spaces.core.components.SpacesTextField
 import com.satwik.spaces.core.navigation.Screen
-import com.satwik.spaces.core.utils.Resource
 import com.satwik.spaces.core.theme.Black
 import com.satwik.spaces.core.theme.Purple
 import com.satwik.spaces.core.theme.White
@@ -48,12 +46,13 @@ import com.satwik.spaces.core.theme.White
 @Composable
 fun SignUpScreen(
     navController: NavController,
-    viewModel:SignupScreenViewModel = hiltViewModel()
+    viewModel: SignupScreenViewModel = hiltViewModel(),
 ){
 
-    val signupFlow = viewModel.signupFlow.collectAsState()
+    val state = viewModel.state.value
     var errorText by remember { mutableStateOf("") }
     var isError by remember { mutableStateOf(false) }
+
 
     Box (
         modifier = Modifier
@@ -130,7 +129,7 @@ fun SignUpScreen(
 
             SpacesButton(
                 text = "Signup"
-            ) { viewModel.signup(emailText, passwordText) }
+            ) { viewModel.signup(emailText, passwordText)}
 
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -162,7 +161,7 @@ fun SignUpScreen(
                 color = White,
                 fontSize = 16.sp,
                 textColor = Black
-            ) { TODO() }
+            ) {  }
         }
 
         Text(
@@ -178,25 +177,21 @@ fun SignUpScreen(
                 .clickable { navController.navigate(Screen.Login.route) }
         )
 
+        if(state.isLoading){
+            CircularProgressIndicator(
+                modifier = Modifier.align(Alignment.Center),
+                color = Purple
+            )
+        }
+        if (state.error?.isNotEmpty() == true){
+            isError = true
+            errorText = state.error.toString()
+        }
 
-        signupFlow.value?.let {
-            when(it){
-                is Resource.Loading->{
-                    CircularProgressIndicator(
-                        modifier = Modifier.align(Alignment.Center),
-                        color = Purple
-                    )
-                }
-                is Resource.Success->{
-                    LaunchedEffect(Unit){
-                        navController.navigate(Screen.Home.route){
-                            popUpTo(Screen.Home.route) {inclusive=true}
-                        }
-                    }
-                }
-                is Resource.Error->{
-                    isError = true
-                    errorText = it.message.toString()
+        state.user?.let {
+            LaunchedEffect(Unit){
+                navController.navigate(Screen.Home.route){
+                    popUpTo(Screen.Home.route) {inclusive=true}
                 }
             }
         }
