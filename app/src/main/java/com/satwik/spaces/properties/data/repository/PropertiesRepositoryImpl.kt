@@ -30,14 +30,4 @@ class PropertiesRepositoryImpl @Inject constructor(
         val docSnapshot = collectionRef.document(id).get().await()
         return docSnapshot.toObject<Property>()
     }
-
-    override suspend fun searchProperty(name: String): List<Property>? {
-        val querySnapshot = collectionRef.whereEqualTo("name", name).get().await()
-        val properties = mutableListOf<Property>()
-        for (document in querySnapshot) {
-            val property = document.toObject(Property::class.java)
-            properties.add(property)
-        }
-        return properties
-    }
 }

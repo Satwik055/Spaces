@@ -1,6 +1,5 @@
 package com.satwik.spaces.properties.domain.use_case.get_properties_by_type
 
-import com.satwik.spaces.core.exceptions.NoPropertiesFound
 import com.satwik.spaces.core.utils.PropertyType
 import com.satwik.spaces.core.utils.Resource
 import com.satwik.spaces.properties.domain.repository.PropertiesRepository

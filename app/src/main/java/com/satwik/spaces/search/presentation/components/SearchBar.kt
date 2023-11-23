@@ -1,4 +1,4 @@
-package com.satwik.spaces.properties.presentation.search_screen.components
+package com.satwik.spaces.search.presentation.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.fillMaxWidth

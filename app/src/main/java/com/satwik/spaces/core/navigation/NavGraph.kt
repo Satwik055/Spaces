@@ -16,7 +16,6 @@ import androidx.navigation.navArgument
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.satwik.spaces.authentication.presentation.login_screen.LoginScreen
-import com.satwik.spaces.authentication.presentation.login_screen.LoginScreenViewModel
 import com.satwik.spaces.authentication.presentation.signup_screen.SignUpScreen
 import com.satwik.spaces.payments.presentation.checkout_screen.CheckoutScreen
 import com.satwik.spaces.properties.common.Constants
@@ -29,8 +28,8 @@ import com.satwik.spaces.properties.presentation.home_screen.tabs.screens.Lounge
 import com.satwik.spaces.properties.presentation.home_screen.tabs.screens.MeetingroomTabScreen
 import com.satwik.spaces.properties.presentation.home_screen.tabs.screens.WorkspaceTabScreen
 import com.satwik.spaces.properties.presentation.location_screen.LocationScreen
-import com.satwik.spaces.properties.presentation.search_screen.SearchScreen
-import com.satwik.spaces.properties.presentation.search_screen.SearchScreenViewModel
+import com.satwik.spaces.search.presentation.SearchScreen
+import com.satwik.spaces.search.presentation.SearchScreenViewModel
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -67,9 +66,7 @@ fun SetupNavGraph(navController:NavHostController){
         }
 
         composable(route = Screen.Search.route){
-            val viewModel = hiltViewModel<SearchScreenViewModel>()
-            val state  = viewModel.state.value
-            SearchScreen(navController = navController, state = state)
+            SearchScreen(navController = navController)
         }
 
         composable(route = Screen.Signup.route){

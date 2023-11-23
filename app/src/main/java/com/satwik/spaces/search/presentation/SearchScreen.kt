@@ -1,5 +1,6 @@
-package com.satwik.spaces.properties.presentation.search_screen
+package com.satwik.spaces.search.presentation
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,6 +15,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,18 +29,30 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.satwik.spaces.core.navigation.Screen
-import com.satwik.spaces.properties.presentation.search_screen.components.SearchBar
+import com.satwik.spaces.search.presentation.components.SearchBar
 import com.satwik.spaces.core.theme.Black
 import com.satwik.spaces.core.theme.Montserrat
 import com.satwik.spaces.core.theme.Purple
 import com.satwik.spaces.core.theme.White
 import com.satwik.spaces.core.components.ListingCard
+import com.satwik.spaces.properties.presentation.home_screen.tabs.TabScreenViewModel
 
 @Composable
 fun SearchScreen(
     navController:NavController,
-    state: SearchResultState
+    viewModel: SearchScreenViewModel = hiltViewModel()
+
 ){
+    LaunchedEffect(Unit){
+        viewModel.searchProperty("The Edge")
+    }
+
+    val state = viewModel.state.value
+
+    Log.d("@@@", "${ state.isLoading }")
+    Log.d("@@@", "${ state.error }")
+    Log.d("@@@", "${ state.searchResult }")
+
 
     Column {
         var text by remember { mutableStateOf("") }
@@ -75,18 +89,7 @@ fun SearchScreen(
                 )
             }
 
-
-            if(state.searchResult.isEmpty()){
-                Text(
-                    text = "No result found",
-                    fontFamily = Montserrat,
-                    fontWeight = FontWeight.Normal,
-                    color = White,
-                    fontSize = 16.sp,
-                    modifier = Modifier.align(Alignment.Center)
-                )
-            }
-            else{
+            state.searchResult?.let {
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
