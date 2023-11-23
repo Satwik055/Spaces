@@ -68,7 +68,6 @@ fun LoginScreen(
                     contentDescription = null,
                     tint = White,
                     modifier = Modifier.offset(x= (-10).dp)
-
                 )
             }
 
@@ -95,7 +94,6 @@ fun LoginScreen(
                 isError = isError,
                 modifier = Modifier
                     .fillMaxWidth()
-
             )
 
             Spacer(modifier = Modifier.height(15.dp))

@@ -7,19 +7,15 @@ import com.satwik.spaces.properties.domain.repository.PropertiesRepository
 
 class MockRepository:PropertiesRepository {
 
-    override suspend fun getPropertiesByType(type: String): List<Property> {
-        return properties.filter { it.type == type }
+    override suspend fun getPropertiesByType(type: PropertyType): List<Property> {
+        return properties.filter { it.type.equals(type.name) }
     }
 
-//    fun foo(type:PropertyType): List<Property> {
+    //    fun foo(type:PropertyType): List<Property> {
 //        return properties.filter { it.type.equals(type.name) }
 //    }
     override suspend fun getPropertyById(id: String): Property? {
         return properties.find { it.id == id }    }
-
-    override suspend fun searchProperty(name: String): List<Property>? {
-        return properties
-    }
 
 
     private val listing1 = Property(

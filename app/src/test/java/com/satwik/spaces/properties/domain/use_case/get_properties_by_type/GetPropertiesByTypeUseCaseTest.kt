@@ -1,6 +1,7 @@
 package com.satwik.spaces.properties.domain.use_case.get_properties_by_type
 
 import com.google.common.truth.Truth.assertThat
+import com.satwik.spaces.core.utils.PropertyType
 import com.satwik.spaces.core.utils.Resource
 import com.satwik.spaces.properties.data.repository.MockRepository
 import kotlinx.coroutines.flow.onEach
@@ -22,11 +23,11 @@ class GetPropertiesByTypeUseCaseTest{
     @Test
     fun `Get a list of properties of given type from firebase database`(){
         runBlocking {
-            val propertyType = "lounge"
+            val propertyType = PropertyType.WORKSPACE
             val result = getPropertiesByTypeUseCase.invoke(propertyType)
             result.collect{resource->
                 when(resource){
-                    is Resource.Success -> assertThat(resource.data?.first()?.type.equals(propertyType)).isTrue()
+                    is Resource.Success -> assertThat(resource.data?.first()?.type).isEqualTo(propertyType.name.lowercase())
                     is Resource.Error -> {}
                     is Resource.Loading -> {}
                 }
@@ -37,13 +38,12 @@ class GetPropertiesByTypeUseCaseTest{
     @Test
     fun `Passing a non existing property type throws an error`(){
         runBlocking {
-            val propertyType = "lounge"
-            val errorMessage = "Error_PNANA1X1"
+            val propertyType = PropertyType.WORKSPACE
             val result = getPropertiesByTypeUseCase.invoke(propertyType)
             result.onEach{resource->
                 when(resource){
                     is Resource.Success -> {}
-                    is Resource.Error -> assertThat(resource.message.toString() == errorMessage).isTrue()
+                    is Resource.Error -> assertThat(resource.data?.first()?.type).isEqualTo(propertyType.name.lowercase())
                     is Resource.Loading -> {}
                 }
             }

@@ -8,6 +8,10 @@ import javax.inject.Inject
 class LoginUseCase @Inject constructor(private val repository: AuthRepository) {
     operator fun invoke(email:String, password:String) = flow{
         emit(Resource.Loading())
+
+        if(password.length<=8){
+            emit(Resource.Error("Password too short"))
+        }
         try{
             emit(Resource.Success(repository.login(email, password)))
         }

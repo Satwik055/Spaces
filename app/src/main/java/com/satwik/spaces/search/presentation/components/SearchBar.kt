@@ -24,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.satwik.spaces.R
 import com.satwik.spaces.core.theme.Black
+import com.satwik.spaces.core.theme.LightGrey
 import com.satwik.spaces.core.theme.Montserrat
 import com.satwik.spaces.core.theme.Purple
 import com.satwik.spaces.core.theme.White
@@ -96,7 +97,8 @@ fun SearchBar(
             Text(
                 text = placeholder,
                 fontFamily = fontFamily,
-                fontWeight = FontWeight.Normal
+                fontWeight = FontWeight.Normal,
+                color = LightGrey
             )
         },
     )

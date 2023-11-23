@@ -1,6 +1,5 @@
 package com.satwik.spaces.search.presentation
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,7 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -28,14 +27,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.satwik.spaces.core.components.ListingCard
 import com.satwik.spaces.core.navigation.Screen
-import com.satwik.spaces.search.presentation.components.SearchBar
 import com.satwik.spaces.core.theme.Black
 import com.satwik.spaces.core.theme.Montserrat
-import com.satwik.spaces.core.theme.Purple
 import com.satwik.spaces.core.theme.White
-import com.satwik.spaces.core.components.ListingCard
-import com.satwik.spaces.properties.presentation.home_screen.tabs.TabScreenViewModel
+import com.satwik.spaces.search.presentation.components.SearchBar
 
 @Composable
 fun SearchScreen(
@@ -43,25 +40,20 @@ fun SearchScreen(
     viewModel: SearchScreenViewModel = hiltViewModel()
 
 ){
-    LaunchedEffect(Unit){
-        viewModel.searchProperty("The Edge")
+    val state = viewModel.state.value
+    var searchText by remember { mutableStateOf("") }
+
+    LaunchedEffect(searchText){
+        viewModel.searchProperty(searchText)
     }
 
-    val state = viewModel.state.value
-
-    Log.d("@@@", "${ state.isLoading }")
-    Log.d("@@@", "${ state.error }")
-    Log.d("@@@", "${ state.searchResult }")
-
-
     Column {
-        var text by remember { mutableStateOf("") }
         SearchBar(
-            query = text,
-            onQueryChange = {text = it},
+            query = searchText,
+            onQueryChange = {searchText = it},
             placeholder = "Search for workspaces",
             leadingButtonOnClick = { navController.popBackStack() },
-            trailButtonOnClick = { text = "" },
+            trailButtonOnClick = { searchText = "" },
             autoFocus = true
         )
 
@@ -71,20 +63,11 @@ fun SearchScreen(
                 .background(Black)
                 .padding(start = 8.dp, end = 8.dp)
         ){
-            if(state.isLoading){
-                CircularProgressIndicator(
-                    modifier = Modifier.align(Alignment.Center),
-                    color = Purple
-                )
-            }
 
             if(state.error?.isNotBlank() == true) {
                 Text(
                     text = state.error,
-                    fontFamily = Montserrat,
-                    fontWeight = FontWeight.Normal,
-                    color = White,
-                    fontSize = 20.sp,
+                    style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.align(Alignment.Center)
                 )
             }
