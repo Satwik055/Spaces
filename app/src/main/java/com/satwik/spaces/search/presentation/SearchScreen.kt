@@ -78,8 +78,6 @@ fun SearchScreen(
                 ) {
 
                     Spacer(modifier = Modifier.height(30.dp))
-                    rememberSaveable {
-                    }
 
                     LazyColumn(
                         verticalArrangement = Arrangement.spacedBy(8.dp)
