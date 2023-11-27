@@ -1,5 +1,8 @@
 package com.satwik.spaces.properties.presentation.location_screen
 
+import android.os.Build
+import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,6 +22,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -29,6 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
@@ -41,9 +46,11 @@ import com.satwik.spaces.core.components.SpacesIconButton
 import com.satwik.spaces.core.components.SpacesTextField
 import com.satwik.spaces.core.theme.Black
 import com.satwik.spaces.core.theme.White
+import com.satwik.spaces.properties.presentation.detail_screen.components.PeopleSection
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LocationScreen(
@@ -91,7 +98,7 @@ fun LocationScreen(
                     .fillMaxWidth()
             )
 
-            Spacer(modifier = Modifier.height(52.dp))
+            Spacer(modifier = Modifier.height(30.dp))
 
             Text(
                 text = "Dates",
@@ -99,9 +106,8 @@ fun LocationScreen(
                 modifier = Modifier.padding(bottom = 5.dp)
             )
 
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween
-            ){
+            //----------------------------Date Section----------------------------------//
+            Row {
                 //From Date
                 val calenderState1 = rememberUseCaseState()
                 var selectedDate1 by remember { mutableStateOf(LocalDate.now()) }
@@ -131,41 +137,15 @@ fun LocationScreen(
                     text = formattedDate2,
                     onClick = { calenderState2.show() }
                 )
-
             }
 
-            Spacer(modifier = Modifier.height(15.dp))
+            //----------------------------------------------------------------------//
 
-            //People Section
-            Box(
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(
-                    text = "People",
-                    style = MaterialTheme.typography.titleMedium,
-                    modifier = Modifier.align(Alignment.CenterStart)
-                )
+            Spacer(modifier = Modifier.height(30.dp))
 
-                Row (
-                    modifier = Modifier.align(Alignment.CenterEnd)
-                ){
-                    var peopleCount by remember { mutableStateOf(1) }
-                    SpacesIconButton(
-                        icon = R.drawable.ic_plus,
-                        onClick = { peopleCount++ }
-                    )
-                    SpacesIconButton(
-                        icon = R.drawable.ic_minus,
-                        onClick = {
-                            if(peopleCount > 1 ) {
-                                peopleCount--
-                            }
-                        }
-                    )
-                }
-            }
+            PeopleSection()
 
-            Spacer(modifier = Modifier.height(75.dp))
+            Spacer(modifier = Modifier.height(60.dp))
             SpacesButton(
                 text = "Search"
             ) { TODO() }
@@ -173,6 +153,7 @@ fun LocationScreen(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview(showBackground = true)
 @Composable
 fun MyPreview() {

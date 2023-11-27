@@ -42,7 +42,7 @@ fun CheckoutScreen(
     val propertyState = viewModel.propertyState.value
     val bookingInfoState = viewModel.bookingInfoState.value
 
-    Box (
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .background(Black)

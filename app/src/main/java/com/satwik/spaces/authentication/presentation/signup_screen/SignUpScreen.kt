@@ -1,6 +1,8 @@
 package com.satwik.spaces.authentication.presentation.signup_screen
 
 
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -34,15 +36,23 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import com.ramcosta.composedestinations.annotation.Destination
 import com.satwik.spaces.R
-import com.satwik.spaces.authentication.presentation.login_screen.LoginUiState
 import com.satwik.spaces.core.components.SpacesButton
 import com.satwik.spaces.core.components.SpacesTextField
 import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.core.theme.Black
 import com.satwik.spaces.core.theme.Purple
 import com.satwik.spaces.core.theme.White
+import com.satwik.spaces.core.utils.Constants.CLIENT_ID
+import com.stevdzasan.onetap.OneTapSignInWithGoogle
+import com.stevdzasan.onetap.rememberOneTapSignInState
 
+@Destination
 @Composable
 fun SignUpScreen(
     navController: NavController,
@@ -50,9 +60,10 @@ fun SignUpScreen(
 ){
 
     val state = viewModel.state.value
+    val oneTapSignInState = viewModel.oneTapSignInState.value
+
     var errorText by remember { mutableStateOf("") }
     var isError by remember { mutableStateOf(false) }
-
 
     Box (
         modifier = Modifier
@@ -156,12 +167,20 @@ fun SignUpScreen(
 
             Spacer(modifier = Modifier.height(30.dp))
 
+            val tapState = rememberOneTapSignInState()
+            OneTapSignInWithGoogle(
+                state = tapState,
+                clientId = CLIENT_ID,
+                onTokenIdReceived = { tokenId -> viewModel.oneTapSignIn(tokenId) },
+                onDialogDismissed = { message -> errorText = message }
+            )
+
             SpacesButton(
                 text = "Continue with google",
                 color = White,
                 fontSize = 16.sp,
                 textColor = Black
-            ) {  }
+            ) { tapState.open() }
         }
 
         Text(
@@ -176,6 +195,13 @@ fun SignUpScreen(
                 .align(Alignment.BottomCenter)
                 .clickable { navController.navigate(Screen.Login.route) }
         )
+
+        if(oneTapSignInState.successfull){
+            navController.navigate(Screen.Home.route)
+        }
+        if (oneTapSignInState.error.isNullOrEmpty()){
+            Log.d("@@@", oneTapSignInState.error.toString())
+        }
 
         if(state.isLoading){
             CircularProgressIndicator(

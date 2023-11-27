@@ -18,27 +18,23 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.satwik.spaces.core.components.ListingCard
 import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.core.theme.Black
-import com.satwik.spaces.core.theme.Montserrat
-import com.satwik.spaces.core.theme.White
 import com.satwik.spaces.search.presentation.components.SearchBar
 
 @Composable
 fun SearchScreen(
     navController:NavController,
-    viewModel: SearchScreenViewModel = hiltViewModel()
-
+    viewModel: SearchScreenViewModel = hiltViewModel(),
 ){
     val state = viewModel.state.value
     var searchText by remember { mutableStateOf("") }
@@ -82,6 +78,8 @@ fun SearchScreen(
                 ) {
 
                     Spacer(modifier = Modifier.height(30.dp))
+                    rememberSaveable {
+                    }
 
                     LazyColumn(
                         verticalArrangement = Arrangement.spacedBy(8.dp)

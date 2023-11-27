@@ -4,7 +4,9 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.satwik.spaces.authentication.OneTapSignInState
 import com.satwik.spaces.authentication.domain.use_case.LoginUseCase
+import com.satwik.spaces.authentication.domain.use_case.OneTapSignInUseCase
 import com.satwik.spaces.core.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -13,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginScreenViewModel @Inject constructor(
-    private  val loginUseCase: LoginUseCase
+    private  val loginUseCase: LoginUseCase,
 ) : ViewModel() {
 
     private val _state = mutableStateOf(LoginUiState())

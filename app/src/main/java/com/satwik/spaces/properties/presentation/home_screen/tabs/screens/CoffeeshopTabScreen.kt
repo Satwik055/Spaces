@@ -20,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.NavController
 import com.satwik.spaces.core.components.ListingCard
 import com.satwik.spaces.core.navigation.Screen
@@ -32,7 +33,7 @@ import com.satwik.spaces.properties.presentation.home_screen.tabs.TabScreenViewM
 @Composable
 fun CoffeeshopTabScreen(
     navController: NavController,
-    viewModel: TabScreenViewModel= hiltViewModel()
+    viewModel: TabScreenViewModel= hiltViewModel(),
 ){
     LaunchedEffect(Unit){
         viewModel.getPropertiesByType(PropertyType.WORKSPACE)
@@ -85,7 +86,9 @@ fun CoffeeshopTabScreen(
                         titleFontSize = 17.sp,
                         addressFontSize = 10.sp,
                         imageUrl = it.imageUrls.first(),
-                        onClick = { navController.navigate(Screen.Detail.passId(it.id))}
+                        onClick = {
+                            navController.navigate(Screen.Detail.passId(it.id))
+                        }
                     )
                 }
                 }

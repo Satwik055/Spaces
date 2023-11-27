@@ -1,6 +1,7 @@
 package com.satwik.spaces.properties.presentation.detail_screen
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -30,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
@@ -61,7 +63,6 @@ fun DetailScreen(
     navController: NavController,
     state:PropertyState
 ){
-
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -163,6 +164,8 @@ fun DetailScreen(
                             onClick = { calenderState1.show() }
                         )
 
+
+
                         //To Date
                         val calenderState2 = rememberUseCaseState()
                         var selectedDate2 by remember { mutableStateOf(LocalDate.now().plusDays(2)) }
@@ -178,6 +181,9 @@ fun DetailScreen(
                             text = formattedDate2,
                             onClick = { calenderState2.show() }
                         )
+
+
+
                     }
 
                     //----------------------------------------------------------------------//
@@ -206,7 +212,6 @@ fun DetailScreen(
                     people = "7"
                 )) }
             )
-
         }
     }
 }
@@ -224,6 +229,4 @@ fun DetailScreenPreview(){
             property = DummyApi.getPropertyById("2")
         )
     )
-
-
 }

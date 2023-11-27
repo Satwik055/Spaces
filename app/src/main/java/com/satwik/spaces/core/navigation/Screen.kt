@@ -1,11 +1,7 @@
 package com.satwik.spaces.core.navigation
 
-import com.satwik.spaces.properties.common.Constants
-import com.satwik.spaces.properties.common.Constants.CHECKOUT_SCREEN_ARGUMENT_KEY1
-import com.satwik.spaces.properties.common.Constants.CHECKOUT_SCREEN_ARGUMENT_KEY2
-import com.satwik.spaces.properties.common.Constants.CHECKOUT_SCREEN_ARGUMENT_KEY3
-import com.satwik.spaces.properties.common.Constants.CHECKOUT_SCREEN_ARGUMENT_KEY4
-import com.satwik.spaces.properties.common.Constants.CHECKOUT_SCREEN_ARGUMENT_KEYS
+import com.satwik.spaces.core.utils.Constants
+import com.satwik.spaces.core.utils.Constants.CHECKOUT_SCREEN_ARGUMENT_KEYS
 
 
 sealed class Screen(val route:String){

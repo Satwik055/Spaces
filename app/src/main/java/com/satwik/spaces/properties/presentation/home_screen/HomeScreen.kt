@@ -23,7 +23,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.core.theme.Grey
 import com.satwik.spaces.core.theme.White
@@ -42,7 +41,6 @@ fun HomeScreen(
             .fillMaxSize()
             .padding(start = 16.dp, end = 16.dp)
     ){
-
         Column  (
             modifier = Modifier.matchParentSize()
         ){
@@ -52,7 +50,7 @@ fun HomeScreen(
                 currentCity = "Lower Manhattan",
                 currentState = "New York",
                 searchOnClick = {navController.navigate(Screen.Search.route)},
-                locationOnClick = {navController.navigate(Screen.Location.route)}
+                locationOnClick = { navController.navigate(Screen.Location.route) }
             )
 
             Spacer(modifier = Modifier.height(30.dp))
@@ -60,10 +58,12 @@ fun HomeScreen(
             Text(
                 text = "Explore a suitable workplace for you",
                 style = MaterialTheme.typography.headlineLarge,
-                fontWeight = Thin
+                fontWeight = Thin,
             )
 
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier
+                .height(20.dp)
+            )
 
             val tabItems = listOf("Meeting room", "Workspace", "Coffeeshop", "Lounge")
             var selectedTabIndex by remember { mutableStateOf(0) }
@@ -108,7 +108,7 @@ fun HomeScreen(
 @Preview
 @Composable
 fun HomeScreenPreview(){
-    HomeScreen(navController = rememberNavController())
+    //HomeScreen(navController = rememberNavController())
 }
 
 

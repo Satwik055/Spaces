@@ -23,6 +23,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.satwik.spaces.R
 import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.core.theme.Montserrat
@@ -45,7 +47,8 @@ fun TopAppBar(
     Box(
         modifier = modifier.fillMaxWidth()
     ){
-        IconButton(onClick = { /*TODO*/ },
+        IconButton(onClick = { Firebase.auth.signOut() },
+
             modifier = Modifier
                 .align(Alignment.CenterStart)
                 .size(iconSize)

@@ -6,16 +6,28 @@ plugins {
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
     id("com.google.firebase.crashlytics")
+    id("com.google.devtools.ksp") version "1.6.10-1.0.2"
+}
+
+kotlin {
+    sourceSets {
+        debug {
+            kotlin.srcDir("build/generated/ksp/debug/kotlin")
+        }
+        release {
+            kotlin.srcDir("build/generated/ksp/release/kotlin")
+        }
+    }
 }
 
 android {
     namespace = "com.satwik.spaces"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.satwik.spaces"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -120,6 +132,14 @@ dependencies {
 
     //Splash Screen API
     implementation ("androidx.core:core-splashscreen:1.0.1")
+
+    //Compose Destinations
+    implementation ("io.github.raamcosta.compose-destinations:core:1.1.2-beta")
+    ksp ("io.github.raamcosta.compose-destinations:ksp:1.1.2-beta")
+
+    //OneTap SignIn
+    implementation("com.github.stevdza-san:OneTapCompose:1.0.9")
+
 
 
 

@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.satwik.spaces.properties.common.Constants
+import com.satwik.spaces.core.utils.Constants
 import com.satwik.spaces.core.utils.Resource
 import com.satwik.spaces.properties.domain.use_case.get_property_by_id.GetPropertyByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
