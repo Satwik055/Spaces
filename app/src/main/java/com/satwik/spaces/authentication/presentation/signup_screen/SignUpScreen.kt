@@ -2,7 +2,6 @@ package com.satwik.spaces.authentication.presentation.signup_screen
 
 
 import android.util.Log
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -42,6 +41,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.ramcosta.composedestinations.annotation.Destination
 import com.satwik.spaces.R
+import com.satwik.spaces.core.components.ButtonType
 import com.satwik.spaces.core.components.SpacesButton
 import com.satwik.spaces.core.components.SpacesTextField
 import com.satwik.spaces.core.navigation.Screen
@@ -139,11 +139,15 @@ fun SignUpScreen(
             Spacer(modifier = Modifier.height(30.dp))
 
             SpacesButton(
-                text = "Signup"
-            ) { viewModel.signup(emailText, passwordText)}
+                text = "Signup",
+                type =
+                when(state.isLoading){
+                    true -> ButtonType.LOADING
+                    false -> ButtonType.REGULAR
+                }
+            ) {viewModel.signup(emailText, passwordText)}
 
             Spacer(modifier = Modifier.height(8.dp))
-
 
             Text(
                 text = buildAnnotatedString {
@@ -197,10 +201,9 @@ fun SignUpScreen(
         )
 
         if(oneTapSignInState.successfull){
-            navController.navigate(Screen.Home.route)
-        }
-        if (oneTapSignInState.error.isNullOrEmpty()){
-            Log.d("@@@", oneTapSignInState.error.toString())
+            LaunchedEffect(Unit){
+                navController.navigate(Screen.Home.route)
+            }
         }
 
         if(state.isLoading){

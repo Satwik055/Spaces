@@ -25,10 +25,14 @@ fun ImageSlider(
     modifier:Modifier = Modifier,
     cornerRadius:Dp = 10.dp
 ){
-    val pagerState = rememberPagerState()
+    val pagerState = rememberPagerState(
+        initialPage = 0,
+        initialPageOffsetFraction = 0f
+    ) {
+        listOfUrl.size
+    }
 
     HorizontalPager(
-        pageCount = listOfUrl.size,
         state = pagerState,
         key = { listOfUrl[it] },
         modifier = Modifier.clip(RoundedCornerShape(cornerRadius)),
@@ -38,7 +42,9 @@ fun ImageSlider(
             contentScale = ContentScale.Crop,
             loading = { CircularProgressIndicator(color= Purple, modifier = Modifier.size(40.dp)) },
             contentDescription = null,
-            modifier = modifier.height(364.dp).fillMaxWidth()
+            modifier = modifier
+                .height(364.dp)
+                .fillMaxWidth()
         )
     }
 }

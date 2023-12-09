@@ -21,7 +21,7 @@ class AuthRepositoryImpl @Inject constructor(
         return result.user!!
     }
 
-    override fun oneTapSignIn(tokenId: String) {
+    override suspend fun oneTapSignIn(tokenId: String) {
         val firebaseCred = GoogleAuthProvider.getCredential(tokenId, null)
         firebaseAuth.signInWithCredential(firebaseCred)
     }

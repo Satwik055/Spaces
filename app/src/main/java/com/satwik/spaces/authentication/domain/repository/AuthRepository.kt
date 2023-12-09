@@ -9,5 +9,5 @@ interface AuthRepository {
     suspend fun signup(email:String, password:String): FirebaseUser
     suspend fun login(email:String, password:String): FirebaseUser
 
-    fun oneTapSignIn(tokenId:String)
+    suspend fun oneTapSignIn(tokenId:String)
 }

@@ -1,4 +1,4 @@
-package com.satwik.spaces.payments.presentation.checkout_screen
+package com.satwik.spaces.payments.presentation.checkout_screen.states
 
 import java.time.LocalDate
 

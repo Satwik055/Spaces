@@ -33,6 +33,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.satwik.spaces.R
+import com.satwik.spaces.core.components.ButtonType
 import com.satwik.spaces.core.components.SpacesButton
 import com.satwik.spaces.core.components.SpacesTextField
 import com.satwik.spaces.core.navigation.Screen
@@ -110,7 +111,13 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(75.dp))
 
             SpacesButton(
-                text = "Login"
+                text = "Login",
+                type =
+                when(state.isLoading){
+                    true -> ButtonType.LOADING
+                    false -> ButtonType.REGULAR
+                }
+
             ) { viewModel.login(emailText, passwordText) }
         }
 
@@ -127,11 +134,6 @@ fun LoginScreen(
                 .clickable { navController.navigate(Screen.Signup.route) }
         )
 
-        if(state.isLoading){
-            CircularProgressIndicator(
-                modifier = Modifier.align(Alignment.Center),
-                color = Purple
-            )
         }
         if (state.error?.isNotEmpty() == true){
             isError = true
@@ -145,7 +147,6 @@ fun LoginScreen(
                 }
             }
         }
-    }
 }
 
 @Preview
