@@ -1,4 +1,4 @@
-package com.satwik.spaces.payments.domain.model
+package com.satwik.spaces.payments.domain.model.api_response
 
 import com.satwik.spaces.payments.domain.model.customers.Customer
 import com.satwik.spaces.payments.domain.model.ephemeral_keys.EphemeralKey

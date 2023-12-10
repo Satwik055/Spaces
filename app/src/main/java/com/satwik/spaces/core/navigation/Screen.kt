@@ -42,5 +42,7 @@ sealed class Screen(val route:String){
     object LoungeTabScreen:Screen(route = "lounge_tab_screen")
 
     object CoffeeshopTabScreen:Screen(route = "coffeeshop_tab_screen")
+    object PaymentConfirmationScreen:Screen(route = "payment_confirmation_screen")
+
 
 }

@@ -12,6 +12,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import com.satwik.spaces.core.navigation.SetupNavGraph
 import com.satwik.spaces.core.theme.SpacesTheme
+import com.satwik.spaces.payments.presentation.confirmation_screen.PaymentConfirmationScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 

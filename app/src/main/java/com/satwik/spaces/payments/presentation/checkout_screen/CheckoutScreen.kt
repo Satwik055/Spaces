@@ -29,6 +29,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.satwik.spaces.R
 import com.satwik.spaces.core.components.SpacesButton
+import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.payments.presentation.checkout_screen.components.RadioListItem
 import com.satwik.spaces.core.theme.Black
 import com.satwik.spaces.core.theme.Montserrat
@@ -126,8 +127,8 @@ fun CheckoutScreen(
             Spacer(modifier = Modifier.height(14.dp))
 
             RadioListItem(icon = R.drawable.ic_creditcard, text = "Credit/Debit Card", selected = true)
-            RadioListItem(icon = R.drawable.ic_wallet, text = "Wallet", selected = true)
-            RadioListItem(icon = R.drawable.ic_bank, text = "Net banking", selected = true)
+            RadioListItem(icon = R.drawable.ic_wallet, text = "Wallet", selected = false)
+            RadioListItem(icon = R.drawable.ic_bank, text = "Net banking", selected = false)
         }
         Column(
             modifier = Modifier.align(Alignment.BottomCenter)
@@ -166,6 +167,8 @@ fun CheckoutScreen(
 }
 
 private fun onPaymentSheetResult(paymentSheetResult: PaymentSheetResult) {
+
+
     when(paymentSheetResult) {
         is PaymentSheetResult.Canceled -> {
             print("Canceled")
@@ -179,39 +182,6 @@ private fun onPaymentSheetResult(paymentSheetResult: PaymentSheetResult) {
     }
 }
 
-//private fun presentPaymentSheet(
-//    paymentSheet: PaymentSheet,
-//    customerId:String,
-//    ephemeralKey:String,
-//    clientSecret:String
-//){
-//    val customerConfig = PaymentSheet.CustomerConfiguration(
-//        id = customerId,
-//        ephemeralKeySecret = ephemeralKey
-//    )
-//    paymentSheet.presentWithPaymentIntent(
-//        clientSecret,
-//        PaymentSheet.Configuration(
-//            merchantDisplayName = "Spaces Inc",
-//            customer = customerConfig,
-//        )
-//    )
-//
-//}
-//
-//private fun startPaymentFlow(context: Context, state:PaymentsApiResponseState, paymentSheet: PaymentSheet){
-//    if(state.error?.isNotEmpty() == true){
-//        Toast.makeText(context, state.error, Toast.LENGTH_SHORT).show()
-//    }
-//    state.data?.let {
-//        presentPaymentSheet(paymentSheet,  it.customer.id, it.paymentIntent.client_secret, it.ephemeralKey.id)
-//    }
-//
-//}
-
-
-
-
 @RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
@@ -219,22 +189,3 @@ fun CheckoutScreenPreview(){
     CheckoutScreen(navController = rememberNavController())
 }
 
-
-
-
-
-
-
-
-
-
-//    if(paymentState.isLoading) {
-//        Log.d("@@@Loading", "Loading...")
-//    }
-//    if(paymentState.error?.isNotEmpty() == true){
-//        Log.d("@@@Error", "${paymentState.error}")
-//    }
-//
-//    if(paymentState.data != null){
-//        Log.d("@@@Success", "ID: ${paymentState.data.customer.id},\nSECRET:${paymentState.data.paymentIntent.client_secret},\nKEY: ${paymentState.data.ephemeralKey.id}")
-//    }

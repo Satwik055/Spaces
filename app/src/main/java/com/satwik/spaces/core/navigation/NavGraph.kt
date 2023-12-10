@@ -22,6 +22,7 @@ import com.satwik.spaces.authentication.presentation.signup_screen.SignUpScreen
 import com.satwik.spaces.payments.presentation.checkout_screen.CheckoutScreen
 import com.satwik.spaces.core.utils.Constants
 import com.satwik.spaces.core.utils.Constants.CHECKOUT_SCREEN_ARGUMENT_KEYS
+import com.satwik.spaces.payments.presentation.confirmation_screen.PaymentConfirmationScreen
 import com.satwik.spaces.properties.presentation.detail_screen.DetailScreen
 import com.satwik.spaces.properties.presentation.detail_screen.DetailScreenViewModel
 import com.satwik.spaces.properties.presentation.home_screen.HomeScreen
@@ -109,6 +110,11 @@ fun SetupNavGraph(navController:NavHostController){
 
         composable(route = Screen.CoffeeshopTabScreen.route){
             CoffeeshopTabScreen(navController = navController)
+        }
+
+
+        composable(route = Screen.PaymentConfirmationScreen.route){
+            PaymentConfirmationScreen(navController = navController)
         }
 
     }

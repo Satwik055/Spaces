@@ -149,6 +149,9 @@ dependencies {
     // Stripe SDK
     implementation ("com.stripe:stripe-android:20.35.1")
 
+    //Lottie
+    implementation("com.airbnb.android:lottie-compose:4.0.0")
+
 
 
 

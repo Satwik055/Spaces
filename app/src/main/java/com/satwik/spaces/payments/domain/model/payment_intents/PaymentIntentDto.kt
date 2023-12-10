@@ -43,3 +43,7 @@ data class PaymentIntentDto(
     val transfer_data: Any,
     val transfer_group: Any
 )
+
+fun PaymentIntentDto.toPaymentIntent(): PaymentIntent {
+    return PaymentIntent(id=  id, client_secret = client_secret)
+}

@@ -25,3 +25,7 @@ data class CustomerDto(
     val tax_exempt: String,
     val test_clock: Any
 )
+
+fun CustomerDto.toCustomer(): Customer {
+    return Customer(id=id)
+}

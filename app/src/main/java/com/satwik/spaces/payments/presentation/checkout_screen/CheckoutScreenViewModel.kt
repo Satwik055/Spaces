@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.satwik.spaces.core.utils.Resource
+import com.satwik.spaces.payments.domain.use_case.GetCustomerUseCase
 import com.satwik.spaces.payments.domain.use_case.InitiatePaymentRequestUseCase
 import com.satwik.spaces.payments.presentation.checkout_screen.states.BookingInfoState
 import com.satwik.spaces.payments.presentation.checkout_screen.states.PropertyState
@@ -19,6 +20,7 @@ import javax.inject.Inject
 class CheckoutScreenViewModel @Inject constructor(
     private val getPropertyByIdUseCase: GetPropertyByIdUseCase,
     private val initiatePaymentRequestUseCase: InitiatePaymentRequestUseCase,
+    private val getCustomerUseCase: GetCustomerUseCase
     ):ViewModel() {
 
     private val _propertyState = mutableStateOf(PropertyState())
@@ -29,7 +31,6 @@ class CheckoutScreenViewModel @Inject constructor(
 
     private val _paymentsApiResponseState = mutableStateOf(PaymentsApiResponseState())
     val paymentsApiResponseState: State<PaymentsApiResponseState> = _paymentsApiResponseState
-
 
     init {
         initiatePaymentRequest("cus_P9FH27JM6pRD2m")
@@ -64,9 +65,14 @@ class CheckoutScreenViewModel @Inject constructor(
         initiatePaymentRequestUseCase(customerId).onEach { response->
             when(response){
                 is Resource.Error -> _paymentsApiResponseState.value = PaymentsApiResponseState(error = response.message)
-                is Resource.Loading -> _paymentsApiResponseState.value = PaymentsApiResponseState(isLoading = true)
                 is Resource.Success -> _paymentsApiResponseState.value = PaymentsApiResponseState(data = response.data)
+                is Resource.Loading -> {}
             }
         }.launchIn(viewModelScope)
     }
+
+    private fun getCustomer(){
+        TODO()
+    }
+
 }

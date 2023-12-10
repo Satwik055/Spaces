@@ -9,3 +9,7 @@ data class EphemeralKeyDto(
     val `object`: String,
     val secret: String
 )
+
+fun EphemeralKeyDto.toEphemeralKey(): EphemeralKey {
+    return EphemeralKey(id = id)
+}
