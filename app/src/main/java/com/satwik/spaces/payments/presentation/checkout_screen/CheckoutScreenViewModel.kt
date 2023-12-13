@@ -12,6 +12,8 @@ import com.satwik.spaces.payments.presentation.checkout_screen.states.PropertySt
 import com.satwik.spaces.payments.presentation.checkout_screen.states.PaymentsApiResponseState
 import com.satwik.spaces.properties.domain.use_case.get_property_by_id.GetPropertyByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
@@ -33,7 +35,7 @@ class CheckoutScreenViewModel @Inject constructor(
     val paymentsApiResponseState: State<PaymentsApiResponseState> = _paymentsApiResponseState
 
     init {
-        initiatePaymentRequest("cus_P9FH27JM6pRD2m")
+        initiatePaymentRequest()
         proceedToCheckout(
             propertyId = "k3PPYRwNY8RC7qzBLG46",
             startDate = "24 Mar 2011",
@@ -61,18 +63,35 @@ class CheckoutScreenViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    private fun initiatePaymentRequest(customerId:String){
-        initiatePaymentRequestUseCase(customerId).onEach { response->
-            when(response){
-                is Resource.Error -> _paymentsApiResponseState.value = PaymentsApiResponseState(error = response.message)
-                is Resource.Success -> _paymentsApiResponseState.value = PaymentsApiResponseState(data = response.data)
-                is Resource.Loading -> {}
+//    private fun initiatePaymentRequest(){
+//        viewModelScope.launch {
+//            Log.d("@@@CustomerId", getCustomerUseCase())
+//            initiatePaymentRequestUseCase(getCustomerUseCase()).onEach { response->
+//                when(response){
+//                    is Resource.Error -> _paymentsApiResponseState.value = PaymentsApiResponseState(error = response.message)
+//                    is Resource.Success -> _paymentsApiResponseState.value = PaymentsApiResponseState(data = response.data)
+//                    is Resource.Loading -> {}
+//                }
+//            }
+//        }
+//    }
+
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private fun initiatePaymentRequest(){
+        val customerId = viewModelScope.async {
+            getCustomerUseCase().id
+        }
+        customerId.invokeOnCompletion {error ->
+            if(error==null){
+                initiatePaymentRequestUseCase(customerId.getCompleted()).onEach { response->
+                    when(response){
+                        is Resource.Error -> _paymentsApiResponseState.value = PaymentsApiResponseState(error = response.message)
+                        is Resource.Success -> _paymentsApiResponseState.value = PaymentsApiResponseState(data = response.data)
+                        is Resource.Loading -> {}
+                    }
+                }.launchIn(viewModelScope)
             }
-        }.launchIn(viewModelScope)
+        }
     }
-
-    private fun getCustomer(){
-        TODO()
-    }
-
 }
