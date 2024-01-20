@@ -1,7 +1,9 @@
 package com.satwik.spaces.search.presentation
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.satwik.spaces.core.utils.Resource
@@ -13,11 +15,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchScreenViewModel @Inject constructor(
-    private val searchPropertyUseCase:SearchPropertyUseCase
+    private val searchPropertyUseCase:SearchPropertyUseCase,
 ) :ViewModel(){
 
     private val _state = mutableStateOf(SearchUIState())
     val state: State<SearchUIState> = _state
+
 
     fun searchProperty(query:String){
         searchPropertyUseCase(query = query).onEach {result->

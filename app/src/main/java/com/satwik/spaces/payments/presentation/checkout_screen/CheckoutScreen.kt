@@ -16,6 +16,9 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -28,6 +31,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.satwik.spaces.R
+import com.satwik.spaces.core.MainActivity
 import com.satwik.spaces.core.components.SpacesButton
 import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.payments.presentation.checkout_screen.components.RadioListItem
@@ -50,10 +54,14 @@ fun CheckoutScreen(
     val propertyState = viewModel.propertyState.value
     val bookingInfoState = viewModel.bookingInfoState.value
 
-
     val context = LocalContext.current
     val paymentsApiResponseState = viewModel.paymentsApiResponseState.value
     val paymentSheet = rememberPaymentSheet(::onPaymentSheetResult)
+
+    val paymentSheetAppearance = PaymentSheet.Appearance(
+        typography = PaymentSheet.Typography.default.copy(fontResId = R.font.montserrat_light),
+    )
+//    paymentSheetAppearance.primaryButton.colorsDark.background = Color.Red
 
     LaunchedEffect(context) {
         PaymentConfiguration.init(context, Constants.PUBLISHABLE_KEY)
@@ -144,6 +152,7 @@ fun CheckoutScreen(
                         paymentSheet.presentWithPaymentIntent(
                             response.paymentIntent.client_secret,
                             PaymentSheet.Configuration(
+                                appearance = paymentSheetAppearance,
                                 merchantDisplayName = "Spaces Inc",
                                 customer = customerConfig,
                             )
@@ -152,6 +161,7 @@ fun CheckoutScreen(
                           },
                 modifier = Modifier
             )
+
             Spacer(modifier = Modifier.height(15.dp))
 
             Text(
@@ -168,7 +178,6 @@ fun CheckoutScreen(
 
 private fun onPaymentSheetResult(paymentSheetResult: PaymentSheetResult) {
 
-
     when(paymentSheetResult) {
         is PaymentSheetResult.Canceled -> {
             print("Canceled")
@@ -181,6 +190,8 @@ private fun onPaymentSheetResult(paymentSheetResult: PaymentSheetResult) {
         }
     }
 }
+
+
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Preview

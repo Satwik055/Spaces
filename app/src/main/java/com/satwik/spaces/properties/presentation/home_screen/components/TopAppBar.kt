@@ -42,12 +42,14 @@ fun TopAppBar(
     searchIcon:Int = R.drawable.ic_search,
     iconSize: Dp = 28.dp,
     searchOnClick:() -> Unit,
-    locationOnClick:() -> Unit
+    locationOnClick:() -> Unit,
+    navDrawerOnClick:() -> Unit
+
 ){
     Box(
         modifier = modifier.fillMaxWidth()
     ){
-        IconButton(onClick = { Firebase.auth.signOut() },
+        IconButton(onClick = { navDrawerOnClick },
 
             modifier = Modifier
                 .align(Alignment.CenterStart)
