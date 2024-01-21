@@ -36,8 +36,8 @@ import com.satwik.spaces.core.components.SpacesButton
 import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.payments.presentation.checkout_screen.components.RadioListItem
 import com.satwik.spaces.core.theme.Black
-import com.satwik.spaces.core.theme.Montserrat
 import com.satwik.spaces.core.theme.White
+import com.satwik.spaces.core.theme.poppins
 import com.satwik.spaces.core.utils.Constants
 import com.satwik.spaces.payments.presentation.checkout_screen.components.BookingReviewSection
 import com.stripe.android.PaymentConfiguration
@@ -94,14 +94,14 @@ fun CheckoutScreen(
 
             Text(
                 text = "Confirm & Pay",
-                fontFamily = Montserrat,
+                fontFamily = poppins,
                 fontWeight = FontWeight.Normal,
                 color = White,
                 fontSize = 34.sp,
             )
             Text(
                 text = "proceed to continue the booking",
-                fontFamily = Montserrat,
+                fontFamily = poppins,
                 fontWeight = FontWeight.Normal,
                 color = White,
                 fontSize = 16.sp,
@@ -126,7 +126,7 @@ fun CheckoutScreen(
 
             Text(
                 text = "Pay with",
-                fontFamily = Montserrat,
+                fontFamily = poppins,
                 fontWeight = FontWeight.Normal,
                 color = White,
                 fontSize = 16.sp,
@@ -166,7 +166,7 @@ fun CheckoutScreen(
 
             Text(
                 text = "By making the payment you agree our Privacy Policy and Terms and Conditions",
-                fontFamily = Montserrat,
+                fontFamily = poppins,
                 fontWeight = FontWeight.Medium,
                 color = White,
                 lineHeight = 12.sp,

@@ -152,11 +152,11 @@ dependencies {
     //Lottie
     implementation("com.airbnb.android:lottie-compose:4.0.0")
 
+    //Google fonts API
+    implementation ("androidx.compose.ui:ui-text-google-fonts:1.5.4")
 
+    //Datastore
+    implementation ("androidx.datastore:datastore-preferences:1.0.0")
 
-
-
-
-
-
+    
 }

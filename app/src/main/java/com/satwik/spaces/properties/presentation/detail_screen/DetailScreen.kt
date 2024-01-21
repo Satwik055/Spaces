@@ -25,6 +25,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.PlatformTextStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -43,9 +45,9 @@ import com.satwik.spaces.core.components.DateFeild
 import com.satwik.spaces.core.components.InfoCard
 import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.core.theme.Black
-import com.satwik.spaces.core.theme.Montserrat
 import com.satwik.spaces.core.theme.Purple
 import com.satwik.spaces.core.theme.White
+import com.satwik.spaces.core.theme.poppins
 import com.satwik.spaces.core.utils.DummyApi
 import com.satwik.spaces.properties.domain.model.Property
 import com.satwik.spaces.properties.presentation.detail_screen.components.BottomBarSection
@@ -79,7 +81,8 @@ fun DetailScreen(
         if(state.error?.isNotBlank() == true) {
             Text(
                 text = state.error.toString(),
-                fontFamily = Montserrat,
+                style = TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = false)),
+                fontFamily = poppins,
                 fontWeight = FontWeight.Normal,
                 color = White,
                 fontSize = 15.sp,
@@ -119,7 +122,8 @@ fun DetailScreen(
 
                     Text(
                         text = "Description",
-                        fontFamily = Montserrat,
+                        style = TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = false)),
+                        fontFamily = poppins,
                         fontWeight = FontWeight.Normal,
                         color = White,
                         fontSize = 18.sp,
@@ -129,8 +133,10 @@ fun DetailScreen(
 
                     Text(
                         text = state.property.description,
-                        fontFamily = Montserrat,
-                        fontWeight = FontWeight.Normal,
+                        style = TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = false)),
+                        fontFamily = poppins,
+                        lineHeight= 23.sp,
+                        fontWeight = FontWeight.Light,
                         color = White,
                         fontSize = 14.sp,
                     )
@@ -139,7 +145,7 @@ fun DetailScreen(
 
                     Text(
                         text = "Booking Date",
-                        fontFamily = Montserrat,
+                        fontFamily = poppins,
                         fontWeight = FontWeight.Normal,
                         color = White,
                         fontSize = 18.sp,

@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.satwik.spaces.R
 import com.satwik.spaces.core.components.SpacesIconButton
-import com.satwik.spaces.core.theme.Montserrat
+import com.satwik.spaces.core.theme.poppins
 import com.satwik.spaces.core.theme.White
 
 @Composable
@@ -30,7 +30,7 @@ fun PeopleSection(){
 
         Text(
             text = "People",
-            fontFamily = Montserrat,
+            fontFamily = poppins,
             fontWeight = FontWeight.Normal,
             color = White,
             fontSize = 18.sp,
@@ -48,7 +48,7 @@ fun PeopleSection(){
 
             Text(
                 text = peopleCount.toString(),
-                fontFamily = Montserrat,
+                fontFamily = poppins,
                 fontWeight = FontWeight.Normal,
                 color = White,
                 fontSize = 17.sp,

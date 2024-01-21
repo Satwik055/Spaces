@@ -33,8 +33,8 @@ import com.maxkeppeler.sheets.calendar.CalendarDialog
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import com.satwik.spaces.core.theme.DarkGrey
 import com.satwik.spaces.core.theme.Grey
-import com.satwik.spaces.core.theme.Montserrat
 import com.satwik.spaces.core.theme.White
+import com.satwik.spaces.core.theme.poppins
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -53,7 +53,7 @@ fun DateFeild(
     ) {
         Text(
             text = text,
-            fontFamily = Montserrat,
+            fontFamily = poppins,
             fontWeight = FontWeight.Normal,
             color = Color.White,
             fontSize = 15.sp,

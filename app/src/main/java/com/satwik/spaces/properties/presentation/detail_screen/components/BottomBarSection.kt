@@ -10,14 +10,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.PlatformTextStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.satwik.spaces.core.components.SpacesButton
 import com.satwik.spaces.core.theme.Black
 import com.satwik.spaces.core.theme.Grey
-import com.satwik.spaces.core.theme.Montserrat
 import com.satwik.spaces.core.theme.White
+import com.satwik.spaces.core.theme.poppins
 
 @Composable
 fun BottomBarSection(
@@ -38,7 +40,8 @@ fun BottomBarSection(
         )
         Text(
             text = price,
-            fontFamily = Montserrat,
+            fontFamily = poppins,
+            style = TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = false)),
             fontWeight = FontWeight.Normal,
             color = White,
             fontSize = 17.sp,
@@ -51,7 +54,6 @@ fun BottomBarSection(
             text = "Book Now",
             onClick = { onClick.invoke()},
             fontSize = 16.sp,
-            fontWeight = FontWeight.Medium,
             modifier = Modifier
                 .width(188.dp)
                 .align(Alignment.CenterEnd)

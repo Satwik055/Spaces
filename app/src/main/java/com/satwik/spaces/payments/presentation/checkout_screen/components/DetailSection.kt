@@ -28,8 +28,8 @@ import androidx.compose.ui.unit.sp
 import coil.compose.SubcomposeAsyncImage
 import com.satwik.spaces.R
 import com.satwik.spaces.core.theme.Grey
-import com.satwik.spaces.core.theme.Montserrat
 import com.satwik.spaces.core.theme.White
+import com.satwik.spaces.core.theme.poppins
 
 @Composable
 fun BookingReviewSection(
@@ -82,14 +82,14 @@ fun NameSection(
         Column {
             Text(
                 text = name,
-                fontFamily = Montserrat,
+                fontFamily = poppins,
                 fontWeight = FontWeight.Medium,
                 color = White,
                 fontSize = 17.sp,
             )
             Text(
                 text = address,
-                fontFamily = Montserrat,
+                fontFamily = poppins,
                 fontWeight = FontWeight.Medium,
                 color = Grey,
                 fontSize = 14.sp,
@@ -132,7 +132,7 @@ fun DateSection(
 
                 Text(
                     text = startDate,
-                    fontFamily = Montserrat,
+                    fontFamily = poppins,
                     fontWeight = FontWeight.Medium,
                     color = White,
                     fontSize = 14.sp,
@@ -149,7 +149,7 @@ fun DateSection(
 
             Text(
                 text = endDate,
-                fontFamily = Montserrat,
+                fontFamily = poppins,
                 fontWeight = FontWeight.Medium,
                 color = White,
                 fontSize = 14.sp,
@@ -166,7 +166,7 @@ fun DateSection(
             Spacer(modifier = Modifier.width(8.dp))
             Text(
                 text = "$people people",
-                fontFamily = Montserrat,
+                fontFamily = poppins,
                 fontWeight = FontWeight.Medium,
                 color = White,
                 fontSize = 14.sp,
@@ -187,7 +187,7 @@ fun PriceSection(
     ){
         Text(
             text = "Total($currency)",
-            fontFamily = Montserrat,
+            fontFamily = poppins,
             fontWeight = FontWeight.SemiBold,
             color = White,
             fontSize = 16.sp,
@@ -195,7 +195,7 @@ fun PriceSection(
 
         Text(
             text = price,
-            fontFamily = Montserrat,
+            fontFamily = poppins,
             fontWeight = FontWeight.SemiBold,
             color = White,
             fontSize = 16.sp,

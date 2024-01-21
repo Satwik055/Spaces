@@ -25,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.satwik.spaces.R
 import com.satwik.spaces.core.theme.Black
 import com.satwik.spaces.core.theme.LightGrey
-import com.satwik.spaces.core.theme.Montserrat
+import com.satwik.spaces.core.theme.poppins
 import com.satwik.spaces.core.theme.Purple
 import com.satwik.spaces.core.theme.White
 
@@ -35,7 +35,7 @@ fun SearchBar(
     query: String,
     onQueryChange: (String) -> Unit,
     placeholder:String,
-    fontFamily:FontFamily = Montserrat,
+    fontFamily:FontFamily = poppins,
     leadingButtonOnClick:() -> Unit,
     trailButtonOnClick:() ->Unit,
     @DrawableRes

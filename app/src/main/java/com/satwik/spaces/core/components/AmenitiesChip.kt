@@ -18,8 +18,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.satwik.spaces.core.theme.DarkGrey
-import com.satwik.spaces.core.theme.Montserrat
 import com.satwik.spaces.core.theme.White
+import com.satwik.spaces.core.theme.poppins
 
 @Composable
 fun AmenitiesChip(
@@ -42,8 +42,8 @@ fun AmenitiesChip(
         Spacer(modifier = Modifier.width(7.dp))
         Text(
             text = name,
-            fontFamily = Montserrat,
-            fontWeight = FontWeight.Normal,
+            fontFamily = poppins,
+            fontWeight = FontWeight.W300,
             color = White,
             fontSize = 13.sp,
         )

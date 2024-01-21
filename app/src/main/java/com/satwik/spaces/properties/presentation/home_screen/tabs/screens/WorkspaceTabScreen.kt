@@ -12,8 +12,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.satwik.spaces.core.theme.Montserrat
 import com.satwik.spaces.core.theme.White
+import com.satwik.spaces.core.theme.poppins
 import com.satwik.spaces.core.utils.PropertyType
 import com.satwik.spaces.properties.presentation.home_screen.components.ShimmerLoadingLayout
 import com.satwik.spaces.properties.presentation.home_screen.tabs.TabScreenViewModel
@@ -43,7 +43,7 @@ fun WorkspaceTabScreen(
         if(state.error.isNotBlank()) {
             Text(
                 text = state.error,
-                fontFamily = Montserrat,
+                fontFamily = poppins,
                 fontWeight = FontWeight.Normal,
                 color = White,
                 fontSize = 20.sp,

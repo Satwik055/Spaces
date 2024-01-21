@@ -16,13 +16,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.PlatformTextStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.satwik.spaces.R
 import com.satwik.spaces.core.theme.DarkGrey
 import com.satwik.spaces.core.theme.Grey
-import com.satwik.spaces.core.theme.Montserrat
+import com.satwik.spaces.core.theme.poppins
 import com.satwik.spaces.core.theme.White
 
 @Composable
@@ -40,8 +42,9 @@ fun PropertyInfoSection(
         Column{
             Text(
                 text = propertyName,
-                fontFamily = Montserrat,
-                fontWeight = FontWeight.Normal,
+                style = TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = false)),
+                fontFamily = poppins,
+                fontWeight = FontWeight.W300,
                 color = White,
                 fontSize = 26.sp,
             )
@@ -56,8 +59,9 @@ fun PropertyInfoSection(
                 Spacer(modifier = modifier.width(3.dp))
                 Text(
                     text = propertyAddress,
-                    fontFamily = Montserrat,
-                    fontWeight = FontWeight.Normal,
+                    style = TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = false)),
+                    fontFamily = poppins,
+                    fontWeight = FontWeight.W300,
                     color = Grey,
                     fontSize = 13.sp,
                 )
@@ -84,8 +88,9 @@ fun Rating(rating:String){
         Spacer(modifier = Modifier.width(7.dp))
         Text(
             text = rating,
-            fontFamily = Montserrat,
-            fontWeight = FontWeight.Normal,
+            fontFamily = poppins,
+            style = TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = false)),
+            fontWeight = FontWeight.Light,
             color = White,
             fontSize = 16.sp,
         )

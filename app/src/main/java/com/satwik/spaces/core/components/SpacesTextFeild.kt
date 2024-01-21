@@ -16,14 +16,14 @@ import androidx.compose.ui.unit.sp
 import com.google.android.gms.common.internal.FallbackServiceBroker
 import com.satwik.spaces.core.theme.Grey
 import com.satwik.spaces.core.theme.LightGrey
-import com.satwik.spaces.core.theme.Montserrat
 import com.satwik.spaces.core.theme.Purple
+import com.satwik.spaces.core.theme.poppins
 
 @Composable
 fun SpacesTextField(
     modifier: Modifier = Modifier,
     text:String,
-    fontFamily: FontFamily = Montserrat,
+    fontFamily: FontFamily = poppins,
     onValueChange: (String) -> Unit,
     placeholder:String,
     errorText: String = "",

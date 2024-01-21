@@ -1,16 +1,22 @@
 
 package com.satwik.spaces.properties.presentation.home_screen
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Divider
 import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
@@ -50,21 +56,11 @@ import com.satwik.spaces.properties.presentation.home_screen.tabs.screens.Meetin
 import com.satwik.spaces.properties.presentation.home_screen.tabs.screens.WorkspaceTabScreen
 import kotlinx.coroutines.launch
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(
     navController:NavController,
 ){
-    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    val scope = rememberCoroutineScope()
-
-    ModalNavigationDrawer(
-        drawerState = drawerState,
-        drawerContent = { NavigationDrawerItem(
-            label = { "Home" },
-            selected = true,
-            onClick = { /*TODO*/ }
-        ) },
-    ) {
 
         Box (
             modifier = Modifier
@@ -81,7 +77,7 @@ fun HomeScreen(
                     currentState = "New York",
                     searchOnClick = {navController.navigate(Screen.Search.route)},
                     locationOnClick = { navController.navigate(Screen.Location.route) },
-                    navDrawerOnClick = { scope.launch { drawerState.open() } }
+                    navDrawerOnClick = { /*TODO*/ }
                 )
 
                 Spacer(modifier = Modifier.height(30.dp))
@@ -89,7 +85,7 @@ fun HomeScreen(
                 Text(
                     text = "Explore a suitable workplace for you",
                     style = MaterialTheme.typography.headlineLarge,
-                    fontWeight = FontWeight.Light
+                    fontWeight = FontWeight.W200
                 )
 
                 Spacer(modifier = Modifier
@@ -109,13 +105,14 @@ fun HomeScreen(
                 ) {
                     tabItems.forEachIndexed{ index, item ->
                         Tab(
-                            modifier=Modifier.height(38.dp),
+                            modifier=Modifier.height(35.dp),
                             selected = index == selectedTabIndex,
                             onClick = { selectedTabIndex = index },
                             text = {
                                 Text(
                                     text = item,
-                                    fontSize = 16.sp,
+                                    fontSize = 15 .sp,
+                                    fontWeight = FontWeight.W300,
                                     color = if(index==selectedTabIndex){White}
                                     else {Grey},
                                     style = MaterialTheme.typography.titleMedium
@@ -136,7 +133,7 @@ fun HomeScreen(
                 }
             }
         }
-    }
+
 }
 
 

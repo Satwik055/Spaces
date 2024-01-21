@@ -18,7 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.satwik.spaces.R
-import com.satwik.spaces.core.theme.Montserrat
+import com.satwik.spaces.core.theme.poppins
 import com.satwik.spaces.core.theme.White
 
 @Composable
@@ -39,7 +39,7 @@ fun RadioListItem(
             Spacer(modifier = Modifier.width(10.dp))
             Text(
                 text = text,
-                fontFamily = Montserrat,
+                fontFamily = poppins,
                 fontWeight = FontWeight.Normal,
                 color = White,
                 fontSize = 15.sp,

@@ -19,8 +19,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.satwik.spaces.core.theme.Grey
-import com.satwik.spaces.core.theme.Montserrat
+import com.satwik.spaces.core.theme.poppins
 import com.satwik.spaces.core.theme.White
+import com.satwik.spaces.core.theme.poppins
 
 
 @Composable
@@ -75,14 +76,14 @@ fun TextBlock(text1:String, text2: String){
     ){
         Text(
             text = text1,
-            fontFamily = Montserrat,
+            fontFamily = poppins,
             fontWeight = FontWeight.Normal,
             color = White,
             fontSize = 18.sp,
         )
         Text(
             text = text2,
-            fontFamily = Montserrat,
+            fontFamily = poppins,
             fontWeight = FontWeight.Normal,
             color = White,
             fontSize = 18.sp,
