@@ -11,6 +11,7 @@ import com.satwik.spaces.payments.presentation.checkout_screen.states.BookingInf
 import com.satwik.spaces.payments.presentation.checkout_screen.states.PropertyState
 import com.satwik.spaces.payments.presentation.checkout_screen.states.PaymentsApiResponseState
 import com.satwik.spaces.properties.domain.use_case.get_property_by_id.GetPropertyByIdUseCase
+import com.stripe.android.paymentsheet.PaymentSheetResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
@@ -33,6 +34,7 @@ class CheckoutScreenViewModel @Inject constructor(
 
     private val _paymentsApiResponseState = mutableStateOf(PaymentsApiResponseState())
     val paymentsApiResponseState: State<PaymentsApiResponseState> = _paymentsApiResponseState
+
 
     init {
         initiatePaymentRequest()
@@ -94,4 +96,6 @@ class CheckoutScreenViewModel @Inject constructor(
             }
         }
     }
+
+
 }

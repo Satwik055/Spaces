@@ -11,7 +11,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -22,13 +24,27 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.satwik.spaces.R
+import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.core.theme.Black
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 @Composable
 fun PaymentConfirmationScreen(
     navController: NavController
 ) {
+
+    val scope = rememberCoroutineScope()
+
+
+    LaunchedEffect(Unit){
+        scope.launch {
+            delay(3000)
+            navController.navigate(Screen.Home.route)
+        }
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -36,6 +52,7 @@ fun PaymentConfirmationScreen(
     ) {
 
         val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.confirmation_tick_animation))
+
         Column (
         modifier = Modifier
             .align(Alignment.Center),
@@ -48,7 +65,7 @@ fun PaymentConfirmationScreen(
             )
             Spacer(modifier = Modifier.height(30.dp))
             Text(
-                text = "Payment Successful !",
+                text = "Payment Successfull",
                 style = MaterialTheme.typography.titleMedium,
             )
         }

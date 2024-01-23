@@ -96,6 +96,10 @@ fun SetupNavGraph(navController:NavHostController){
             LocationScreen(navController = navController)
         }
 
+        composable(route = Screen.PaymentConfirmationScreen.route){
+            PaymentConfirmationScreen(navController = navController)
+        }
+
         composable(route = Screen.MeetingRoomTabScreen.route){
             MeetingroomTabScreen(navController = navController)
         }
