@@ -21,6 +21,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.PlatformTextStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -86,10 +88,13 @@ fun NameSection(
                 fontWeight = FontWeight.Medium,
                 color = White,
                 fontSize = 17.sp,
-            )
+                style = TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = false)),
+
+                )
             Text(
                 text = address,
                 fontFamily = poppins,
+                style = TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = false)),
                 fontWeight = FontWeight.Medium,
                 color = Grey,
                 fontSize = 14.sp,
@@ -135,6 +140,7 @@ fun DateSection(
                     fontFamily = poppins,
                     fontWeight = FontWeight.Medium,
                     color = White,
+                    style = TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = false)),
                     fontSize = 14.sp,
                 )
             }
@@ -152,6 +158,7 @@ fun DateSection(
                 fontFamily = poppins,
                 fontWeight = FontWeight.Medium,
                 color = White,
+                style = TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = false)),
                 fontSize = 14.sp,
                 modifier = Modifier.align(Alignment.CenterEnd)
             )
@@ -167,6 +174,7 @@ fun DateSection(
             Text(
                 text = "$people people",
                 fontFamily = poppins,
+                style = TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = false)),
                 fontWeight = FontWeight.Medium,
                 color = White,
                 fontSize = 14.sp,
@@ -190,6 +198,7 @@ fun PriceSection(
             fontFamily = poppins,
             fontWeight = FontWeight.SemiBold,
             color = White,
+            style = TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = false)),
             fontSize = 16.sp,
         )
 
@@ -198,6 +207,7 @@ fun PriceSection(
             fontFamily = poppins,
             fontWeight = FontWeight.SemiBold,
             color = White,
+            style = TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = false)),
             fontSize = 16.sp,
         )
     }

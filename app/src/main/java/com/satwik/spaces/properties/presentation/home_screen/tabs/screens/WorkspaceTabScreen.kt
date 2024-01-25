@@ -25,11 +25,14 @@ fun WorkspaceTabScreen(
     navController: NavController,
     viewModel: TabScreenViewModel = hiltViewModel(),
 ){
-    LaunchedEffect(Unit){
-        viewModel.getPropertiesByType(PropertyType.WORKSPACE)
-    }
 
+    val propertyType = PropertyType.WORKSPACE
     val state = viewModel.state.value
+
+
+    LaunchedEffect(Unit){
+        viewModel.getPropertiesByType(propertyType)
+    }
 
     Box(
         modifier = Modifier

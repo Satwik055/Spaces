@@ -1,8 +1,10 @@
 package com.satwik.spaces.authentication.di
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.CollectionReference
 import com.satwik.spaces.authentication.data.repository.AuthRepositoryImpl
 import com.satwik.spaces.authentication.domain.repository.AuthRepository
+import com.satwik.spaces.core.utils.qualifiers.UserCollection
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,8 +19,11 @@ object AuthModule {
     @Singleton
     fun provideFirebaseAuth():FirebaseAuth = FirebaseAuth.getInstance()
 
-    @Provides
     @Singleton
-    fun provideAuthRepository(auth:FirebaseAuth):AuthRepository = AuthRepositoryImpl(auth)
+    @Provides
+    fun provideAuthRepository(
+        @UserCollection userCollectionReference: CollectionReference,
+        auth:FirebaseAuth
+    ):AuthRepository = AuthRepositoryImpl(userCollectionReference, auth)
 
 }

@@ -25,6 +25,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.PlatformTextStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -38,6 +40,7 @@ import com.satwik.spaces.core.components.SpacesButton
 import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.payments.presentation.checkout_screen.components.RadioListItem
 import com.satwik.spaces.core.theme.Black
+import com.satwik.spaces.core.theme.Purple
 import com.satwik.spaces.core.theme.White
 import com.satwik.spaces.core.theme.poppins
 import com.satwik.spaces.core.utils.Constants
@@ -71,6 +74,8 @@ fun CheckoutScreen(
     val paymentSheet = rememberPaymentSheet(::onPaymentSheetResult)
 
 
+
+
     val scope = rememberCoroutineScope()
 
 
@@ -92,10 +97,14 @@ fun CheckoutScreen(
     }
 
 
-        val paymentSheetAppearance = PaymentSheet.Appearance(
-            typography = PaymentSheet.Typography.default.copy(fontResId = R.font.montserrat_light),
+    val paymentSheetAppearance = PaymentSheet.Appearance(
+        typography = PaymentSheet.Typography.default.copy(fontResId = R.font.poppins_light)
         )
-//    paymentSheetAppearance.primaryButton.colorsDark.background = Color.Red
+
+    val address = PaymentSheet.Address(country = "IN")
+    val billingDetails = PaymentSheet.BillingDetails(address = address)
+
+//        paymentSheetAppearance.primaryButton.colorsDark.background = Purple
 
 
         LaunchedEffect(context) {
@@ -132,6 +141,7 @@ fun CheckoutScreen(
                     fontFamily = poppins,
                     fontWeight = FontWeight.Normal,
                     color = White,
+                    style = TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = false)),
                     fontSize = 34.sp,
                 )
                 Text(
@@ -139,8 +149,9 @@ fun CheckoutScreen(
                     fontFamily = poppins,
                     fontWeight = FontWeight.Normal,
                     color = White,
-                    fontSize = 16.sp,
-                )
+                    fontSize = 14.sp,
+                    style = TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = false)),
+                    )
 
                 Spacer(modifier = Modifier.height(40.dp))
 
@@ -161,6 +172,7 @@ fun CheckoutScreen(
 
                 Text(
                     text = "Pay with",
+                    style = TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = false)),
                     fontFamily = poppins,
                     fontWeight = FontWeight.Normal,
                     color = White,
@@ -194,6 +206,7 @@ fun CheckoutScreen(
                                     appearance = paymentSheetAppearance,
                                     merchantDisplayName = "Spaces Inc",
                                     customer = customerConfig,
+                                    defaultBillingDetails = billingDetails
                                 )
                             )
                         }

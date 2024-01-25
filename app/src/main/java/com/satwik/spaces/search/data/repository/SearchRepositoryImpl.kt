@@ -3,13 +3,14 @@ package com.satwik.spaces.search.data.repository
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.ktx.toObject
 import com.satwik.spaces.core.exceptions.NoPropertiesFound
+import com.satwik.spaces.core.utils.qualifiers.PropertyCollection
 import com.satwik.spaces.properties.domain.model.Property
 import com.satwik.spaces.search.domain.repository.SearchRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
-class SearchRepositoryImpl @Inject constructor(private val collectionRef: CollectionReference
+class SearchRepositoryImpl @Inject constructor(@PropertyCollection private val propertyCollectionRef: CollectionReference
 ):SearchRepository {
 
     override suspend fun searchProperty(query: String): List<Property> {
@@ -17,7 +18,7 @@ class SearchRepositoryImpl @Inject constructor(private val collectionRef: Collec
             return emptyList()
         }
 
-        val querySnapshot = collectionRef.get().await()
+        val querySnapshot = propertyCollectionRef.get().await()
         val allProperties = querySnapshot.documents.mapNotNull { it.toObject<Property>() }
 
         val result = allProperties.filter { it.name.contains(query) }

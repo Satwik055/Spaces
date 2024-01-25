@@ -1,7 +1,9 @@
 package com.satwik.spaces.core
 
+import android.content.ContentValues.TAG
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -10,6 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.satwik.spaces.core.navigation.SetupNavGraph
 import com.satwik.spaces.core.theme.SpacesTheme
 import com.satwik.spaces.payments.presentation.confirmation_screen.PaymentConfirmationScreen

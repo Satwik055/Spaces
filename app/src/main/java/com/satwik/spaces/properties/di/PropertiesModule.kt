@@ -1,6 +1,8 @@
 package com.satwik.spaces.properties.di
 
 import com.google.firebase.firestore.CollectionReference
+import com.satwik.spaces.core.utils.qualifiers.PropertyCollection
+import com.satwik.spaces.core.utils.qualifiers.UserCollection
 import com.satwik.spaces.properties.data.repository.PropertiesRepositoryImpl
 import com.satwik.spaces.properties.domain.repository.PropertiesRepository
 import dagger.Module
@@ -15,8 +17,8 @@ object PropertiesModule {
 
     @Provides
     @Singleton
-    fun providesPropertyRepository(collectionReference: CollectionReference): PropertiesRepository =
-        PropertiesRepositoryImpl(collectionReference)
+    fun providesPropertyRepository(@PropertyCollection propertyCollectionReference: CollectionReference): PropertiesRepository =
+        PropertiesRepositoryImpl(propertyCollectionReference)
 
 
 }

@@ -1,6 +1,7 @@
 package com.satwik.spaces.search.di
 
 import com.google.firebase.firestore.CollectionReference
+import com.satwik.spaces.core.utils.qualifiers.PropertyCollection
 import com.satwik.spaces.search.data.repository.SearchRepositoryImpl
 import com.satwik.spaces.search.domain.repository.SearchRepository
 import dagger.Module
@@ -15,6 +16,6 @@ object SearchModule {
 
     @Provides
     @Singleton
-    fun provideSearchRepository(collectionReference: CollectionReference): SearchRepository =
-        SearchRepositoryImpl(collectionReference)
+    fun provideSearchRepository(@PropertyCollection propertyCollectionReference: CollectionReference): SearchRepository =
+        SearchRepositoryImpl(propertyCollectionReference)
 }
