@@ -10,10 +10,10 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class InitiatePaymentRequestUseCase @Inject constructor(private val repository: PaymentsRepository) {
-    operator fun invoke(customerId:String)=flow{
+    operator fun invoke(customerId:String, amount:String)=flow{
         val customers = repository.getCustomer().toCustomer()
         val ephemeralKey = repository.getEphemeralKey(customerId).toEphemeralKey()
-        val paymentIntent = repository.getPaymentIntent(customerId).toPaymentIntent()
+        val paymentIntent = repository.getPaymentIntent(customerId, amount).toPaymentIntent()
         val apiResponse = PaymentsApiResponse(customers, ephemeralKey, paymentIntent)
         try {
             emit(Resource.Success(apiResponse))

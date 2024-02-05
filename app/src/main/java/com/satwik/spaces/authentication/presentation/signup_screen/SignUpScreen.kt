@@ -103,10 +103,10 @@ fun SignUpScreen(
 
             Spacer(modifier = Modifier.height(53.dp))
 
-            var nameText by remember { mutableStateOf("") }
+            var usernameText by remember { mutableStateOf("") }
             SpacesTextField(
-                text = nameText,
-                onValueChange ={nameText=it},
+                text = usernameText,
+                onValueChange ={usernameText=it},
                 placeholder = "Name",
                 modifier = Modifier
                     .fillMaxWidth()
@@ -145,7 +145,7 @@ fun SignUpScreen(
                     true -> ButtonType.LOADING
                     false -> ButtonType.REGULAR
                 }
-            ) {viewModel.signup(emailText, passwordText)}
+            ) {viewModel.signup(emailText, passwordText, usernameText)}
 
             Spacer(modifier = Modifier.height(8.dp))
 

@@ -1,21 +1,28 @@
 package com.satwik.spaces.properties.presentation.detail_screen
 
+import android.content.Context
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.satwik.spaces.core.MainActivity
 import com.satwik.spaces.core.utils.Constants
+import com.satwik.spaces.core.utils.DateStore
 import com.satwik.spaces.core.utils.Resource
 import com.satwik.spaces.properties.domain.use_case.get_property_by_id.GetPropertyByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class DetailScreenViewModel@Inject constructor(
     private val getPropertyByIdUseCase: GetPropertyByIdUseCase,
+    private val dateStore: DateStore,
     savedStateHandle: SavedStateHandle
 ) :ViewModel() {
 
@@ -28,6 +35,10 @@ class DetailScreenViewModel@Inject constructor(
         }
     }
 
+    fun getCheckinDate() = dateStore.getCheckinDate
+
+    fun getCheckoutDate() = dateStore.getCheckoutDate
+
     private fun getPropertyById(propertyId: String){
         getPropertyByIdUseCase(propertyId).onEach { result->
             when(result){
@@ -37,9 +48,6 @@ class DetailScreenViewModel@Inject constructor(
 
                 is Resource.Loading-> _state.value= PropertyState(isLoading = true)
             }
-
         }.launchIn(viewModelScope)
     }
-
-
 }

@@ -2,6 +2,7 @@ package com.satwik.spaces.payments.presentation.checkout_screen
 
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -17,6 +18,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -34,6 +36,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.firestore.CollectionReference
 import com.satwik.spaces.R
 import com.satwik.spaces.core.MainActivity
 import com.satwik.spaces.core.components.SpacesButton
@@ -44,6 +47,8 @@ import com.satwik.spaces.core.theme.Purple
 import com.satwik.spaces.core.theme.White
 import com.satwik.spaces.core.theme.poppins
 import com.satwik.spaces.core.utils.Constants
+import com.satwik.spaces.core.utils.DateStore
+import com.satwik.spaces.core.utils.qualifiers.BookingCollection
 import com.satwik.spaces.payments.presentation.checkout_screen.components.BookingReviewSection
 import com.stripe.android.PaymentConfiguration
 import com.stripe.android.paymentsheet.PaymentSheet
@@ -54,48 +59,35 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
 
-//val isPaymentSuccessful = flow{emit(false)}
-//var isPaymentSuccessful = flowOf(false)
 var isPaymentSuccessful = MutableStateFlow(false)
-
-
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun CheckoutScreen(
     navController: NavController,
-    viewModel: CheckoutScreenViewModel = hiltViewModel(),
+    viewModel: CheckoutScreenViewModel = hiltViewModel()
 ) {
-    val propertyState = viewModel.propertyState.value
-    val bookingInfoState = viewModel.bookingInfoState.value
+
+    val bookingState = viewModel.bookingState.value
 
     val context = LocalContext.current
     val paymentsApiResponseState = viewModel.paymentsApiResponseState.value
     val paymentSheet = rememberPaymentSheet(::onPaymentSheetResult)
 
-
-
-
     val scope = rememberCoroutineScope()
-
+    val store = DateStore(context)
 
     LaunchedEffect(isPaymentSuccessful) {
-        Log.d("Flow@@@", "Composition !")
         scope.launch {
-
             isPaymentSuccessful.collect { isSuccessful ->
                 if (isSuccessful) {
-                    Log.d("Flow@@@", "true")
                     navController.navigate(Screen.PaymentConfirmationScreen.route)
+                    viewModel.completeBooking()
                     isPaymentSuccessful.value = false
-                }
-                else{
-                    Log.d("Flow@@@", "false")
                 }
             }
         }
     }
-
 
     val paymentSheetAppearance = PaymentSheet.Appearance(
         typography = PaymentSheet.Typography.default.copy(fontResId = R.font.poppins_light)
@@ -103,9 +95,6 @@ fun CheckoutScreen(
 
     val address = PaymentSheet.Address(country = "IN")
     val billingDetails = PaymentSheet.BillingDetails(address = address)
-
-//        paymentSheetAppearance.primaryButton.colorsDark.background = Purple
-
 
         LaunchedEffect(context) {
             PaymentConfiguration.init(context, Constants.PUBLISHABLE_KEY)
@@ -155,16 +144,16 @@ fun CheckoutScreen(
 
                 Spacer(modifier = Modifier.height(40.dp))
 
-                propertyState.property?.let {
+                bookingState.property?.let {
                     BookingReviewSection(
-                        name = propertyState.property.name,
-                        address = propertyState.property.address,
-                        thumbnailUrl = propertyState.property.imageUrls.first(),
-                        startDate = bookingInfoState.startDate.toString(),
-                        endDate = bookingInfoState.endDate.toString(),
-                        people = bookingInfoState.people.toString(),
-                        currency = "USD",
-                        price = "$" + propertyState.property.price
+                        bookingState.property!!.name,
+                        bookingState.property!!.address,
+                        bookingState.property!!.imageUrls.first(),
+                        bookingState.booking?.checkInDate ?: "",
+                        bookingState.booking?.checkOutDate ?: "",
+                        bookingState.property!!.people,
+                        "USD",
+                        "$" + bookingState.property!!.price
                     )
                 }
 
@@ -251,6 +240,5 @@ fun onPaymentSheetResult(paymentSheetResult: PaymentSheetResult) {
 @Preview
 @Composable
 fun CheckoutScreenPreview(){
-    CheckoutScreen(navController = rememberNavController())
 }
 

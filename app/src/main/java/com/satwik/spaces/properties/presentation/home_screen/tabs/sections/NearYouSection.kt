@@ -14,6 +14,7 @@ import com.satwik.spaces.properties.domain.model.Property
 
 fun LazyListScope.NearYouSection(properties:List<Property>, navController: NavController) {
 
+
     items(properties){
         ListingCard(
             propertyName = it.name,

@@ -14,6 +14,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.satwik.spaces.bookings.presentation.bookings_screen.BookingsScreen
 import com.satwik.spaces.core.navigation.SetupNavGraph
 import com.satwik.spaces.core.theme.SpacesTheme
 import com.satwik.spaces.payments.presentation.confirmation_screen.PaymentConfirmationScreen
@@ -34,6 +35,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             SpacesTheme {
+//                BookingsScreen()
                 SetupNavGraph(navController = rememberNavController())
             }
         }

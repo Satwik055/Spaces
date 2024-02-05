@@ -1,7 +1,6 @@
 package com.satwik.spaces.properties.presentation.detail_screen
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,13 +17,16 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -32,6 +34,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.datastore.core.DataStore
+import androidx.datastore.dataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.NavController
@@ -48,23 +55,34 @@ import com.satwik.spaces.core.theme.Black
 import com.satwik.spaces.core.theme.Purple
 import com.satwik.spaces.core.theme.White
 import com.satwik.spaces.core.theme.poppins
+import com.satwik.spaces.core.utils.DateStore
 import com.satwik.spaces.core.utils.DummyApi
 import com.satwik.spaces.properties.domain.model.Property
 import com.satwik.spaces.properties.presentation.detail_screen.components.BottomBarSection
 import com.satwik.spaces.properties.presentation.detail_screen.components.ImageSlider
 import com.satwik.spaces.properties.presentation.detail_screen.components.PeopleSection
 import com.satwik.spaces.properties.presentation.detail_screen.components.PropertyInfoSection
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-
+import java.util.Date
+import java.util.concurrent.Flow
 
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(
     navController: NavController,
-    state:PropertyState
+    viewModel: DetailScreenViewModel = hiltViewModel()
 ){
+    val state = viewModel.state.value
+
+    val checkinDate = viewModel.getCheckinDate().collectAsState(initial = "")
+    val checkoutDate = viewModel.getCheckoutDate().collectAsState(initial = "")
+
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -121,7 +139,7 @@ fun DetailScreen(
                     Spacer(modifier = Modifier.height(30.dp))
 
                     Text(
-                        text = "Description",
+                        text = checkinDate.value,
                         style = TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = false)),
                         fontFamily = poppins,
                         fontWeight = FontWeight.Normal,
@@ -156,7 +174,7 @@ fun DetailScreen(
                     //----------------------------Date Section----------------------------------//
 
                     Row {
-                        //From Date
+                        //Checkin Date
                         val calenderState1 = rememberUseCaseState()
                         var selectedDate1 by remember { mutableStateOf(LocalDate.now()) }
                         val formattedDate1 by remember { derivedStateOf { DateTimeFormatter.ofPattern("dd MMM yyy").format(selectedDate1) } }
@@ -166,7 +184,7 @@ fun DetailScreen(
                             selection = CalendarSelection.Date{ selectedDate1 = it}
                         )
                         DateFeild(
-                            text = formattedDate1,
+                            text = checkinDate.value,
                             onClick = { calenderState1.show() }
                         )
 
@@ -184,7 +202,7 @@ fun DetailScreen(
                         Spacer(modifier = Modifier.width(14.dp))
 
                         DateFeild(
-                            text = formattedDate2,
+                            text = checkoutDate.value,
                             onClick = { calenderState2.show() }
                         )
 
@@ -228,11 +246,6 @@ fun DetailScreen(
 @Preview(showBackground = true)
 @Composable
 fun DetailScreenPreview(){
-    DetailScreen(
-        navController = rememberNavController(),
-        state = PropertyState(
-            isLoading = false,
-            property = DummyApi.getPropertyById("2")
-        )
-    )
+
 }
+

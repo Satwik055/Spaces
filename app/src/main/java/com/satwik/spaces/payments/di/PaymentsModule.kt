@@ -1,5 +1,6 @@
 package com.satwik.spaces.payments.di
 
+import com.satwik.spaces.core.utils.qualifiers.BookingCollection
 import dagger.Module
 import dagger.Provides
 import com.satwik.spaces.payments.data.PaymentsRepositoryImpl
@@ -26,7 +27,9 @@ object PaymentsModule {
 
     @Provides
     @Singleton
-    fun provideStripeAPIRepository(api:StripeAPI):PaymentsRepository{
+    fun provideStripeAPIRepository(
+        api:StripeAPI,
+    ):PaymentsRepository{
         return PaymentsRepositoryImpl(api)
     }
 }

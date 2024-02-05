@@ -47,7 +47,6 @@ fun LoginScreen(
 ){
 
     val state = viewModel.state.value
-
     var errorText by remember { mutableStateOf("") }
     var isError by remember { mutableStateOf(false) }
 

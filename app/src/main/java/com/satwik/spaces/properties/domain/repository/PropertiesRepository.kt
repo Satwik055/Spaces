@@ -1,6 +1,7 @@
 package com.satwik.spaces.properties.domain.repository
 
 import com.satwik.spaces.core.utils.PropertyType
+import com.satwik.spaces.payments.domain.model.Booking
 import com.satwik.spaces.properties.domain.model.Property
 
 

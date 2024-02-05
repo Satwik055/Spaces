@@ -1,5 +1,6 @@
 package com.satwik.spaces.payments.domain.repository
 
+import com.satwik.spaces.payments.domain.model.Booking
 import com.satwik.spaces.payments.domain.model.customers.Customer
 import com.satwik.spaces.payments.domain.model.customers.CustomerDto
 import com.satwik.spaces.payments.domain.model.ephemeral_keys.EphemeralKey
@@ -13,8 +14,9 @@ interface PaymentsRepository {
     suspend fun getEphemeralKey(customerId: String):EphemeralKeyDto
     suspend fun getPaymentIntent(
         customer: String,
-        amount: String = "100",
+        amount: String,
         currency: String = "inr",
         automaticPay:Boolean = true
     ): PaymentIntentDto
+
 }

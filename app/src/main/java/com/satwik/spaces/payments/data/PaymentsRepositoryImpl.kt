@@ -1,5 +1,7 @@
 package com.satwik.spaces.payments.data
 
+import com.satwik.spaces.core.utils.qualifiers.BookingCollection
+import com.satwik.spaces.payments.domain.model.Booking
 import com.satwik.spaces.payments.domain.model.customers.Customer
 import com.satwik.spaces.payments.domain.model.customers.CustomerDto
 import com.satwik.spaces.payments.domain.model.ephemeral_keys.EphemeralKey
@@ -10,7 +12,9 @@ import com.satwik.spaces.payments.domain.remote.StripeAPI
 import com.satwik.spaces.payments.domain.repository.PaymentsRepository
 import javax.inject.Inject
 
-class PaymentsRepositoryImpl @Inject constructor(private val api:StripeAPI):PaymentsRepository {
+class PaymentsRepositoryImpl @Inject constructor(
+    private val api:StripeAPI,
+):PaymentsRepository {
     override suspend fun getCustomer(): CustomerDto {
         return api.getCustomer()
     }

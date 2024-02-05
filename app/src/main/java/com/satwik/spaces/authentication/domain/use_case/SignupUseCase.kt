@@ -6,10 +6,10 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class SignupUseCase @Inject constructor(private val repository: AuthRepository) {
-    operator fun invoke(email:String, password:String) = flow{
+    operator fun invoke(email:String, password:String, username:String) = flow{
         emit(Resource.Loading())
         try{
-            emit(Resource.Success(repository.signup(email, password)))
+            emit(Resource.Success(repository.signup(email, password, username)))
         }
         catch (e:Exception){
             emit(Resource.Error(e.localizedMessage?:"Something went wrong"))

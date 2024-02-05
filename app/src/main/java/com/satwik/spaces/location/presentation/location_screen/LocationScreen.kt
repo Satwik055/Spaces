@@ -1,4 +1,4 @@
-package com.satwik.spaces.properties.presentation.location_screen
+package com.satwik.spaces.location.presentation.location_screen
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -20,15 +20,19 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
@@ -40,7 +44,9 @@ import com.satwik.spaces.core.components.SpacesButton
 import com.satwik.spaces.core.components.SpacesTextField
 import com.satwik.spaces.core.theme.Black
 import com.satwik.spaces.core.theme.White
+import com.satwik.spaces.core.utils.DateStore
 import com.satwik.spaces.properties.presentation.detail_screen.components.PeopleSection
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -49,6 +55,7 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun LocationScreen(
     navController: NavController,
+    viewModel: LocationScreenViewModel = hiltViewModel()
 ){
 
     Box(
@@ -102,35 +109,44 @@ fun LocationScreen(
 
             //----------------------------Date Section----------------------------------//
             Row {
-                //From Date
+                //Checkin Date
                 val calenderState1 = rememberUseCaseState()
-                var selectedDate1 by remember { mutableStateOf(LocalDate.now()) }
-                val formattedDate1 by remember { derivedStateOf { DateTimeFormatter.ofPattern("dd MMM yyy").format(selectedDate1) } }
+                var checkinDate by remember { mutableStateOf(LocalDate.now()) }
+                val formattedCheckinDate by remember { derivedStateOf { DateTimeFormatter.ofPattern("dd MMM yyy").format(checkinDate) } }
+
 
                 CalendarDialog(
                     state = calenderState1,
-                    selection = CalendarSelection.Date{ selectedDate1 = it}
+                    selection = CalendarSelection.Date{ checkinDate = it}
                 )
                 DateFeild(
-                    text = formattedDate1,
+                    text = formattedCheckinDate,
                     onClick = { calenderState1.show() }
                 )
 
-                //To Date
+                LaunchedEffect(formattedCheckinDate){
+                    viewModel.saveCheckinDate(formattedCheckinDate)
+                }
+
+
+                //Checkout Date
                 val calenderState2 = rememberUseCaseState()
-                var selectedDate2 by remember { mutableStateOf(LocalDate.now().plusDays(2)) }
-                val formattedDate2 by remember { derivedStateOf { DateTimeFormatter.ofPattern("dd MMM yyy").format(selectedDate2) } }
+                var checkoutDate by remember { mutableStateOf(LocalDate.now().plusDays(2)) }
+                val formattedCheckoutDate by remember { derivedStateOf { DateTimeFormatter.ofPattern("dd MMM yyy").format(checkoutDate) } }
 
                 CalendarDialog(
                     state = calenderState2,
-                    selection = CalendarSelection.Date{ selectedDate2 = it}
+                    selection = CalendarSelection.Date{ checkoutDate = it}
                 )
                 Spacer(modifier = Modifier.width(14.dp))
 
                 DateFeild(
-                    text = formattedDate2,
+                    text = formattedCheckoutDate,
                     onClick = { calenderState2.show() }
                 )
+                LaunchedEffect(formattedCheckoutDate){
+                    viewModel.saveCheckoutDate(formattedCheckoutDate)
+                }
             }
 
             //----------------------------------------------------------------------//
@@ -141,8 +157,9 @@ fun LocationScreen(
 
             Spacer(modifier = Modifier.height(60.dp))
             SpacesButton(
-                text = "Search"
-            ) { TODO() }
+                text = "Search",
+                onClick = { TODO() }
+            )
         }
     }
 }

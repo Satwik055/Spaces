@@ -37,8 +37,8 @@ class SignupScreenViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun signup(email:String, password:String){
-        signupUseCase(email, password).onEach {result->
+    fun signup(email:String, password:String, username:String){
+        signupUseCase(email, password, username).onEach {result->
             when(result){
                 is Resource.Error -> _state.value = SignupUiState(error = result.message)
                 is Resource.Loading -> _state.value = SignupUiState(isLoading = true)

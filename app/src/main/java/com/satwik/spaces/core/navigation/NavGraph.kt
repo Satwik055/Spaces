@@ -22,6 +22,7 @@ import com.satwik.spaces.authentication.presentation.signup_screen.SignUpScreen
 import com.satwik.spaces.payments.presentation.checkout_screen.CheckoutScreen
 import com.satwik.spaces.core.utils.Constants
 import com.satwik.spaces.core.utils.Constants.CHECKOUT_SCREEN_ARGUMENT_KEYS
+import com.satwik.spaces.core.utils.qualifiers.BookingCollection
 import com.satwik.spaces.payments.presentation.confirmation_screen.PaymentConfirmationScreen
 import com.satwik.spaces.properties.presentation.detail_screen.DetailScreen
 import com.satwik.spaces.properties.presentation.detail_screen.DetailScreenViewModel
@@ -30,7 +31,7 @@ import com.satwik.spaces.properties.presentation.home_screen.tabs.screens.Coffee
 import com.satwik.spaces.properties.presentation.home_screen.tabs.screens.LoungeTabScreen
 import com.satwik.spaces.properties.presentation.home_screen.tabs.screens.MeetingroomTabScreen
 import com.satwik.spaces.properties.presentation.home_screen.tabs.screens.WorkspaceTabScreen
-import com.satwik.spaces.properties.presentation.location_screen.LocationScreen
+import com.satwik.spaces.location.presentation.location_screen.LocationScreen
 import com.satwik.spaces.search.presentation.SearchScreen
 
 
@@ -63,9 +64,8 @@ fun SetupNavGraph(navController:NavHostController){
                 navArgument(Constants.DETAIL_SCREEN_ARGUMENT_KEY){ type = NavType.StringType }
             )
         ) {
-            val viewModel = hiltViewModel<DetailScreenViewModel>()
-            val state  = viewModel.state.value
-            DetailScreen(navController = navController, state = state )
+
+            DetailScreen(navController = navController)
         }
 
         composable(route = Screen.Search.route){

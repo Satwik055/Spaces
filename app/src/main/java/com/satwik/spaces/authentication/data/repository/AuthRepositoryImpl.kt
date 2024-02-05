@@ -8,6 +8,8 @@ import com.satwik.spaces.authentication.domain.model.User
 import com.satwik.spaces.authentication.domain.repository.AuthRepository
 import com.satwik.spaces.core.utils.qualifiers.UserCollection
 import kotlinx.coroutines.tasks.await
+import org.jetbrains.annotations.NotNull
+import org.jetbrains.annotations.Nullable
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
@@ -15,23 +17,26 @@ class AuthRepositoryImpl @Inject constructor(
     private val firebaseAuth:FirebaseAuth
 ) : AuthRepository {
 
-    override suspend fun signup(email: String, password: String): FirebaseUser {
-        //Creates firebase user
+    override suspend fun signup(email: String, password: String, username:String): FirebaseUser {
+        //Creates new firebase user
         val result = firebaseAuth.createUserWithEmailAndPassword(email, password).await()
+        val firebaseUser = result.user
 
-        //Creates Spaces user, (in spaces 'User' firebase database)
-        val uid = result.user!!.uid
-        val userEmail = result.user!!.email
-        val user = User(uid, userEmail!!)
-        usersCollection.document(uid).set(user)
-
-        return result.user!!
+        //Creates new Spaces user, (in firestore 'User' collection)
+        firebaseUser?.let {
+            val spacesUserUid = it.uid
+            val spacesUserEmail = it.email
+            val user = User(spacesUserUid,username, spacesUserEmail!!)
+            usersCollection.document(spacesUserUid).set(user)
+        }
+        return firebaseUser!!
     }
 
 
     override suspend fun login(email: String, password: String): FirebaseUser {
         val result = firebaseAuth.signInWithEmailAndPassword(email, password).await()
-        return result.user!!
+        val firebaseUser = result.user
+        return firebaseUser!!
     }
 
     override suspend fun oneTapSignIn(tokenId: String) {

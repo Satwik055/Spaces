@@ -5,6 +5,7 @@ import com.google.firebase.firestore.ktx.toObject
 import com.satwik.spaces.core.exceptions.NoPropertiesFound
 import com.satwik.spaces.core.utils.PropertyType
 import com.satwik.spaces.core.utils.qualifiers.PropertyCollection
+import com.satwik.spaces.payments.domain.model.Booking
 import com.satwik.spaces.properties.domain.model.Property
 import com.satwik.spaces.properties.domain.repository.PropertiesRepository
 import kotlinx.coroutines.tasks.await

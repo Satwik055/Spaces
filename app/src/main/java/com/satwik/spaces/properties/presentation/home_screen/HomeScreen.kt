@@ -33,10 +33,12 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontWeight.Companion.Thin
 import androidx.compose.ui.tooling.preview.Preview
@@ -62,10 +64,10 @@ fun HomeScreen(
     navController:NavController,
 ){
 
-        Box (
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(start = 16.dp, end = 16.dp)
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(start = 16.dp, end = 16.dp)
         ){
             Column  (
                 modifier = Modifier.matchParentSize()
@@ -135,6 +137,7 @@ fun HomeScreen(
         }
 
 }
+
 
 
 @Preview

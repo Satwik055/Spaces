@@ -6,8 +6,7 @@ import com.satwik.spaces.core.utils.Resource
 
 interface AuthRepository {
 
-    suspend fun signup(email:String, password:String): FirebaseUser
+    suspend fun signup(email:String, password:String, username:String): FirebaseUser
     suspend fun login(email:String, password:String): FirebaseUser
-
     suspend fun oneTapSignIn(tokenId:String)
 }
