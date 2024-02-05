@@ -1,16 +1,14 @@
 package com.satwik.spaces.payments.presentation.checkout_screen
 
 import android.content.Context
-import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.datastore.dataStore
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FieldValue
-import com.satwik.spaces.core.utils.DateStore
+import com.satwik.spaces.core.datastore.DateStore
 import com.satwik.spaces.core.utils.Resource
 import com.satwik.spaces.core.utils.qualifiers.BookingCollection
 import com.satwik.spaces.core.utils.qualifiers.UserCollection
@@ -23,10 +21,8 @@ import com.satwik.spaces.properties.domain.use_case.get_property_by_id.GetProper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
-import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -47,7 +43,7 @@ class CheckoutScreenViewModel @Inject constructor(
     private val _paymentsApiResponseState = mutableStateOf(PaymentsApiResponseState())
     val paymentsApiResponseState: State<PaymentsApiResponseState> = _paymentsApiResponseState
 
-    private val dateStore:DateStore = DateStore(context)
+    private val dateStore: DateStore = DateStore(context)
     init {
         initiatePaymentRequest("9000000")
         initiateBooking(

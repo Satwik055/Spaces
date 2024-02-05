@@ -28,6 +28,7 @@ import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -45,12 +46,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.satwik.spaces.core.components.ButtonType
 import com.satwik.spaces.core.components.SpacesButton
 import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.core.theme.Grey
 import com.satwik.spaces.core.theme.White
+import com.satwik.spaces.location.presentation.location_screen.LocationScreenViewModel
 import com.satwik.spaces.properties.presentation.home_screen.components.TopAppBar
 import com.satwik.spaces.properties.presentation.home_screen.tabs.screens.CoffeeshopTabScreen
 import com.satwik.spaces.properties.presentation.home_screen.tabs.screens.LoungeTabScreen
@@ -61,8 +64,11 @@ import kotlinx.coroutines.launch
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(
-    navController:NavController,
+    navController: NavController,
+    viewModel: LocationScreenViewModel = hiltViewModel()
 ){
+
+    val locationCity = viewModel.getLocation().collectAsState(initial = "").value
 
     Box(
         modifier = Modifier
@@ -75,7 +81,7 @@ fun HomeScreen(
                 Spacer(modifier = Modifier.height(10.dp))
 
                 TopAppBar(
-                    currentCity = "Lower Manhattan",
+                    currentCity = locationCity,
                     currentState = "New York",
                     searchOnClick = {navController.navigate(Screen.Search.route)},
                     locationOnClick = { navController.navigate(Screen.Location.route) },

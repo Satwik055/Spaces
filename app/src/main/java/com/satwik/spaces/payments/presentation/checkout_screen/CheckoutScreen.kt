@@ -1,8 +1,6 @@
 package com.satwik.spaces.payments.presentation.checkout_screen
 
 import android.os.Build
-import android.util.Log
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -18,10 +16,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,28 +29,21 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
-import com.google.firebase.firestore.CollectionReference
 import com.satwik.spaces.R
-import com.satwik.spaces.core.MainActivity
 import com.satwik.spaces.core.components.SpacesButton
 import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.payments.presentation.checkout_screen.components.RadioListItem
 import com.satwik.spaces.core.theme.Black
-import com.satwik.spaces.core.theme.Purple
 import com.satwik.spaces.core.theme.White
 import com.satwik.spaces.core.theme.poppins
 import com.satwik.spaces.core.utils.Constants
-import com.satwik.spaces.core.utils.DateStore
-import com.satwik.spaces.core.utils.qualifiers.BookingCollection
+import com.satwik.spaces.core.datastore.DateStore
 import com.satwik.spaces.payments.presentation.checkout_screen.components.BookingReviewSection
 import com.stripe.android.PaymentConfiguration
 import com.stripe.android.paymentsheet.PaymentSheet
 import com.stripe.android.paymentsheet.PaymentSheetResult
 import com.stripe.android.paymentsheet.rememberPaymentSheet
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
 
 var isPaymentSuccessful = MutableStateFlow(false)

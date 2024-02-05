@@ -22,11 +22,9 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -34,15 +32,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.datastore.core.DataStore
-import androidx.datastore.dataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.intPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
 import com.maxkeppeler.sheets.calendar.CalendarDialog
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
@@ -51,24 +42,15 @@ import com.satwik.spaces.core.components.AmenitiesChip
 import com.satwik.spaces.core.components.DateFeild
 import com.satwik.spaces.core.components.InfoCard
 import com.satwik.spaces.core.navigation.Screen
-import com.satwik.spaces.core.theme.Black
 import com.satwik.spaces.core.theme.Purple
 import com.satwik.spaces.core.theme.White
 import com.satwik.spaces.core.theme.poppins
-import com.satwik.spaces.core.utils.DateStore
-import com.satwik.spaces.core.utils.DummyApi
-import com.satwik.spaces.properties.domain.model.Property
 import com.satwik.spaces.properties.presentation.detail_screen.components.BottomBarSection
 import com.satwik.spaces.properties.presentation.detail_screen.components.ImageSlider
 import com.satwik.spaces.properties.presentation.detail_screen.components.PeopleSection
 import com.satwik.spaces.properties.presentation.detail_screen.components.PropertyInfoSection
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.Date
-import java.util.concurrent.Flow
 
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
