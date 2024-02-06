@@ -86,7 +86,7 @@ fun SearchScreen(
                             propertyName = it.name,
                             propertyAddress = it.address,
                             imageUrl = it.imageUrls.first(),
-                            onClick = { navController.navigate(Screen.Detail.passId(it.id))},
+                            onClick = { navController.navigate(Screen.Detail.route)},
                             modifier = Modifier
                                 .height(204.dp)
                                 .fillMaxWidth()

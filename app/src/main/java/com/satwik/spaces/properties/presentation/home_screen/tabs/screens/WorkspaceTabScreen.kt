@@ -31,10 +31,6 @@ fun WorkspaceTabScreen(
     val propertyType = PropertyType.WORKSPACE
     val state = viewModel.state.value
 
-    val context = LocalContext.current
-
-
-
     LaunchedEffect(Unit){
         viewModel.getPropertiesByType(propertyType)
     }
@@ -65,9 +61,9 @@ fun WorkspaceTabScreen(
                 modifier = Modifier.fillMaxSize()
             ){
                 item {
-                    PopularSection(properties = state.properties, navController = navController)
+                    PopularSection(properties = state.properties, navController = navController, viewModel =  viewModel)
                 }
-                NearYouSection(properties = state.properties, navController = navController)
+                NearYouSection(properties = state.properties, navController = navController, viewModel =  viewModel)
             }
         }
     }

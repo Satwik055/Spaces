@@ -3,6 +3,7 @@ package com.satwik.spaces.location.presentation.location_screen
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,11 +20,14 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -41,9 +45,10 @@ import com.satwik.spaces.R
 import com.satwik.spaces.core.components.DateFeild
 import com.satwik.spaces.core.components.SpacesButton
 import com.satwik.spaces.core.components.SpacesTextField
+import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.core.theme.Black
 import com.satwik.spaces.core.theme.White
-import com.satwik.spaces.properties.presentation.detail_screen.components.PeopleSection
+import com.satwik.spaces.location.presentation.location_screen.components.Counter
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -54,6 +59,9 @@ fun LocationScreen(
     navController: NavController,
     viewModel: LocationScreenViewModel = hiltViewModel()
 ){
+
+    val location = viewModel.getLocation().collectAsState(initial = "").value
+    val peopleCount = viewModel.getPeople().collectAsState(initial = "").value
 
     Box(
         modifier = Modifier
@@ -77,23 +85,26 @@ fun LocationScreen(
 
                 )
             }
-
+            
             Spacer(modifier = Modifier.height(30.dp))
 
             Text(
                 text = "Location",
-                style = MaterialTheme.typography.headlineLarge
+                style = MaterialTheme.typography.headlineLarge,
+                modifier = Modifier
             )
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            var location by remember { mutableStateOf("") }
             SpacesTextField(
                 text = location,
-                onValueChange ={location=it},
+                enabled = false,
+                onValueChange ={/*TODO*/},
                 placeholder = "Search places",
                 modifier = Modifier
                     .fillMaxWidth()
+                    .clickable { navController.navigate(Screen.AddressScreen.route) }
+
             )
 
             Spacer(modifier = Modifier.height(30.dp))
@@ -150,16 +161,12 @@ fun LocationScreen(
 
             Spacer(modifier = Modifier.height(30.dp))
 
-            PeopleSection()
-
+            Counter(viewModel = viewModel)
 
             Spacer(modifier = Modifier.height(60.dp))
             SpacesButton(
                 text = "Search",
-                onClick = {
-                    viewModel.saveLocation(location)
-                    navController.popBackStack()
-                }
+                onClick = { navController.popBackStack() }
             )
         }
     }

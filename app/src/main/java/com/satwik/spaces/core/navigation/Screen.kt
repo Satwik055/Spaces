@@ -6,14 +6,15 @@ import com.satwik.spaces.core.utils.Constants.CHECKOUT_SCREEN_ARGUMENT_KEYS
 
 sealed class Screen(val route:String){
     object Home: Screen(route = "home_screen")
-    object Detail: Screen(
-        route = "detail_screen/" +
-                "{${Constants.DETAIL_SCREEN_ARGUMENT_KEY}}"
-    ){
-        fun passId(id: String): String {
-            return "detail_screen/$id"
-        }
-    }
+//    object Detail: Screen(
+//        route = "detail_screen/" +
+//                "{${Constants.DETAIL_SCREEN_ARGUMENT_KEY}}"
+//    ){
+//        fun passId(id: String): String {
+//            return "detail_screen/$id"
+//        }
+//    }
+    object Detail:Screen(route = "detail_screen")
     object Search: Screen(route = "search_screen")
     object Signup: Screen(route = "signup_screen")
     object Login: Screen(route = "login_screen")
@@ -43,6 +44,8 @@ sealed class Screen(val route:String){
 
     object CoffeeshopTabScreen:Screen(route = "coffeeshop_tab_screen")
     object PaymentConfirmationScreen:Screen(route = "payment_confirmation_screen")
+
+    object AddressScreen:Screen(route = "address_screen")
 
 
 }

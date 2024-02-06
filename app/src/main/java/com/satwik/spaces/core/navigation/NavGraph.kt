@@ -15,6 +15,8 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import androidx.navigation.navigation
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.satwik.spaces.authentication.presentation.login_screen.LoginScreen
@@ -23,6 +25,7 @@ import com.satwik.spaces.payments.presentation.checkout_screen.CheckoutScreen
 import com.satwik.spaces.core.utils.Constants
 import com.satwik.spaces.core.utils.Constants.CHECKOUT_SCREEN_ARGUMENT_KEYS
 import com.satwik.spaces.core.utils.qualifiers.BookingCollection
+import com.satwik.spaces.location.presentation.address_screen.AddressScreen
 import com.satwik.spaces.payments.presentation.confirmation_screen.PaymentConfirmationScreen
 import com.satwik.spaces.properties.presentation.detail_screen.DetailScreen
 import com.satwik.spaces.properties.presentation.detail_screen.DetailScreenViewModel
@@ -37,89 +40,90 @@ import com.satwik.spaces.search.presentation.SearchScreen
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun SetupNavGraph(navController:NavHostController){
+fun SetupNavGraph(
+    navController:NavHostController,
+){
 
     var startDestination by remember { mutableStateOf("") }
 
     startDestination =
         if (Firebase.auth.currentUser != null){
-            Screen.Home.route
+            Graph.Main.route
         }
         else{
-            Screen.Signup.route
+            Graph.Auth.route
         }
 
     NavHost(
         navController = navController,
         startDestination = startDestination
     ){
-        composable(
-            route = Screen.Home.route){
-            HomeScreen(navController = navController)
+
+        navigation(
+            route = "auth_graph",
+            startDestination = Screen.Signup.route
+        ){
+            composable(route = Screen.Signup.route){
+                SignUpScreen(navController = navController)
+            }
+            composable(route = Screen.Login.route){
+                LoginScreen(navController = navController)
+            }
         }
 
-        composable(
-            route = Screen.Detail.route,
-            arguments = listOf(
-                navArgument(Constants.DETAIL_SCREEN_ARGUMENT_KEY){ type = NavType.StringType }
-            )
-        ) {
+        navigation(
+            route = "main_graph",
+            startDestination = Screen.Home.route
+        ){
+            composable(
+                route = Screen.Home.route){
+                HomeScreen(navController = navController)
+            }
 
-            DetailScreen(navController = navController)
+            composable(route=Screen.Detail.route){
+                DetailScreen(navController = navController)
+            }
+
+            composable(route = Screen.Search.route){
+                SearchScreen(navController = navController)
+            }
+
+            composable(route = Screen.Checkout.route) {
+                CheckoutScreen(navController = navController)
+            }
+
+            composable(route = Screen.Location.route){
+                LocationScreen(navController = navController)
+            }
+
+            composable(route = Screen.PaymentConfirmationScreen.route){
+                PaymentConfirmationScreen(navController = navController)
+            }
+
+            composable(route = Screen.MeetingRoomTabScreen.route){
+                MeetingroomTabScreen(navController = navController)
+            }
+
+            composable(route = Screen.WorkspaceTabScreen.route){
+                WorkspaceTabScreen(navController = navController)
+            }
+
+            composable(route = Screen.LoungeTabScreen.route){
+                LoungeTabScreen(navController = navController)
+            }
+
+            composable(route = Screen.CoffeeshopTabScreen.route){
+                CoffeeshopTabScreen(navController = navController)
+            }
+
+
+            composable(route = Screen.PaymentConfirmationScreen.route){
+                PaymentConfirmationScreen(navController = navController)
+            }
+
+            composable(route = Screen.AddressScreen.route){
+                AddressScreen(navController = navController)
+            }
         }
-
-        composable(route = Screen.Search.route){
-            SearchScreen(navController = navController)
-        }
-
-        composable(route = Screen.Signup.route){
-            SignUpScreen(navController = navController)
-        }
-
-        composable(route = Screen.Login.route){
-            LoginScreen(navController = navController)
-        }
-
-        composable(
-            route = Screen.Checkout.route,
-            arguments = listOf(
-                navArgument(CHECKOUT_SCREEN_ARGUMENT_KEYS[0]){ type = NavType.StringType },
-                navArgument(CHECKOUT_SCREEN_ARGUMENT_KEYS[1]){ type = NavType.StringType },
-                navArgument(CHECKOUT_SCREEN_ARGUMENT_KEYS[2]){ type = NavType.StringType },
-                navArgument(CHECKOUT_SCREEN_ARGUMENT_KEYS[3]){ type = NavType.StringType }
-            )
-        ) {
-            CheckoutScreen(navController=navController)
-        }
-
-        composable(route = Screen.Location.route){
-            LocationScreen(navController = navController)
-        }
-
-        composable(route = Screen.PaymentConfirmationScreen.route){
-            PaymentConfirmationScreen(navController = navController)
-        }
-
-        composable(route = Screen.MeetingRoomTabScreen.route){
-            MeetingroomTabScreen(navController = navController)
-        }
-
-        composable(route = Screen.WorkspaceTabScreen.route){
-            WorkspaceTabScreen(navController = navController)
-        }
-
-        composable(route = Screen.LoungeTabScreen.route){
-            LoungeTabScreen(navController = navController)
-        }
-
-        composable(route = Screen.CoffeeshopTabScreen.route){
-            CoffeeshopTabScreen(navController = navController)
-        }
-
-
-        composable(route = Screen.PaymentConfirmationScreen.route){
-            PaymentConfirmationScreen(navController = navController)
-        }
-
     }
 }

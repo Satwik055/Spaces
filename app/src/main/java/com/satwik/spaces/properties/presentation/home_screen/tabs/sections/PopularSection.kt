@@ -11,13 +11,27 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.satwik.spaces.core.components.ListingCard
 import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.properties.domain.model.Property
+import com.satwik.spaces.properties.presentation.home_screen.tabs.TabScreenViewModel
 
+/**
+ * @param viewModel
+ * used to save propertyId to datastore,
+ * giving that the viewModel should contain a savePropertyId() method
+ *
+ * @param properties
+ * List<Property> which is displayed in the lazy row
+* */
 @Composable
-fun PopularSection(properties:List<Property>, navController: NavController) {
+fun PopularSection(
+    properties: List<Property>,
+    navController: NavController,
+    viewModel: TabScreenViewModel,
+) {
 
     Spacer(modifier = Modifier.height(30.dp))
 
@@ -38,7 +52,10 @@ fun PopularSection(properties:List<Property>, navController: NavController) {
                 titleFontSize = 17.sp,
                 addressFontSize = 10.sp,
                 imageUrl = it.imageUrls.first(),
-                onClick = { navController.navigate(Screen.Detail.passId(it.id))}
+                onClick = {
+                    viewModel.savePropertyId(it.id)
+                    navController.navigate(Screen.Detail.route)
+                }
             )
         }
     }

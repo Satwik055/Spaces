@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -45,9 +46,9 @@ import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.core.theme.Purple
 import com.satwik.spaces.core.theme.White
 import com.satwik.spaces.core.theme.poppins
+import com.satwik.spaces.location.presentation.location_screen.components.Counter
 import com.satwik.spaces.properties.presentation.detail_screen.components.BottomBarSection
 import com.satwik.spaces.properties.presentation.detail_screen.components.ImageSlider
-import com.satwik.spaces.properties.presentation.detail_screen.components.PeopleSection
 import com.satwik.spaces.properties.presentation.detail_screen.components.PropertyInfoSection
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -195,7 +196,9 @@ fun DetailScreen(
                     //----------------------------------------------------------------------//
 
                     Spacer(modifier = Modifier.height(30.dp))
-                    PeopleSection()
+
+                    val peeps by remember { mutableIntStateOf(1) }
+//                    Counter(viewModel = viewModel)
 
                     Spacer(modifier = Modifier.height(30.dp))
 

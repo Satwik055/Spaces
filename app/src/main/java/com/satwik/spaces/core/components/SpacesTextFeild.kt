@@ -27,11 +27,13 @@ fun SpacesTextField(
     onValueChange: (String) -> Unit,
     placeholder:String,
     errorText: String = "",
+    enabled:Boolean = true,
     isError:Boolean = false
 ){
     OutlinedTextField(
         modifier = modifier,
         value = text,
+        enabled = enabled,
         onValueChange = onValueChange,
         isError = isError,
         colors = OutlinedTextFieldDefaults.colors(

@@ -9,23 +9,21 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class LocationStore(private val context:Context) {
+class PeopleStore(private val context:Context) {
     companion object {
-        private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("location")
-        private val LOCATION = stringPreferencesKey("location")
+        private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("people_store")
+        private val PEOPLE = stringPreferencesKey("people")
     }
 
-    private val defaultLocation = "Lower Manhattan"
+    private val defaultPeopleCount = "2"
 
-    val getLocation: Flow<String> = context.dataStore.data.map { preferences ->
-        preferences[LOCATION] ?: defaultLocation
+    val getPeople: Flow<String> = context.dataStore.data.map { preferences ->
+        preferences[PEOPLE] ?: defaultPeopleCount
     }
 
-    suspend fun saveLocation(location:String){
+    suspend fun savePeople(people:String){
         context.dataStore.edit { preferences ->
-            preferences[LOCATION] = location
+            preferences[PEOPLE] = people
         }
     }
-
-
 }

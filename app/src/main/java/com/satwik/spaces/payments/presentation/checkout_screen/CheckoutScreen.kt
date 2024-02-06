@@ -55,14 +55,13 @@ fun CheckoutScreen(
     viewModel: CheckoutScreenViewModel = hiltViewModel()
 ) {
 
-    val bookingState = viewModel.bookingState.value
+    val bookingState = viewModel.checkoutScreenUIState.value
 
     val context = LocalContext.current
     val paymentsApiResponseState = viewModel.paymentsApiResponseState.value
     val paymentSheet = rememberPaymentSheet(::onPaymentSheetResult)
 
     val scope = rememberCoroutineScope()
-    val store = DateStore(context)
 
     LaunchedEffect(isPaymentSuccessful) {
         scope.launch {
@@ -131,16 +130,19 @@ fun CheckoutScreen(
 
                 Spacer(modifier = Modifier.height(40.dp))
 
-                bookingState.property?.let {
+                bookingState.property?.let {property->
+
+                    viewModel.initiatePaymentRequest(property.price)
+
                     BookingReviewSection(
-                        bookingState.property!!.name,
-                        bookingState.property!!.address,
-                        bookingState.property!!.imageUrls.first(),
-                        bookingState.booking?.checkInDate ?: "",
-                        bookingState.booking?.checkOutDate ?: "",
-                        bookingState.property!!.people,
+                        property.name,
+                        property.address,
+                        property.imageUrls.first(),
+                        bookingState.booking!!.checkInDate,
+                        bookingState.booking.checkOutDate,
+                        bookingState.booking.people,
                         "USD",
-                        "$" + bookingState.property!!.price
+                        "$" + property.price
                     )
                 }
 

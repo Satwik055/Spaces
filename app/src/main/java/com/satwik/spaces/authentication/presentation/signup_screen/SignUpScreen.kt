@@ -44,6 +44,7 @@ import com.satwik.spaces.R
 import com.satwik.spaces.core.components.ButtonType
 import com.satwik.spaces.core.components.SpacesButton
 import com.satwik.spaces.core.components.SpacesTextField
+import com.satwik.spaces.core.navigation.Graph
 import com.satwik.spaces.core.navigation.Screen
 import com.satwik.spaces.core.theme.Black
 import com.satwik.spaces.core.theme.Purple
@@ -219,8 +220,8 @@ fun SignUpScreen(
 
         state.user?.let {
             LaunchedEffect(Unit){
-                navController.navigate(Screen.Home.route){
-                    popUpTo(Screen.Home.route) {inclusive=true}
+                navController.navigate(Graph.Main.route){
+                    popUpTo(Graph.Auth.route) {inclusive=true}
                 }
             }
         }

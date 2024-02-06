@@ -68,9 +68,9 @@ fun LoungeTabScreen(
                 modifier = Modifier.fillMaxSize()
             ){
                 item {
-                    PopularSection(properties = state.properties, navController = navController)
+                    PopularSection(properties = state.properties, navController = navController, viewModel =  viewModel)
                 }
-                NearYouSection(properties = state.properties, navController = navController)
+                NearYouSection(properties = state.properties, navController = navController, viewModel =  viewModel)
             }
         }
     }
