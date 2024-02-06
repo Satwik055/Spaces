@@ -7,8 +7,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.satwik.spaces.core.utils.Constants
-import com.satwik.spaces.core.datastore.DateStore
-import com.satwik.spaces.core.datastore.PropertyStore
+import com.satwik.spaces.core.utils.datastore.DateStore
+import com.satwik.spaces.core.utils.datastore.PropertyStore
 import com.satwik.spaces.core.utils.Resource
 import com.satwik.spaces.properties.domain.use_case.get_property_by_id.GetPropertyByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

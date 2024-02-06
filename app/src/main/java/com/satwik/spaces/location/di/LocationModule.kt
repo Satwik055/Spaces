@@ -3,9 +3,9 @@ package com.satwik.spaces.location.di
 import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.satwik.spaces.core.datastore.DateStore
-import com.satwik.spaces.core.datastore.LocationStore
-import com.satwik.spaces.core.datastore.PeopleStore
+import com.satwik.spaces.core.utils.datastore.DateStore
+import com.satwik.spaces.core.utils.datastore.LocationStore
+import com.satwik.spaces.core.utils.datastore.PeopleStore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

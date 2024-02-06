@@ -1,4 +1,4 @@
-package com.satwik.spaces.core.datastore
+package com.satwik.spaces.core.utils.datastore
 
 import android.content.Context
 import androidx.datastore.core.DataStore

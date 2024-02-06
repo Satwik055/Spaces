@@ -1,4 +1,4 @@
-package com.satwik.spaces.core.components
+package com.satwik.spaces.core.ui.components
 
 
 import androidx.compose.foundation.background
@@ -30,9 +30,9 @@ import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.compose.SubcomposeAsyncImage
-import com.satwik.spaces.core.theme.White
-import com.satwik.spaces.core.theme.poppins
-import com.satwik.spaces.core.theme.poppins
+import com.satwik.spaces.core.ui.theme.White
+import com.satwik.spaces.core.ui.theme.poppins
+import com.satwik.spaces.core.ui.theme.poppins
 
 
 @Composable

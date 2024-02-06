@@ -29,9 +29,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.SubcomposeAsyncImage
 import com.satwik.spaces.R
-import com.satwik.spaces.core.theme.Grey
-import com.satwik.spaces.core.theme.White
-import com.satwik.spaces.core.theme.poppins
+import com.satwik.spaces.core.ui.theme.Grey
+import com.satwik.spaces.core.ui.theme.White
+import com.satwik.spaces.core.ui.theme.poppins
 
 @Composable
 fun BookingReviewSection(

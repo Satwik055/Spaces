@@ -2,9 +2,9 @@ package com.satwik.spaces.location.presentation.location_screen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.satwik.spaces.core.datastore.DateStore
-import com.satwik.spaces.core.datastore.LocationStore
-import com.satwik.spaces.core.datastore.PeopleStore
+import com.satwik.spaces.core.utils.datastore.DateStore
+import com.satwik.spaces.core.utils.datastore.LocationStore
+import com.satwik.spaces.core.utils.datastore.PeopleStore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -13,7 +13,7 @@ import javax.inject.Inject
 class LocationScreenViewModel @Inject constructor(
     private val locationStore: LocationStore,
     private val dateStore: DateStore,
-    private val peopleStore:PeopleStore
+    private val peopleStore: PeopleStore
 ):ViewModel() {
 
     fun saveCheckinDate(date:String) = viewModelScope.launch{

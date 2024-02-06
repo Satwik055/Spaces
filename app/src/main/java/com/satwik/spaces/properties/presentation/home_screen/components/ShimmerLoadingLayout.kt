@@ -12,9 +12,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.satwik.spaces.core.components.AnimatedShimmerCard
-import com.satwik.spaces.core.components.AnimatedShimmerText
-import com.satwik.spaces.core.components.CardSize
+import com.satwik.spaces.core.ui.components.AnimatedShimmerCard
+import com.satwik.spaces.core.ui.components.AnimatedShimmerText
+import com.satwik.spaces.core.ui.components.CardSize
 
 @Composable
 fun ShimmerLoadingLayout() {

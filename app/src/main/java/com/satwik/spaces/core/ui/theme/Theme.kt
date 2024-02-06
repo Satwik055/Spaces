@@ -1,4 +1,4 @@
-package com.satwik.spaces.core.theme
+package com.satwik.spaces.core.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

@@ -39,14 +39,13 @@ import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
 import com.maxkeppeler.sheets.calendar.CalendarDialog
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import com.satwik.spaces.R
-import com.satwik.spaces.core.components.AmenitiesChip
-import com.satwik.spaces.core.components.DateFeild
-import com.satwik.spaces.core.components.InfoCard
-import com.satwik.spaces.core.navigation.Screen
-import com.satwik.spaces.core.theme.Purple
-import com.satwik.spaces.core.theme.White
-import com.satwik.spaces.core.theme.poppins
-import com.satwik.spaces.location.presentation.location_screen.components.Counter
+import com.satwik.spaces.core.ui.components.AmenitiesChip
+import com.satwik.spaces.core.ui.components.DateFeild
+import com.satwik.spaces.core.ui.components.InfoCard
+import com.satwik.spaces.core.navigation.objects.Screen
+import com.satwik.spaces.core.ui.theme.Purple
+import com.satwik.spaces.core.ui.theme.White
+import com.satwik.spaces.core.ui.theme.poppins
 import com.satwik.spaces.properties.presentation.detail_screen.components.BottomBarSection
 import com.satwik.spaces.properties.presentation.detail_screen.components.ImageSlider
 import com.satwik.spaces.properties.presentation.detail_screen.components.PropertyInfoSection
@@ -214,12 +213,7 @@ fun DetailScreen(
             BottomBarSection(
                 price = state.property.price + "$/Day",
                 modifier = Modifier.align(Alignment.BottomCenter),
-                onClick = { navController.navigate(Screen.Checkout.passBookingInfo(
-                    id = state.property.id,
-                    startDate = "24 March 2011",
-                    endDate = "11 April 2011",
-                    people = "7"
-                )) }
+                onClick = { navController.navigate(Screen.Checkout.route) }
             )
         }
     }

@@ -1,6 +1,5 @@
 package com.satwik.spaces.payments.presentation.confirmation_screen
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -21,11 +20,9 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
-import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.satwik.spaces.R
-import com.satwik.spaces.core.navigation.Screen
-import com.satwik.spaces.core.theme.Black
+import com.satwik.spaces.core.navigation.objects.Screen
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

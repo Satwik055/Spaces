@@ -1,7 +1,6 @@
 package com.satwik.spaces.authentication.presentation.signup_screen
 
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -35,20 +34,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.ramcosta.composedestinations.annotation.Destination
 import com.satwik.spaces.R
-import com.satwik.spaces.core.components.ButtonType
-import com.satwik.spaces.core.components.SpacesButton
-import com.satwik.spaces.core.components.SpacesTextField
-import com.satwik.spaces.core.navigation.Graph
-import com.satwik.spaces.core.navigation.Screen
-import com.satwik.spaces.core.theme.Black
-import com.satwik.spaces.core.theme.Purple
-import com.satwik.spaces.core.theme.White
+import com.satwik.spaces.core.ui.components.ButtonType
+import com.satwik.spaces.core.ui.components.SpacesButton
+import com.satwik.spaces.core.ui.components.SpacesTextField
+import com.satwik.spaces.core.navigation.objects.Graph
+import com.satwik.spaces.core.navigation.objects.Screen
+import com.satwik.spaces.core.ui.theme.Black
+import com.satwik.spaces.core.ui.theme.Purple
+import com.satwik.spaces.core.ui.theme.White
 import com.satwik.spaces.core.utils.Constants.CLIENT_ID
 import com.stevdzasan.onetap.OneTapSignInWithGoogle
 import com.stevdzasan.onetap.rememberOneTapSignInState
@@ -149,22 +144,8 @@ fun SignUpScreen(
             ) {viewModel.signup(emailText, passwordText, usernameText)}
 
             Spacer(modifier = Modifier.height(8.dp))
+            PrivacyPolicyText()
 
-            Text(
-                text = buildAnnotatedString {
-                    append("By signing up you agree our ")
-                    withStyle(style = SpanStyle(color = Purple)){
-                        append("Privacy Policy ")
-                    }
-                    append("and ")
-                    withStyle(style = SpanStyle(color = Purple)){
-                        append("Terms and Conditions")
-                    }
-                },
-                style = MaterialTheme.typography.labelSmall,
-                modifier = Modifier
-                    .clickable { navController.navigate(Screen.Login.route) }
-            )
 
             Spacer(modifier = Modifier.height(50.dp))
 
@@ -207,12 +188,6 @@ fun SignUpScreen(
             }
         }
 
-        if(state.isLoading){
-            CircularProgressIndicator(
-                modifier = Modifier.align(Alignment.Center),
-                color = Purple
-            )
-        }
         if (state.error?.isNotEmpty() == true){
             isError = true
             errorText = state.error.toString()
@@ -226,4 +201,21 @@ fun SignUpScreen(
             }
         }
     }
+}
+
+@Composable
+fun PrivacyPolicyText() {
+    Text(
+        text = buildAnnotatedString {
+            append("By signing up you agree our ")
+            withStyle(style = SpanStyle(color = Purple)){
+                append("Privacy Policy ")
+            }
+            append("and ")
+            withStyle(style = SpanStyle(color = Purple)){
+                append("Terms and Conditions")
+            }
+        },
+        style = MaterialTheme.typography.labelSmall,
+    )
 }

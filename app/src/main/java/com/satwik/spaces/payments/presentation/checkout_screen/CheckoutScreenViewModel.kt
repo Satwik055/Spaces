@@ -8,9 +8,9 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FieldValue
-import com.satwik.spaces.core.datastore.DateStore
-import com.satwik.spaces.core.datastore.PeopleStore
-import com.satwik.spaces.core.datastore.PropertyStore
+import com.satwik.spaces.core.utils.datastore.DateStore
+import com.satwik.spaces.core.utils.datastore.PeopleStore
+import com.satwik.spaces.core.utils.datastore.PropertyStore
 import com.satwik.spaces.core.utils.Resource
 import com.satwik.spaces.core.utils.qualifiers.BookingCollection
 import com.satwik.spaces.core.utils.qualifiers.UserCollection

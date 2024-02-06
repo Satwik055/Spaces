@@ -2,7 +2,7 @@ package com.satwik.spaces.properties.di
 
 import android.content.Context
 import com.google.firebase.firestore.CollectionReference
-import com.satwik.spaces.core.datastore.PropertyStore
+import com.satwik.spaces.core.utils.datastore.PropertyStore
 import com.satwik.spaces.core.utils.qualifiers.PropertyCollection
 import com.satwik.spaces.properties.data.repository.PropertiesRepositoryImpl
 import com.satwik.spaces.properties.domain.repository.PropertiesRepository

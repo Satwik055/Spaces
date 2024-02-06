@@ -11,10 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.satwik.spaces.core.components.ListingCard
-import com.satwik.spaces.core.navigation.Screen
+import com.satwik.spaces.core.ui.components.ListingCard
+import com.satwik.spaces.core.navigation.objects.Screen
 import com.satwik.spaces.properties.domain.model.Property
 import com.satwik.spaces.properties.presentation.home_screen.tabs.TabScreenViewModel
 

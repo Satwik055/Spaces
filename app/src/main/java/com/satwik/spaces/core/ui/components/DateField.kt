@@ -1,4 +1,4 @@
-package com.satwik.spaces.core.components
+package com.satwik.spaces.core.ui.components
 
 import android.os.Build
 import android.util.Log
@@ -31,10 +31,10 @@ import com.maxkeppeker.sheets.core.models.base.UseCaseState
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
 import com.maxkeppeler.sheets.calendar.CalendarDialog
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
-import com.satwik.spaces.core.theme.DarkGrey
-import com.satwik.spaces.core.theme.Grey
-import com.satwik.spaces.core.theme.White
-import com.satwik.spaces.core.theme.poppins
+import com.satwik.spaces.core.ui.theme.DarkGrey
+import com.satwik.spaces.core.ui.theme.Grey
+import com.satwik.spaces.core.ui.theme.White
+import com.satwik.spaces.core.ui.theme.poppins
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 

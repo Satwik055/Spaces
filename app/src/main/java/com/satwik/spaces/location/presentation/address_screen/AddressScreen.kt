@@ -15,8 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.satwik.spaces.core.components.SpacesButton
-import com.satwik.spaces.core.theme.Black
+import com.satwik.spaces.core.ui.components.SpacesButton
+import com.satwik.spaces.core.ui.theme.Black
 import com.satwik.spaces.location.presentation.location_screen.LocationScreenViewModel
 import com.satwik.spaces.search.presentation.components.SearchBar
 

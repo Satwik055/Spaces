@@ -24,11 +24,11 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.satwik.spaces.R
-import com.satwik.spaces.core.theme.Black
-import com.satwik.spaces.core.theme.LightGrey
-import com.satwik.spaces.core.theme.poppins
-import com.satwik.spaces.core.theme.Purple
-import com.satwik.spaces.core.theme.White
+import com.satwik.spaces.core.ui.theme.Black
+import com.satwik.spaces.core.ui.theme.LightGrey
+import com.satwik.spaces.core.ui.theme.poppins
+import com.satwik.spaces.core.ui.theme.Purple
+import com.satwik.spaces.core.ui.theme.White
 
 @Composable
 fun SearchBar(

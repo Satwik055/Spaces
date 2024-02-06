@@ -1,4 +1,4 @@
-package com.satwik.spaces.core
+package com.satwik.spaces.core.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

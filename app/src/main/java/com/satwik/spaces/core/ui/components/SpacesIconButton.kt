@@ -1,4 +1,4 @@
-package com.satwik.spaces.core.components
+package com.satwik.spaces.core.ui.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
@@ -26,9 +26,9 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.satwik.spaces.R
-import com.satwik.spaces.core.theme.DarkGrey
-import com.satwik.spaces.core.theme.Purple
-import com.satwik.spaces.core.theme.White
+import com.satwik.spaces.core.ui.theme.DarkGrey
+import com.satwik.spaces.core.ui.theme.Purple
+import com.satwik.spaces.core.ui.theme.White
 
 @Composable
 fun SpacesIconButton(

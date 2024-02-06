@@ -1,4 +1,4 @@
-package com.satwik.spaces.core.components
+package com.satwik.spaces.core.ui.components
 
 
 import androidx.compose.animation.core.*
@@ -12,8 +12,8 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.satwik.spaces.core.theme.Black
-import com.satwik.spaces.core.theme.DarkGrey
+import com.satwik.spaces.core.ui.theme.Black
+import com.satwik.spaces.core.ui.theme.DarkGrey
 
 enum class CardSize{
     SMALL,
@@ -21,7 +21,7 @@ enum class CardSize{
 }
 
 @Composable
-fun AnimatedShimmerCard(cardSize:CardSize) {
+fun AnimatedShimmerCard(cardSize: CardSize) {
     val shimmerColors = listOf(
         DarkGrey,
         DarkGrey.copy(alpha = 0.1f),

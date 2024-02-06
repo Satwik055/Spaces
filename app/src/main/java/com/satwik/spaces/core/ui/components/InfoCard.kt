@@ -1,4 +1,4 @@
-package com.satwik.spaces.core.components
+package com.satwik.spaces.core.ui.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
@@ -18,9 +18,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.satwik.spaces.core.theme.Grey
-import com.satwik.spaces.core.theme.White
-import com.satwik.spaces.core.theme.poppins
+import com.satwik.spaces.core.ui.theme.Grey
+import com.satwik.spaces.core.ui.theme.White
+import com.satwik.spaces.core.ui.theme.poppins
 
 @Composable
 fun InfoCard(

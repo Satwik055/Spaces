@@ -14,8 +14,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.satwik.spaces.core.theme.White
-import com.satwik.spaces.core.theme.poppins
+import com.satwik.spaces.core.ui.theme.White
+import com.satwik.spaces.core.ui.theme.poppins
 import com.satwik.spaces.core.utils.PropertyType
 import com.satwik.spaces.properties.presentation.home_screen.components.ShimmerLoadingLayout
 import com.satwik.spaces.properties.presentation.home_screen.tabs.TabScreenViewModel

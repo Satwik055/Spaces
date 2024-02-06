@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -33,13 +32,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.satwik.spaces.R
-import com.satwik.spaces.core.components.ButtonType
-import com.satwik.spaces.core.components.SpacesButton
-import com.satwik.spaces.core.components.SpacesTextField
-import com.satwik.spaces.core.navigation.Graph
-import com.satwik.spaces.core.navigation.Screen
-import com.satwik.spaces.core.theme.Purple
-import com.satwik.spaces.core.theme.White
+import com.satwik.spaces.core.ui.components.ButtonType
+import com.satwik.spaces.core.ui.components.SpacesButton
+import com.satwik.spaces.core.ui.components.SpacesTextField
+import com.satwik.spaces.core.navigation.objects.Graph
+import com.satwik.spaces.core.navigation.objects.Screen
+import com.satwik.spaces.core.ui.theme.Purple
+import com.satwik.spaces.core.ui.theme.White
 
 @Composable
 fun LoginScreen(
