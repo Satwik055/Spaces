@@ -1,14 +1,15 @@
 package com.satwik.spaces.core.navigation.graphs
 
-import android.os.Build
-import androidx.annotation.RequiresApi
+
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.satwik.spaces.bookings.presentation.bookings_screen.BookingsScreen
 import com.satwik.spaces.core.navigation.objects.Graph
 import com.satwik.spaces.core.navigation.objects.Screen
 import com.satwik.spaces.core.navigation.objects.TabScreen
+import com.satwik.spaces.core.ui.MainScreen
 import com.satwik.spaces.location.presentation.address_screen.AddressScreen
 import com.satwik.spaces.location.presentation.location_screen.LocationScreen
 import com.satwik.spaces.payments.presentation.checkout_screen.CheckoutScreen
@@ -21,15 +22,20 @@ import com.satwik.spaces.properties.presentation.home_screen.tabs.screens.Meetin
 import com.satwik.spaces.properties.presentation.home_screen.tabs.screens.WorkspaceTabScreen
 import com.satwik.spaces.search.presentation.SearchScreen
 
-@RequiresApi(Build.VERSION_CODES.O)
 fun NavGraphBuilder.mainGraph(navController: NavController){
     navigation(
         route = Graph.Main.route,
-        startDestination = Screen.Home.route
+        startDestination = Screen.Main.route
     ) {
-        composable(
-            route = Screen.Home.route
-        ) {
+        composable(route= Screen.Main.route){
+            MainScreen(navController = navController)
+        }
+
+        composable(route=Screen.Booking.route){
+            BookingsScreen(navController= navController)
+        }
+
+        composable(route = Screen.Home.route) {
             HomeScreen(navController = navController)
         }
 
@@ -68,7 +74,6 @@ fun NavGraphBuilder.mainGraph(navController: NavController){
         composable(route = TabScreen.Coffeeshop.route) {
             CoffeeshopTabScreen(navController = navController)
         }
-
 
         composable(route = Screen.PaymentConfirmationScreen.route) {
             PaymentConfirmationScreen(navController = navController)

@@ -1,7 +1,7 @@
 package com.satwik.spaces.bookings.presentation.bookings_screen
 
 import android.util.Log
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,20 +16,24 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.satwik.spaces.bookings.domain.model.BookedProperty
-import com.satwik.spaces.payments.domain.model.Booking
 import com.satwik.spaces.bookings.presentation.bookings_screen.components.BookingListItem
-import com.satwik.spaces.properties.domain.model.Property
+import com.satwik.spaces.core.ui.theme.Black
 
 @Composable
 fun BookingsScreen(
+    navController: NavController,
     viewModel: BookingScreenViewModel = hiltViewModel()
 ) {
 
     val state = viewModel.state.value
 
     Box(
-        Modifier.fillMaxSize().padding(start = 16.dp, end = 16.dp)
+        Modifier
+            .background(color = Black)
+            .fillMaxSize()
+            .padding(start = 16.dp, end = 16.dp)
     ) {
         if(state.error?.isNotEmpty() == true){
             Log.d("@@@Error", state.error )

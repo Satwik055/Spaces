@@ -34,11 +34,10 @@ fun PaymentConfirmationScreen(
 
     val scope = rememberCoroutineScope()
 
-
     LaunchedEffect(Unit){
         scope.launch {
             delay(3000)
-            navController.navigate(Screen.Home.route)
+            navController.navigate(Screen.Main.route)
         }
     }
 

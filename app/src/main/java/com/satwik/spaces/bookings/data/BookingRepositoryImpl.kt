@@ -7,7 +7,7 @@ import com.google.firebase.firestore.ktx.toObject
 import com.satwik.spaces.authentication.domain.model.User
 import com.satwik.spaces.bookings.domain.model.BookedProperty
 import com.satwik.spaces.bookings.domain.repository.BookingsRepository
-import com.satwik.spaces.core.exceptions.NoBookingsFound
+import com.satwik.spaces.core.utils.exceptions.NoBookingsFound
 import com.satwik.spaces.core.utils.qualifiers.BookingCollection
 import com.satwik.spaces.core.utils.qualifiers.PropertyCollection
 import com.satwik.spaces.core.utils.qualifiers.UserCollection

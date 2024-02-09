@@ -1,6 +1,5 @@
 package com.satwik.spaces.payments.presentation.checkout_screen
 
-import android.content.Context
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -21,11 +20,8 @@ import com.satwik.spaces.payments.presentation.checkout_screen.states.CheckoutSc
 import com.satwik.spaces.payments.presentation.checkout_screen.states.PaymentsApiResponseState
 import com.satwik.spaces.properties.domain.use_case.get_property_by_id.GetPropertyByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch

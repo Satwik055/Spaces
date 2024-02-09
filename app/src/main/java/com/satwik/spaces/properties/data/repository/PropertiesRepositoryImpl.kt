@@ -2,7 +2,7 @@ package com.satwik.spaces.properties.data.repository
 
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.ktx.toObject
-import com.satwik.spaces.core.exceptions.NoPropertiesFound
+import com.satwik.spaces.core.utils.exceptions.NoPropertiesFound
 import com.satwik.spaces.core.utils.PropertyType
 import com.satwik.spaces.core.utils.qualifiers.PropertyCollection
 import com.satwik.spaces.payments.domain.model.Booking

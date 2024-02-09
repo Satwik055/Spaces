@@ -2,7 +2,7 @@ package com.satwik.spaces.search.data.repository
 
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.ktx.toObject
-import com.satwik.spaces.core.exceptions.NoPropertiesFound
+import com.satwik.spaces.core.utils.exceptions.NoPropertiesFound
 import com.satwik.spaces.core.utils.qualifiers.PropertyCollection
 import com.satwik.spaces.properties.domain.model.Property
 import com.satwik.spaces.search.domain.repository.SearchRepository

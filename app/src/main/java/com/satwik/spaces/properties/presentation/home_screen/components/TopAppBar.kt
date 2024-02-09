@@ -48,7 +48,7 @@ fun TopAppBar(
     Box(
         modifier = modifier.fillMaxWidth()
     ){
-        IconButton(onClick = { navDrawerOnClick },
+        IconButton(onClick =  navDrawerOnClick ,
 
             modifier = Modifier
                 .align(Alignment.CenterStart)
