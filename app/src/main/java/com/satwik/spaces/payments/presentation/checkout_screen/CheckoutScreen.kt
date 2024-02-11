@@ -30,14 +30,14 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.satwik.spaces.R
-import com.satwik.spaces.core.ui.components.SpacesButton
 import com.satwik.spaces.core.navigation.objects.Screen
-import com.satwik.spaces.payments.presentation.checkout_screen.components.RadioListItem
+import com.satwik.spaces.core.ui.components.SpacesButton
 import com.satwik.spaces.core.ui.theme.Black
 import com.satwik.spaces.core.ui.theme.White
 import com.satwik.spaces.core.ui.theme.poppins
 import com.satwik.spaces.core.utils.Constants
 import com.satwik.spaces.payments.presentation.checkout_screen.components.BookingReviewSection
+import com.satwik.spaces.payments.presentation.checkout_screen.components.RadioListItem
 import com.stripe.android.PaymentConfiguration
 import com.stripe.android.paymentsheet.PaymentSheet
 import com.stripe.android.paymentsheet.PaymentSheetResult
@@ -47,7 +47,6 @@ import kotlinx.coroutines.launch
 
 var isPaymentSuccessful = MutableStateFlow(false)
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun CheckoutScreen(
     navController: NavController,

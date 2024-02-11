@@ -1,6 +1,6 @@
 package com.satwik.spaces.bookings.domain.model
 
-import com.satwik.spaces.properties.domain.model.Property
+import com.satwik.spaces.common.domain.model.Property
 
 data class BookedProperty(
     val checkInDate: String?,

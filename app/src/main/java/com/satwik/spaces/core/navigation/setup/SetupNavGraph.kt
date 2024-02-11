@@ -18,7 +18,6 @@ import com.satwik.spaces.core.navigation.objects.Graph
 fun SetupNavGraph(
     navController:NavHostController,
 ){
-
     var startDestination by remember { mutableStateOf("") }
 
     startDestination = Firebase.auth.currentUser?.let { Graph.Main.route } ?: Graph.Auth.route

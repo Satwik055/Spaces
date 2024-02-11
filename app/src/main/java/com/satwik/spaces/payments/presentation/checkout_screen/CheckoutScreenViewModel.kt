@@ -2,15 +2,17 @@ package com.satwik.spaces.payments.presentation.checkout_screen
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FieldValue
+import com.satwik.spaces.common.domain.use_case.GetPropertyByIdUseCase
+import com.satwik.spaces.core.utils.Constants.CHECKOUT_SCREEN_ARGUMENT_KEY
+import com.satwik.spaces.core.utils.Resource
 import com.satwik.spaces.core.utils.datastore.DateStore
 import com.satwik.spaces.core.utils.datastore.PeopleStore
-import com.satwik.spaces.core.utils.datastore.PropertyStore
-import com.satwik.spaces.core.utils.Resource
 import com.satwik.spaces.core.utils.qualifiers.BookingCollection
 import com.satwik.spaces.core.utils.qualifiers.UserCollection
 import com.satwik.spaces.payments.domain.model.Booking
@@ -18,7 +20,6 @@ import com.satwik.spaces.payments.domain.use_case.GetCustomerUseCase
 import com.satwik.spaces.payments.domain.use_case.InitiatePaymentRequestUseCase
 import com.satwik.spaces.payments.presentation.checkout_screen.states.CheckoutScreenUIState
 import com.satwik.spaces.payments.presentation.checkout_screen.states.PaymentsApiResponseState
-import com.satwik.spaces.properties.domain.use_case.get_property_by_id.GetPropertyByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
@@ -36,9 +37,9 @@ class CheckoutScreenViewModel @Inject constructor(
     @BookingCollection private val bookingCollectionReference: CollectionReference,
     @UserCollection private val userCollection: CollectionReference,
     private val firebaseAuth: FirebaseAuth,
-    private val propertyStore: PropertyStore,
     private val dateStore: DateStore,
     private val peopleStore: PeopleStore,
+    savedStateHandle: SavedStateHandle
     ):ViewModel() {
 
     private val _checkoutScreenUIState = mutableStateOf(CheckoutScreenUIState())
@@ -48,23 +49,16 @@ class CheckoutScreenViewModel @Inject constructor(
     val paymentsApiResponseState: State<PaymentsApiResponseState> = _paymentsApiResponseState
 
     init {
-        initiateBooking(
-            uid = firebaseAuth.uid!!,
-            checkinDate = getCheckinDateFromDataStore(),
-            checkoutDate = getCheckoutDateFromDataStore(),
-            propertyId = getPropertyIdFromDataStore(),
-            people = getPeopleFromDataStore()
-        )
-    }
-
-    private fun getPropertyIdFromDataStore(): String {
-        val propertyId = mutableStateOf("")
-        viewModelScope.launch{
-            propertyStore.getPropertyId.collect{
-                propertyId.value = it
-            }
+        savedStateHandle.get<String>(CHECKOUT_SCREEN_ARGUMENT_KEY)?.let {
+            initiateBooking(
+                uid = firebaseAuth.uid!!,
+                checkinDate = getCheckinDateFromDataStore(),
+                checkoutDate = getCheckoutDateFromDataStore(),
+                propertyId = it,
+                people = getPeopleFromDataStore()
+            )
         }
-        return propertyId.value
+
     }
 
     private fun getCheckinDateFromDataStore(): String {

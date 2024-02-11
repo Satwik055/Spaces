@@ -2,9 +2,7 @@ package com.satwik.spaces.bookings.data
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.ktx.toObject
-import com.satwik.spaces.authentication.domain.model.User
 import com.satwik.spaces.bookings.domain.model.BookedProperty
 import com.satwik.spaces.bookings.domain.repository.BookingsRepository
 import com.satwik.spaces.core.utils.exceptions.NoBookingsFound
@@ -12,7 +10,7 @@ import com.satwik.spaces.core.utils.qualifiers.BookingCollection
 import com.satwik.spaces.core.utils.qualifiers.PropertyCollection
 import com.satwik.spaces.core.utils.qualifiers.UserCollection
 import com.satwik.spaces.payments.domain.model.Booking
-import com.satwik.spaces.properties.domain.model.Property
+import com.satwik.spaces.common.domain.model.Property
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 

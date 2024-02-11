@@ -7,8 +7,6 @@ import com.satwik.spaces.bookings.domain.repository.BookingsRepository
 import com.satwik.spaces.core.utils.qualifiers.BookingCollection
 import com.satwik.spaces.core.utils.qualifiers.PropertyCollection
 import com.satwik.spaces.core.utils.qualifiers.UserCollection
-import com.satwik.spaces.properties.data.repository.PropertiesRepositoryImpl
-import com.satwik.spaces.properties.domain.repository.PropertiesRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

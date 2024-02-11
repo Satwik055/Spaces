@@ -1,6 +1,6 @@
 package com.satwik.spaces.search.presentation
 
-import com.satwik.spaces.properties.domain.model.Property
+import com.satwik.spaces.common.domain.model.Property
 
 data class SearchUIState(
     val searchResult:List<Property>? = null,

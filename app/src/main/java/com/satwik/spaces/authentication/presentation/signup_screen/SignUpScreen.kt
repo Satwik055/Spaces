@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -184,7 +183,7 @@ fun SignUpScreen(
 
         if(oneTapSignInState.successfull){
             LaunchedEffect(Unit){
-                navController.navigate(Screen.Home.route)
+                navController.navigate(Screen.Explore.route)
             }
         }
 

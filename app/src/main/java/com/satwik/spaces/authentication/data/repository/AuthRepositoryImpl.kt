@@ -4,12 +4,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.CollectionReference
-import com.satwik.spaces.authentication.domain.model.User
+import com.satwik.spaces.common.domain.model.User
 import com.satwik.spaces.authentication.domain.repository.AuthRepository
 import com.satwik.spaces.core.utils.qualifiers.UserCollection
 import kotlinx.coroutines.tasks.await
-import org.jetbrains.annotations.NotNull
-import org.jetbrains.annotations.Nullable
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(

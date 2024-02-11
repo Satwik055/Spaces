@@ -6,9 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.satwik.spaces.bookings.domain.use_case.GetAllBookingsUseCase
 import com.satwik.spaces.core.utils.Resource
-import com.satwik.spaces.payments.domain.model.Booking
-import com.satwik.spaces.properties.domain.model.Property
-import com.satwik.spaces.properties.domain.use_case.get_property_by_id.GetPropertyByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

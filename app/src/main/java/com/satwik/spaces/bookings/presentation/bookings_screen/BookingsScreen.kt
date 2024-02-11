@@ -39,7 +39,8 @@ fun BookingsScreen(
             Log.d("@@@Error", state.error )
             Text(
                 text = state.error,
-                style = MaterialTheme.typography.titleMedium
+                style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.align(Alignment.Center)
             )
         }
         if(state.isLoading){

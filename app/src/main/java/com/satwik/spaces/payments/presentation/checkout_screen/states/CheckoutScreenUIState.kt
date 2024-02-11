@@ -1,7 +1,7 @@
 package com.satwik.spaces.payments.presentation.checkout_screen.states
 
 import com.satwik.spaces.payments.domain.model.Booking
-import com.satwik.spaces.properties.domain.model.Property
+import com.satwik.spaces.common.domain.model.Property
 
 data class CheckoutScreenUIState(
     val error: String? = null,
