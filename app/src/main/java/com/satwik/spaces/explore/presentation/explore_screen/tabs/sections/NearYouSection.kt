@@ -11,32 +11,18 @@ import androidx.navigation.NavController
 import com.satwik.spaces.common.domain.model.Property
 import com.satwik.spaces.core.navigation.objects.Screen
 import com.satwik.spaces.core.ui.components.ListingCard
-import com.satwik.spaces.explore.presentation.explore_screen.tabs.TabScreenViewModel
 
-/**
- * @param viewModel
- * used to save propertyId to datastore,
- * giving that the viewModel should contain a savePropertyId() method
- *
- * @param properties
- * List<Property> which is displayed in the lazy row
- * */
 fun LazyListScope.NearYouSection(
     properties:List<Property>,
     navController: NavController,
-    viewModel: TabScreenViewModel
 ) {
-
 
     items(properties){
         ListingCard(
             propertyName = it.name,
             propertyAddress = it.address,
             imageUrl = it.imageUrls.first(),
-            onClick = {
-                viewModel.savePropertyId(it.id)
-                navController.navigate(Screen.Detail.passId(it.id))
-                      },
+            onClick = { navController.navigate(Screen.Detail.passId(it.id)) },
             modifier = Modifier
                 .padding(bottom = 8.dp)
                 .height(204.dp)

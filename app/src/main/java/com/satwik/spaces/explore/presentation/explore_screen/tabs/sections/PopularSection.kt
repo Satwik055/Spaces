@@ -15,21 +15,11 @@ import androidx.navigation.NavController
 import com.satwik.spaces.common.domain.model.Property
 import com.satwik.spaces.core.navigation.objects.Screen
 import com.satwik.spaces.core.ui.components.ListingCard
-import com.satwik.spaces.explore.presentation.explore_screen.tabs.TabScreenViewModel
 
-/**
- * @param viewModel
- * used to save propertyId to datastore,
- * giving that the viewModel should contain a savePropertyId() method
- *
- * @param properties
- * List<Property> which is displayed in the lazy row
-* */
 @Composable
 fun PopularSection(
     properties: List<Property>,
     navController: NavController,
-    viewModel: TabScreenViewModel,
 ) {
 
     Spacer(modifier = Modifier.height(30.dp))
@@ -51,10 +41,7 @@ fun PopularSection(
                 titleFontSize = 17.sp,
                 addressFontSize = 10.sp,
                 imageUrl = it.imageUrls.first(),
-                onClick = {
-                    viewModel.savePropertyId(it.id)
-                    navController.navigate(Screen.Detail.passId(it.id))
-                }
+                onClick = { navController.navigate(Screen.Detail.passId(it.id)) }
             )
         }
     }

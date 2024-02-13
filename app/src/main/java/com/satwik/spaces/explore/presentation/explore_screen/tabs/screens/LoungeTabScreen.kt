@@ -12,8 +12,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.satwik.spaces.core.ui.theme.poppins
 import com.satwik.spaces.core.ui.theme.White
+import com.satwik.spaces.core.ui.theme.poppins
 import com.satwik.spaces.core.utils.PropertyType
 import com.satwik.spaces.explore.presentation.explore_screen.components.ShimmerLoadingLayout
 import com.satwik.spaces.explore.presentation.explore_screen.tabs.TabScreenViewModel
@@ -57,9 +57,9 @@ fun LoungeTabScreen(
                 modifier = Modifier.fillMaxSize()
             ){
                 item {
-                    PopularSection(properties = state.properties, navController = navController, viewModel =  viewModel)
+                    PopularSection(properties = state.properties, navController = navController)
                 }
-                NearYouSection(properties = state.properties, navController = navController, viewModel =  viewModel)
+                NearYouSection(properties = state.properties, navController = navController)
             }
         }
     }

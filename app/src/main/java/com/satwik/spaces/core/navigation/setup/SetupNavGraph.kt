@@ -9,7 +9,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.satwik.spaces.core.navigation.graphs.authGraph
+import com.satwik.spaces.authentication.navigation.authGraph
 import com.satwik.spaces.core.navigation.graphs.mainGraph
 import com.satwik.spaces.core.navigation.objects.Graph
 
