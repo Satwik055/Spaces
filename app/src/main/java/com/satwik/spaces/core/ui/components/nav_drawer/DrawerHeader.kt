@@ -21,7 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.satwik.spaces.common.domain.model.User
+import com.satwik.spaces.data.auth.domain.model.User
 import com.satwik.spaces.core.ui.theme.White
 import com.satwik.spaces.core.ui.theme.poppins
 

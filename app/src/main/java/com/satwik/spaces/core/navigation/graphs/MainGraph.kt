@@ -5,22 +5,22 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.satwik.spaces.bookings.navigation.bookingScreen
 import com.satwik.spaces.core.navigation.objects.Graph
 import com.satwik.spaces.core.navigation.objects.Screen
 import com.satwik.spaces.core.navigation.objects.TabScreen
 import com.satwik.spaces.core.ui.main_screen.navigation.mainScreen
-import com.satwik.spaces.details.navigation.detailScreen
-import com.satwik.spaces.explore.navigation.exploreScreen
-import com.satwik.spaces.explore.presentation.explore_screen.tabs.screens.CoffeeshopTabScreen
-import com.satwik.spaces.explore.presentation.explore_screen.tabs.screens.LoungeTabScreen
-import com.satwik.spaces.explore.presentation.explore_screen.tabs.screens.MeetingroomTabScreen
-import com.satwik.spaces.explore.presentation.explore_screen.tabs.screens.WorkspaceTabScreen
-import com.satwik.spaces.location.navigation.locationScreen
-import com.satwik.spaces.location.presentation.address_screen.AddressScreen
-import com.satwik.spaces.payments.navigation.checkoutScreen
-import com.satwik.spaces.payments.presentation.confirmation_screen.PaymentConfirmationScreen
-import com.satwik.spaces.search.navigation.searchScreen
+import com.satwik.spaces.features.bookings.navigation.bookingScreen
+import com.satwik.spaces.features.details.navigation.detailScreen
+import com.satwik.spaces.features.explore.navigation.exploreScreen
+import com.satwik.spaces.features.explore.presentation.explore_screen.tabs.screens.CoffeeshopTabScreen
+import com.satwik.spaces.features.explore.presentation.explore_screen.tabs.screens.LoungeTabScreen
+import com.satwik.spaces.features.explore.presentation.explore_screen.tabs.screens.MeetingroomTabScreen
+import com.satwik.spaces.features.explore.presentation.explore_screen.tabs.screens.WorkspaceTabScreen
+import com.satwik.spaces.features.location.navigation.locationScreen
+import com.satwik.spaces.features.location.presentation.address_screen.AddressScreen
+import com.satwik.spaces.features.payments.navigation.checkoutScreen
+import com.satwik.spaces.features.payments.presentation.confirmation_screen.PaymentConfirmationScreen
+import com.satwik.spaces.features.search.navigation.searchScreen
 
 fun NavGraphBuilder.mainGraph(navController: NavController){
     navigation(

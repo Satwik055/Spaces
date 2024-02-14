@@ -1,7 +1,7 @@
 package com.satwik.spaces.details.data.repository
 
 import com.satwik.spaces.core.utils.PropertyType
-import com.satwik.spaces.common.domain.model.Property
+import com.satwik.spaces.data.property.domain.model.Property
 import com.satwik.spaces.details.domain.repository.PropertiesRepository
 
 class MockRepository:PropertiesRepository {
