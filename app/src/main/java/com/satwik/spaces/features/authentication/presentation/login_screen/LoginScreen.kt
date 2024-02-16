@@ -32,11 +32,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.satwik.spaces.R
+import com.satwik.spaces.core.navigation.objects.Graph
+import com.satwik.spaces.core.navigation.objects.Screen
 import com.satwik.spaces.core.ui.components.ButtonType
 import com.satwik.spaces.core.ui.components.SpacesButton
 import com.satwik.spaces.core.ui.components.SpacesTextField
-import com.satwik.spaces.core.navigation.objects.Graph
-import com.satwik.spaces.core.navigation.objects.Screen
 import com.satwik.spaces.core.ui.theme.Purple
 import com.satwik.spaces.core.ui.theme.White
 
@@ -141,7 +141,7 @@ fun LoginScreen(
 
         state.user?.let {
             LaunchedEffect(Unit){
-                navController.navigate(Graph.Main.route){
+                navController.navigate(Screen.Explore.route){
                     popUpTo(Graph.Auth.route) {inclusive=true}
                 }
             }

@@ -33,13 +33,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.ramcosta.composedestinations.annotation.Destination
 import com.satwik.spaces.R
+import com.satwik.spaces.core.navigation.objects.Graph
+import com.satwik.spaces.core.navigation.objects.Screen
 import com.satwik.spaces.core.ui.components.ButtonType
 import com.satwik.spaces.core.ui.components.SpacesButton
 import com.satwik.spaces.core.ui.components.SpacesTextField
-import com.satwik.spaces.core.navigation.objects.Graph
-import com.satwik.spaces.core.navigation.objects.Screen
 import com.satwik.spaces.core.ui.theme.Black
 import com.satwik.spaces.core.ui.theme.Purple
 import com.satwik.spaces.core.ui.theme.White
@@ -47,7 +46,6 @@ import com.satwik.spaces.core.utils.Constants.CLIENT_ID
 import com.stevdzasan.onetap.OneTapSignInWithGoogle
 import com.stevdzasan.onetap.rememberOneTapSignInState
 
-@Destination
 @Composable
 fun SignUpScreen(
     navController: NavController,
@@ -194,7 +192,7 @@ fun SignUpScreen(
 
         state.user?.let {
             LaunchedEffect(Unit){
-                navController.navigate(Graph.Main.route){
+                navController.navigate(Screen.Explore.route){
                     popUpTo(Graph.Auth.route) {inclusive=true}
                 }
             }
