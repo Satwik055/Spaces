@@ -192,7 +192,7 @@ fun SignUpScreen(
 
         state.user?.let {
             LaunchedEffect(Unit){
-                navController.navigate(Screen.Explore.route){
+                navController.navigate(Screen.Main.route){
                     popUpTo(Graph.Auth.route) {inclusive=true}
                 }
             }
