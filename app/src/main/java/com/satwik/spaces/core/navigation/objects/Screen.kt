@@ -12,11 +12,7 @@ sealed class Screen(val route:String){
     object Search: Screen(route = "search_screen")
     object Signup: Screen(route = "signup_screen")
     object Login: Screen(route = "login_screen")
-    object Checkout: Screen(route = "checkout_screen/" + "{${"propertyId"}}"){
-        fun passId(id: String): String {
-            return "checkout_screen/$id"
-        }
-    }
+    object Checkout: Screen(route = "checkout_screen/" + "{${"propertyId"}}")
     object Location: Screen(route = "location_screen")
     object Booking:Screen(route="booking_screen")
     object PaymentConfirmationScreen: Screen(route = "payment_confirmation_screen")

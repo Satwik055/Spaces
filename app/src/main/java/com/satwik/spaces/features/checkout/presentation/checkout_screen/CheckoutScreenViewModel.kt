@@ -1,4 +1,4 @@
-package com.satwik.spaces.features.payments.presentation.checkout_screen
+package com.satwik.spaces.features.checkout.presentation.checkout_screen
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -18,8 +18,8 @@ import com.satwik.spaces.data.payment.domain.model.Booking
 import com.satwik.spaces.data.payment.domain.use_case.GetCustomerUseCase
 import com.satwik.spaces.data.payment.domain.use_case.InitiatePaymentRequestUseCase
 import com.satwik.spaces.data.property.domain.use_case.GetPropertyByIdUseCase
-import com.satwik.spaces.features.payments.presentation.checkout_screen.states.CheckoutScreenUIState
-import com.satwik.spaces.features.payments.presentation.checkout_screen.states.PaymentsApiResponseState
+import com.satwik.spaces.features.checkout.presentation.checkout_screen.states.CheckoutScreenUIState
+import com.satwik.spaces.features.checkout.presentation.checkout_screen.states.PaymentsApiResponseState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async

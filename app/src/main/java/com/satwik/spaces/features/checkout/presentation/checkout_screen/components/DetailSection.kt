@@ -1,4 +1,4 @@
-package com.satwik.spaces.features.payments.presentation.checkout_screen.components
+package com.satwik.spaces.features.checkout.presentation.checkout_screen.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border

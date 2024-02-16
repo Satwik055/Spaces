@@ -1,4 +1,4 @@
-package com.satwik.spaces.features.payments.presentation.confirmation_screen
+package com.satwik.spaces.features.checkout.presentation.confirmation_screen
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column

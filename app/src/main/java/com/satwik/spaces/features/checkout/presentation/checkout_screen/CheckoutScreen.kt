@@ -1,4 +1,4 @@
-package com.satwik.spaces.features.payments.presentation.checkout_screen
+package com.satwik.spaces.features.checkout.presentation.checkout_screen
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -36,8 +36,8 @@ import com.satwik.spaces.core.ui.theme.Black
 import com.satwik.spaces.core.ui.theme.White
 import com.satwik.spaces.core.ui.theme.poppins
 import com.satwik.spaces.core.utils.Constants
-import com.satwik.spaces.features.payments.presentation.checkout_screen.components.BookingReviewSection
-import com.satwik.spaces.features.payments.presentation.checkout_screen.components.RadioListItem
+import com.satwik.spaces.features.checkout.presentation.checkout_screen.components.BookingReviewSection
+import com.satwik.spaces.features.checkout.presentation.checkout_screen.components.RadioListItem
 import com.stripe.android.PaymentConfiguration
 import com.stripe.android.paymentsheet.PaymentSheet
 import com.stripe.android.paymentsheet.PaymentSheetResult

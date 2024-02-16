@@ -9,9 +9,16 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.satwik.spaces.core.navigation.graphs.mainGraph
 import com.satwik.spaces.core.navigation.objects.Graph
+import com.satwik.spaces.core.navigation.objects.Screen
+import com.satwik.spaces.core.ui.main_screen.navigation.mainScreen
 import com.satwik.spaces.features.authentication.navigation.authGraph
+import com.satwik.spaces.features.bookings.navigation.bookingScreen
+import com.satwik.spaces.features.checkout.navigation.checkoutGraph
+import com.satwik.spaces.features.details.navigation.detailScreen
+import com.satwik.spaces.features.explore.navigation.exploreScreen
+import com.satwik.spaces.features.location.navigation.locationScreen
+import com.satwik.spaces.features.search.navigation.searchScreen
 
 
 @Composable
@@ -20,14 +27,29 @@ fun SetupNavGraph(
 ){
     var startDestination by remember { mutableStateOf("") }
 
-    startDestination = Firebase.auth.currentUser?.let { Graph.Main.route } ?: Graph.Auth.route
+    startDestination = Firebase.auth.currentUser?.let { Screen.Main.route } ?: Graph.Auth.route
 
     NavHost(
         navController = navController,
         startDestination = startDestination
     ){
-        authGraph(navController = navController)
+        authGraph(navController)
 
-        mainGraph(navController = navController)
+        checkoutGraph(navController)
+
+        mainScreen(navController)
+
+        bookingScreen(navController)
+
+        exploreScreen(navController)
+
+        detailScreen(navController)
+
+        searchScreen(navController)
+
+        checkoutGraph(navController)
+
+        locationScreen(navController)
+
     }
 }

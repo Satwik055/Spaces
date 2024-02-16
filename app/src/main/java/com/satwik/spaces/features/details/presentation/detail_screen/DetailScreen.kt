@@ -35,7 +35,7 @@ import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
 import com.maxkeppeler.sheets.calendar.CalendarDialog
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import com.satwik.spaces.R
-import com.satwik.spaces.core.navigation.objects.Screen
+import com.satwik.spaces.core.navigation.objects.Graph
 import com.satwik.spaces.core.ui.components.AmenitiesChip
 import com.satwik.spaces.core.ui.components.DateFeild
 import com.satwik.spaces.core.ui.components.InfoCard
@@ -218,7 +218,7 @@ internal fun Content(
         BottomBarSection(
             price = property.price + "$/Day",
             modifier = Modifier.align(Alignment.BottomCenter),
-            onClick = { navController.navigate(Screen.Checkout.passId(property.id)) }
+            onClick = { navController.navigate(Graph.Checkout.passId(property.id)) }
         )
     }
 }

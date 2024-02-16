@@ -1,4 +1,4 @@
-package com.satwik.spaces.features.payments.presentation.checkout_screen.states
+package com.satwik.spaces.features.checkout.presentation.checkout_screen.states
 
 import com.satwik.spaces.data.payment.domain.model.api_response.PaymentsApiResponse
 
