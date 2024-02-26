@@ -60,9 +60,11 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
     buildFeatures {
         compose = true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
     }
@@ -78,19 +80,27 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
+
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose)
+
     implementation(libs.firebase.auth.ktx)
     implementation(libs.firebase.crashlytics.ktx)
     implementation(libs.firebase.analytics.ktx)
     implementation(libs.firebase.auth)
-    implementation(libs.firebase.firestore.ktx)
+    implementation(libs.firebase.firestore)
+
     testImplementation(libs.bundles.local.unit.test)
-    implementation(libs.coil.compose)
+
+    implementation(libs.coil)
+
     implementation(libs.navigation.compose)
+
     implementation(libs.bundles.hilt)
     kapt(libs.bundles.hilt.compiler)
+
     implementation(libs.bundles.coroutines)
+
     implementation(libs.bundles.maxkeppeler.calender)
     implementation (libs.androidx.core.splashscreen)
     implementation(libs.stevdza.onetapsignin)
@@ -106,5 +116,8 @@ dependencies {
     androidTestImplementation(libs.compose.junit4)
     debugImplementation(libs.compose.tooling)
     debugImplementation(libs.compose.test.manifest)
+
+    implementation(project(":features:booking"))
+
 
 }

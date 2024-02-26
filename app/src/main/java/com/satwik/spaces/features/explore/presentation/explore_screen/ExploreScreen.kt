@@ -53,14 +53,14 @@ fun ExploreScreen(
             Text(
                 text = "Explore a suitable workplace for you",
                 style = MaterialTheme.typography.headlineLarge,
-                fontWeight = FontWeight.W200
+                fontWeight = FontWeight.W200,
             )
 
             Spacer(modifier = Modifier
                 .height(20.dp)
             )
 
-            //----------------Tab Row-------//
+            //----------------Tab Row--------------//
             val tabItems = listOf("Meeting room", "Workspace", "Coffeeshop", "Lounge")
             var selectedTabIndex by remember { mutableIntStateOf(0) }
 

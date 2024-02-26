@@ -17,3 +17,10 @@ dependencyResolutionManagement {
 rootProject.name = "Spaces"
 include(":app")
 include(":benchmark")
+include(":features:booking")
+include(":data:booking")
+include(":core:designsystem")
+include(":core:common")
+include(":core:utils")
+include(":core:di")
+include(":data:property")

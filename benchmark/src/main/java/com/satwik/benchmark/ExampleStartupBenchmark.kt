@@ -1,4 +1,4 @@
-package com.example.benchmark
+package com.satwik.benchmark
 
 import androidx.benchmark.macro.CompilationMode
 import androidx.benchmark.macro.StartupMode

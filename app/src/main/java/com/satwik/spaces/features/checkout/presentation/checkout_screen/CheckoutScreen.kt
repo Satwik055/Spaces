@@ -1,7 +1,5 @@
 package com.satwik.spaces.features.checkout.presentation.checkout_screen
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -61,6 +59,10 @@ fun CheckoutScreen(
 
     val scope = rememberCoroutineScope()
 
+    LaunchedEffect(context) {
+        PaymentConfiguration.init(context, Constants.PUBLISHABLE_KEY)
+    }
+
     LaunchedEffect(isPaymentSuccessful) {
         scope.launch {
             isPaymentSuccessful.collect { isSuccessful ->
@@ -79,10 +81,6 @@ fun CheckoutScreen(
 
     val address = PaymentSheet.Address(country = "IN")
     val billingDetails = PaymentSheet.BillingDetails(address = address)
-
-        LaunchedEffect(context) {
-            PaymentConfiguration.init(context, Constants.PUBLISHABLE_KEY)
-        }
 
         Box(
             modifier = Modifier
@@ -223,7 +221,6 @@ fun onPaymentSheetResult(paymentSheetResult: PaymentSheetResult) {
 
 
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
 fun CheckoutScreenPreview(){
