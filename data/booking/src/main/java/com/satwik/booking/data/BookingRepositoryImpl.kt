@@ -5,10 +5,10 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.ktx.toObject
 import com.satwik.booking.domain.repository.BookingsRepository
 import com.satwik.common.BookedProperty
-import com.satwik.utils.exceptions.NoBookingsFound
-import com.satwik.utils.qualifiers.BookingCollection
-import com.satwik.utils.qualifiers.PropertyCollection
-import com.satwik.utils.qualifiers.UserCollection
+import com.satwik.exceptions.NoBookingsFound
+import com.satwik.qualifiers.BookingCollection
+import com.satwik.qualifiers.PropertyCollection
+import com.satwik.qualifiers.UserCollection
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 

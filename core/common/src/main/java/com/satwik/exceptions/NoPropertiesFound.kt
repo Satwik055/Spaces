@@ -1,3 +1,3 @@
-package com.satwik.utils.exceptions
+package com.satwik.exceptions
 
 class NoPropertiesFound:Exception("Nothing Found")

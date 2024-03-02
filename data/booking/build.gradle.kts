@@ -51,8 +51,6 @@ dependencies {
     implementation(libs.bundles.hilt)
     kapt(libs.bundles.hilt.compiler)
 
-    implementation(project(":core:utils"))
-    implementation(project(":core:di"))
     implementation(project(":core:common"))
 
 

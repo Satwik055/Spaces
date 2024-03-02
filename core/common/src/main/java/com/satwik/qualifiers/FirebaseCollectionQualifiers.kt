@@ -1,4 +1,4 @@
-package com.satwik.utils.qualifiers
+package com.satwik.qualifiers
 
 import javax.inject.Qualifier
 

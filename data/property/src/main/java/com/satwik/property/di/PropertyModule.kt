@@ -3,7 +3,7 @@ package com.satwik.property.di
 import com.google.firebase.firestore.CollectionReference
 import com.satwik.property.data.PropertyRepositoryImpl
 import com.satwik.spaces.data.property.domain.repository.PropertyRepository
-import com.satwik.utils.qualifiers.PropertyCollection
+import com.satwik.qualifiers.PropertyCollection
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
