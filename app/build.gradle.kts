@@ -84,10 +84,10 @@ dependencies {
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose)
 
+    implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth.ktx)
     implementation(libs.firebase.crashlytics.ktx)
     implementation(libs.firebase.analytics.ktx)
-    implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
 
     testImplementation(libs.bundles.local.unit.test)
@@ -105,7 +105,7 @@ dependencies {
     implementation (libs.androidx.core.splashscreen)
     implementation(libs.stevdza.onetapsignin)
     implementation(libs.bundles.retrofit)
-    implementation (libs.stripe.android)
+    implementation (libs.stripe)
     implementation(libs.lottie.compose)
     implementation (libs.androidx.datastore.preferences)
 
