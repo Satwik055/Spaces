@@ -1,4 +1,4 @@
-package com.satwik.spaces.features.checkout.presentation.checkout_screen.components
+package com.satwik.designsystem.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
@@ -19,9 +19,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.satwik.spaces.R
-import com.satwik.spaces.core.ui.theme.poppins
-import com.satwik.spaces.core.ui.theme.White
+import com.satwik.designsystem.theme.White
+import com.satwik.designsystem.theme.poppins
+
 
 @Composable
 fun RadioListItem(
@@ -61,6 +61,6 @@ fun RadioListItem(
 @Preview
 @Composable
 fun RadioListItemPreview(){
-    RadioListItem(R.drawable.ic_creditcard, "Credit/Debit Card", true)
+
 }
 

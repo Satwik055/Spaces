@@ -1,4 +1,4 @@
-package com.satwik.spaces.features.checkout.presentation.confirmation_screen
+package com.satwik.checkout.presentation.confirmation_screen
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,8 +21,7 @@ import androidx.navigation.NavController
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
-import com.satwik.spaces.R
-import com.satwik.spaces.core.navigation.objects.Screen
+import com.satwik.common.Screen
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -47,7 +46,7 @@ fun PaymentConfirmationScreen(
             .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
     ) {
 
-        val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.confirmation_tick_animation))
+        val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(com.satwik.designsystem.R.raw.confirmation_tick_animation))
 
         Column (
         modifier = Modifier

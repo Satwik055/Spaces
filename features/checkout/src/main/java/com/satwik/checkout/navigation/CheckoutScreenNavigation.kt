@@ -1,4 +1,4 @@
-package com.satwik.spaces.features.checkout.navigation
+package com.satwik.checkout.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
@@ -6,11 +6,11 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
-import com.satwik.spaces.core.navigation.objects.Graph
-import com.satwik.spaces.core.navigation.objects.Screen
-import com.satwik.spaces.core.utils.Constants
-import com.satwik.spaces.features.checkout.presentation.checkout_screen.CheckoutScreen
-import com.satwik.spaces.features.checkout.presentation.confirmation_screen.PaymentConfirmationScreen
+import com.satwik.checkout.presentation.checkout_screen.CheckoutScreen
+import com.satwik.checkout.presentation.confirmation_screen.PaymentConfirmationScreen
+import com.satwik.common.Constants
+import com.satwik.common.Graph
+import com.satwik.common.Screen
 
 fun NavGraphBuilder.checkoutGraph(navController:NavController){
     navigation(

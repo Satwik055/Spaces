@@ -122,6 +122,7 @@ dependencies {
     implementation(project(":features:auth"))
     implementation(project(":features:detail"))
     implementation(project(":features:location"))
+    implementation(project(":features:checkout"))
 
     implementation(project(":data:auth"))
 

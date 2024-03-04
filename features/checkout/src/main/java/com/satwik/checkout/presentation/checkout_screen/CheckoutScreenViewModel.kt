@@ -1,5 +1,7 @@
-package com.satwik.spaces.features.checkout.presentation.checkout_screen
+package com.satwik.checkout.presentation.checkout_screen
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
@@ -8,18 +10,18 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FieldValue
-import com.satwik.spaces.core.datastore.DateStore
-import com.satwik.spaces.core.datastore.PeopleStore
-import com.satwik.spaces.core.utils.Constants.CHECKOUT_SCREEN_ARGUMENT_KEY
-import com.satwik.spaces.core.utils.Resource
-import com.satwik.spaces.core.utils.qualifiers.BookingCollection
-import com.satwik.spaces.core.utils.qualifiers.UserCollection
-import com.satwik.spaces.data.payment.domain.model.Booking
-import com.satwik.spaces.data.payment.domain.use_case.GetCustomerUseCase
-import com.satwik.spaces.data.payment.domain.use_case.InitiatePaymentRequestUseCase
-import com.satwik.spaces.data.property.domain.use_case.GetPropertyByIdUseCase
-import com.satwik.spaces.features.checkout.presentation.checkout_screen.states.CheckoutScreenUIState
-import com.satwik.spaces.features.checkout.presentation.checkout_screen.states.PaymentsApiResponseState
+import com.satwik.checkout.presentation.checkout_screen.states.CheckoutScreenUIState
+import com.satwik.checkout.presentation.checkout_screen.states.PaymentsApiResponseState
+import com.satwik.common.Booking
+import com.satwik.common.Constants.CHECKOUT_SCREEN_ARGUMENT_KEY
+import com.satwik.common.Resource
+import com.satwik.datastore.DateStore
+import com.satwik.datastore.PeopleStore
+import com.satwik.di.Tempthree
+import com.satwik.di.Temptwo
+import com.satwik.payment.domain.use_case.GetCustomerUseCase
+import com.satwik.payment.domain.use_case.InitiatePaymentRequestUseCase
+import com.satwik.property.domain.use_case.GetPropertyByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
@@ -28,14 +30,15 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class CheckoutScreenViewModel @Inject constructor(
     private val getPropertyByIdUseCase: GetPropertyByIdUseCase,
     private val initiatePaymentRequestUseCase: InitiatePaymentRequestUseCase,
     private val getCustomerUseCase: GetCustomerUseCase,
-    @BookingCollection private val bookingCollectionReference: CollectionReference,
-    @UserCollection private val userCollection: CollectionReference,
+    @Tempthree private val bookingCollectionReference: CollectionReference,
+    @Temptwo private val userCollection: CollectionReference,
     private val firebaseAuth: FirebaseAuth,
     private val dateStore: DateStore,
     private val peopleStore: PeopleStore,

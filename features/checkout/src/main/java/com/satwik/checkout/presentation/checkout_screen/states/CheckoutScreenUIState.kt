@@ -1,6 +1,6 @@
-package com.satwik.spaces.features.checkout.presentation.checkout_screen.states
+package com.satwik.checkout.presentation.checkout_screen.states
 
-import com.satwik.spaces.data.payment.domain.model.Booking
+import com.satwik.common.Booking
 import com.satwik.spaces.data.property.domain.model.Property
 
 data class CheckoutScreenUIState(

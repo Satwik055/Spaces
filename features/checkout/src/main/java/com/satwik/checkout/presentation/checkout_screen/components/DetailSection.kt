@@ -1,4 +1,4 @@
-package com.satwik.spaces.features.checkout.presentation.checkout_screen.components
+package com.satwik.checkout.presentation.checkout_screen.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -27,10 +27,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.SubcomposeAsyncImage
-import com.satwik.spaces.R
-import com.satwik.spaces.core.ui.theme.Grey
-import com.satwik.spaces.core.ui.theme.White
-import com.satwik.spaces.core.ui.theme.poppins
+import com.satwik.designsystem.theme.Grey
+import com.satwik.designsystem.theme.White
+import com.satwik.designsystem.theme.poppins
+
 
 @Composable
 fun BookingReviewSection(
@@ -127,7 +127,7 @@ fun DateSection(
                 modifier = Modifier.align(Alignment.CenterStart)
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.ic_clock),
+                    painter = painterResource(id = com.satwik.designsystem.R.drawable.ic_clock),
                     contentDescription = null,
                     modifier = Modifier.size(24.dp)
                 )
@@ -145,7 +145,7 @@ fun DateSection(
             }
 
             Image(
-                painter = painterResource(id = R.drawable.ic_arrowright),
+                painter = painterResource(id = com.satwik.designsystem.R.drawable.ic_arrowright),
                 contentDescription = null,
                 modifier = Modifier
                     .align(Alignment.Center)
@@ -168,7 +168,7 @@ fun DateSection(
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Image(painter = painterResource(id = R.drawable.ic_users), contentDescription = null)
+            Image(painter = painterResource(id = com.satwik.designsystem.R.drawable.ic_users), contentDescription = null)
             Spacer(modifier = Modifier.width(8.dp))
             Text(
                 text = "$people people",
