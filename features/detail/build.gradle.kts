@@ -2,10 +2,13 @@
 plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.android.kotlin)
+    id ("kotlin-kapt")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
-    namespace = "com.satwik.designsystem"
+    namespace = "com.satwik.detail"
     compileSdk = 33
 
     defaultConfig {
@@ -46,13 +49,26 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
-
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    //Compose
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose)
-    implementation(libs.coil)
+    implementation(libs.navigation.compose)
+
+    //Calender
+    implementation(libs.bundles.maxkeppeler.calender)
+
+    //Hilt
+    implementation(libs.bundles.hilt)
+    kapt(libs.bundles.hilt.compiler)
+
+    implementation(project(":data:property"))
+    implementation(project(":core:designsystem"))
+    implementation(project(":core:common"))
+    implementation(project(":core:datastore"))
+
 
 }

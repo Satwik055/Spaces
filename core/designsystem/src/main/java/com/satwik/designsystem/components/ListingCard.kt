@@ -59,6 +59,7 @@ fun ListingCard(
                 modifier = Modifier.matchParentSize()
             )
 
+
             Box(
                 modifier = Modifier
                     .matchParentSize()
