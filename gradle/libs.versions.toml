@@ -36,6 +36,7 @@ material = "1.11.0"
 
 firebase-bom = "32.7.3"
 compose-bom = "2024.02.01"
+org-jetbrains-kotlin-jvm = "1.8.10"
 
 
 [libraries]
@@ -119,5 +120,6 @@ google-gms= {id = "com.google.gms.google-services", version.ref ="google-gms"}
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebase-crashlytics-gradle" }
 dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt-android" }
 com-android-library = { id = "com.android.library", version.ref = "android-application" }
+org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
 
 

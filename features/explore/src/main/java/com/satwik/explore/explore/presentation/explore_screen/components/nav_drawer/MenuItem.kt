@@ -1,4 +1,4 @@
-package com.satwik.spaces.features.explore.presentation.explore_screen.components.nav_drawer
+package com.satwik.explore.explore.presentation.explore_screen.components.nav_drawer
 
 data class MenuItem(
     val id:String,

@@ -119,8 +119,12 @@ dependencies {
 
     implementation(project(":features:booking"))
     implementation(project(":features:explore"))
+    implementation(project(":features:auth"))
     implementation(project(":features:detail"))
     implementation(project(":features:location"))
+
+    implementation(project(":data:auth"))
+
 
 
 

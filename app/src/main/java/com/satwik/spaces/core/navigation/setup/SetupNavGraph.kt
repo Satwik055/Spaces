@@ -9,6 +9,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.satwik.auth.navigation.authGraph
 import com.satwik.booking.navigation.bookingScreen
 import com.satwik.detail.navigation.detailScreen
 import com.satwik.explore.explore.navigation.exploreScreen
@@ -16,7 +17,6 @@ import com.satwik.location.navigation.locationScreen
 import com.satwik.spaces.core.navigation.objects.Graph
 import com.satwik.spaces.core.navigation.objects.Screen
 import com.satwik.spaces.core.ui.main_screen.navigation.mainScreen
-import com.satwik.spaces.features.authentication.navigation.authGraph
 import com.satwik.spaces.features.checkout.navigation.checkoutGraph
 import com.satwik.spaces.features.search.navigation.searchScreen
 

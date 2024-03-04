@@ -1,4 +1,4 @@
-package com.satwik.spaces.features.explore.presentation.explore_screen.components.nav_drawer
+package com.satwik.explore.explore.presentation.explore_screen.components.nav_drawer
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

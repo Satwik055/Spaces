@@ -18,9 +18,11 @@
             <option value="$PROJECT_DIR$/core/datastore" />
             <option value="$PROJECT_DIR$/core/designsystem" />
             <option value="$PROJECT_DIR$/data" />
+            <option value="$PROJECT_DIR$/data/auth" />
             <option value="$PROJECT_DIR$/data/booking" />
             <option value="$PROJECT_DIR$/data/property" />
             <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/auth" />
             <option value="$PROJECT_DIR$/features/booking" />
             <option value="$PROJECT_DIR$/features/detail" />
             <option value="$PROJECT_DIR$/features/explore" />
