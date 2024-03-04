@@ -20,6 +20,7 @@
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/data/auth" />
             <option value="$PROJECT_DIR$/data/booking" />
+            <option value="$PROJECT_DIR$/data/payment" />
             <option value="$PROJECT_DIR$/data/property" />
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/auth" />
@@ -27,6 +28,7 @@
             <option value="$PROJECT_DIR$/features/detail" />
             <option value="$PROJECT_DIR$/features/explore" />
             <option value="$PROJECT_DIR$/features/location" />
+            <option value="$PROJECT_DIR$/features/search" />
           </set>
         </option>
       </GradleProjectSettings>
