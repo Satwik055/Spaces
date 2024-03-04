@@ -1,14 +1,17 @@
-package com.satwik.spaces.features.location.presentation.location_screen
+package com.satwik.location.presentation.location_screen
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.satwik.spaces.core.datastore.DateStore
-import com.satwik.spaces.core.datastore.LocationStore
-import com.satwik.spaces.core.datastore.PeopleStore
+import com.satwik.datastore.DateStore
+import com.satwik.datastore.LocationStore
+import com.satwik.datastore.PeopleStore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
 class LocationScreenViewModel @Inject constructor(
     private val locationStore: LocationStore,

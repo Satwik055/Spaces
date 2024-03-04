@@ -1,4 +1,4 @@
-package com.satwik.spaces.features.location.presentation.address_screen
+package com.satwik.location.presentation.address_screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -14,10 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.satwik.spaces.core.ui.components.SpacesButton
-import com.satwik.spaces.core.ui.theme.Black
-import com.satwik.spaces.features.location.presentation.location_screen.LocationScreenViewModel
-import com.satwik.spaces.features.search.presentation.components.SearchBar
+import com.satwik.designsystem.components.SearchBar
+import com.satwik.designsystem.components.SpacesButton
+import com.satwik.designsystem.theme.Black
+import com.satwik.location.presentation.location_screen.LocationScreenViewModel
 
 @Composable
 fun AddressScreen(

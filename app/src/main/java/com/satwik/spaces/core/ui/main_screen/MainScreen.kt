@@ -25,6 +25,7 @@ import com.satwik.booking.presentation.BookingsScreen
 import com.satwik.explore.explore.presentation.explore_screen.ExploreScreen
 import com.satwik.explore.explore.presentation.explore_screen.components.TopAppBar
 import com.satwik.spaces.R
+import com.satwik.spaces.core.navigation.objects.Screen
 import com.satwik.spaces.core.ui.components.nav_drawer.DrawerHeader
 import com.satwik.spaces.core.ui.components.nav_drawer.DrawerItem
 import com.satwik.spaces.core.ui.components.nav_drawer.DrawerItemData
@@ -82,7 +83,7 @@ fun MainScreen(
                     currentState ="New York",
                     searchOnClick = { /*TODO*/ },
                     navDrawerOnClick = { scope.launch { drawerState.apply { if (isClosed) open() else close() } } },
-                    locationOnClick = { /*TODO*/ },
+                    locationOnClick = { navController.navigate(Screen.Location.route) },
                     modifier = Modifier
                         .background(color = Black)
                         .padding(10.dp)

@@ -1,4 +1,4 @@
-package com.satwik.spaces.features.location.presentation.location_screen
+package com.satwik.location.presentation.location_screen
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -38,19 +38,18 @@ import androidx.navigation.compose.rememberNavController
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
 import com.maxkeppeler.sheets.calendar.CalendarDialog
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
-import com.satwik.spaces.R
-import com.satwik.spaces.core.ui.components.DateFeild
-import com.satwik.spaces.core.ui.components.SpacesButton
-import com.satwik.spaces.core.ui.components.SpacesTextField
-import com.satwik.spaces.core.navigation.objects.Screen
-import com.satwik.spaces.core.ui.theme.Black
-import com.satwik.spaces.core.ui.theme.White
-import com.satwik.spaces.features.location.presentation.location_screen.components.Counter
+import com.satwik.common.Screen
+import com.satwik.designsystem.components.DateFeild
+import com.satwik.designsystem.components.SpacesButton
+import com.satwik.designsystem.components.SpacesTextField
+import com.satwik.designsystem.theme.Black
+import com.satwik.designsystem.theme.White
+import com.satwik.location.presentation.location_screen.components.Counter
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun LocationScreen(
     navController: NavController,
@@ -75,7 +74,7 @@ fun LocationScreen(
                     .size(45.dp)
             ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_caretleft),
+                    painter = painterResource(id = com.satwik.designsystem.R.drawable.ic_caretleft),
                     contentDescription = null,
                     tint = White,
                     modifier = Modifier.offset(x = (-10).dp)

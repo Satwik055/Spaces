@@ -1,4 +1,4 @@
-package com.satwik.spaces.features.location.presentation.location_screen.components
+package com.satwik.location.presentation.location_screen.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,11 +16,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.satwik.spaces.R
-import com.satwik.spaces.core.ui.components.SpacesIconButton
-import com.satwik.spaces.core.ui.theme.poppins
-import com.satwik.spaces.core.ui.theme.White
-import com.satwik.spaces.features.location.presentation.location_screen.LocationScreenViewModel
+import com.satwik.designsystem.components.SpacesIconButton
+import com.satwik.designsystem.theme.White
+import com.satwik.designsystem.theme.poppins
+import com.satwik.location.presentation.location_screen.LocationScreenViewModel
 
 @Composable
 fun Counter(
@@ -51,7 +50,7 @@ fun Counter(
             horizontalArrangement = Arrangement.spacedBy(20.dp)
         ){
             SpacesIconButton(
-                icon = R.drawable.ic_plus,
+                icon = com.satwik.designsystem.R.drawable.ic_plus,
                 onClick = { peopleCount++ }
             )
 
@@ -64,7 +63,7 @@ fun Counter(
             )
 
             SpacesIconButton(
-                icon = R.drawable.ic_minus,
+                icon = com.satwik.designsystem.R.drawable.ic_minus,
                 onClick = {
                     if(peopleCount > 1 ) {
                         peopleCount--

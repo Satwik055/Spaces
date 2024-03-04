@@ -24,6 +24,7 @@
             <option value="$PROJECT_DIR$/features/booking" />
             <option value="$PROJECT_DIR$/features/detail" />
             <option value="$PROJECT_DIR$/features/explore" />
+            <option value="$PROJECT_DIR$/features/location" />
           </set>
         </option>
       </GradleProjectSettings>
