@@ -1,9 +1,9 @@
 package com.satwik.property.di
 
 import com.google.firebase.firestore.CollectionReference
+import com.satwik.di.Tempone
 import com.satwik.property.data.PropertyRepositoryImpl
-import com.satwik.spaces.data.property.domain.repository.PropertyRepository
-import com.satwik.qualifiers.PropertyCollection
+import com.satwik.property.domain.repository.PropertyRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +18,7 @@ object PropertyModule {
     @Provides
     @Singleton
     fun providesPropertyRepository(
-        @PropertyCollection propertyCollection: CollectionReference,
+        @Tempone propertyCollection: CollectionReference,
         ): PropertyRepository {
         return PropertyRepositoryImpl(propertyCollection)
     }

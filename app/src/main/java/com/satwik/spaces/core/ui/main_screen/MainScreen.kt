@@ -22,13 +22,13 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.satwik.booking.presentation.BookingsScreen
+import com.satwik.explore.explore.presentation.explore_screen.ExploreScreen
+import com.satwik.explore.explore.presentation.explore_screen.components.TopAppBar
 import com.satwik.spaces.R
 import com.satwik.spaces.core.ui.components.nav_drawer.DrawerHeader
 import com.satwik.spaces.core.ui.components.nav_drawer.DrawerItem
 import com.satwik.spaces.core.ui.components.nav_drawer.DrawerItemData
 import com.satwik.spaces.core.ui.theme.Black
-import com.satwik.spaces.features.explore.presentation.explore_screen.ExploreScreen
-import com.satwik.spaces.features.explore.presentation.explore_screen.components.TopAppBar
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

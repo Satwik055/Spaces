@@ -19,7 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.example.designsystem.R
+import com.satwik.designsystem.R
 import com.satwik.designsystem.theme.Grey
 import com.satwik.designsystem.theme.White
 

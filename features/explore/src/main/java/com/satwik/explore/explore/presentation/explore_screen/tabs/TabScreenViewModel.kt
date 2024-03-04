@@ -1,12 +1,13 @@
-package com.satwik.spaces.features.explore.presentation.explore_screen.tabs
+package com.satwik.explore.explore.presentation.explore_screen.tabs
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.satwik.spaces.core.utils.PropertyType
-import com.satwik.spaces.core.utils.Resource
-import com.satwik.spaces.data.property.domain.use_case.GetPropertiesByTypeUseCase
+import com.satwik.common.PropertyType
+import com.satwik.common.Resource
+import com.satwik.property.domain.use_case.GetPropertiesByTypeUseCase
+import com.satwik.spaces.features.explore.presentation.explore_screen.tabs.TabScreenUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -20,7 +21,7 @@ class TabScreenViewModel @Inject constructor(
     private val _state = mutableStateOf(TabScreenUIState())
     val state: State<TabScreenUIState> = _state
 
-    fun getPropertiesByType(type:PropertyType){
+    fun getPropertiesByType(type: PropertyType){
         getPropertiesByTypeUseCase(type).onEach {result->
             when(result){
                 is Resource.Success-> {

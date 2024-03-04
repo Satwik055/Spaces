@@ -1,7 +1,7 @@
-package com.satwik.spaces.data.property.domain.use_case
+package com.satwik.property.domain.use_case
 
-import com.satwik.spaces.core.utils.Resource
-import com.satwik.spaces.data.property.domain.repository.PropertyRepository
+import com.satwik.common.Resource
+import com.satwik.property.domain.repository.PropertyRepository
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 

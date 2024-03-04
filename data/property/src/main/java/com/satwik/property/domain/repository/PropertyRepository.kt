@@ -1,6 +1,6 @@
-package com.satwik.spaces.data.property.domain.repository
+package com.satwik.property.domain.repository
 
-import com.satwik.spaces.core.utils.PropertyType
+import com.satwik.common.PropertyType
 import com.satwik.spaces.data.property.domain.model.Property
 
 interface PropertyRepository {

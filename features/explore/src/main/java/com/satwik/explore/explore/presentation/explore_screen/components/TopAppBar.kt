@@ -1,4 +1,4 @@
-package com.satwik.spaces.features.explore.presentation.explore_screen.components
+package com.satwik.explore.explore.presentation.explore_screen.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.clickable
@@ -25,10 +25,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.satwik.spaces.R
-import com.satwik.spaces.core.ui.theme.Purple
-import com.satwik.spaces.core.ui.theme.White
-import com.satwik.spaces.core.ui.theme.poppins
+import com.satwik.designsystem.theme.Purple
+import com.satwik.designsystem.theme.White
+import com.satwik.designsystem.theme.poppins
+import com.satwik.explore.R
 
 @Composable
 fun TopAppBar(
@@ -36,9 +36,9 @@ fun TopAppBar(
     currentState:String,
     modifier: Modifier = Modifier,
     @DrawableRes
-    navDrawerIcon:Int = R.drawable.ic_hamburger,
+    navDrawerIcon:Int = com.satwik.designsystem.R.drawable.ic_hamburger,
     @DrawableRes
-    searchIcon:Int = R.drawable.ic_search,
+    searchIcon:Int = com.satwik.designsystem.R.drawable.ic_search,
     iconSize: Dp = 28.dp,
     searchOnClick:() -> Unit,
     locationOnClick:() -> Unit,
@@ -91,7 +91,7 @@ fun CurrentLocation(
     city:String,
     state:String,
     @DrawableRes
-    mapPinIcon:Int = R.drawable.ic_map_pin
+    mapPinIcon:Int = com.satwik.designsystem.R.drawable.ic_map_pin
 ){
     Row(
         modifier = modifier.clickable {onClick.invoke()},

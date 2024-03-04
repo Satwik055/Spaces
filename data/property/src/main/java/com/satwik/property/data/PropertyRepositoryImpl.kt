@@ -4,7 +4,7 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.ktx.toObject
 import com.satwik.common.PropertyType
 import com.satwik.spaces.data.property.domain.model.Property
-import com.satwik.spaces.data.property.domain.repository.PropertyRepository
+import com.satwik.property.domain.repository.PropertyRepository
 import com.satwik.exceptions.NoPropertiesFound
 import com.satwik.qualifiers.PropertyCollection
 import kotlinx.coroutines.tasks.await

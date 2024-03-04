@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.booking"
+    namespace = "com.satwik.explore"
     compileSdk = 33
 
     defaultConfig {
@@ -61,18 +61,15 @@ dependencies {
     //Hilt
     implementation(libs.bundles.hilt)
     kapt(libs.bundles.hilt.compiler)
-    
-    implementation(project(":data:booking"))
+
+    implementation(project(":data:property"))
     implementation(project(":core:designsystem"))
     implementation(project(":core:common"))
 
 
+
+
 //    implementation(project("com.github.Satwik055:LocusUI:1.1"))
-
-
-
-
-
 
 
 }

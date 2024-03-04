@@ -118,6 +118,7 @@ dependencies {
     debugImplementation(libs.compose.test.manifest)
 
     implementation(project(":features:booking"))
+    implementation(project(":features:explore"))
 
 
 }

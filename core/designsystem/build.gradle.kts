@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.designsystem"
+    namespace = "com.satwik.designsystem"
     compileSdk = 33
 
     defaultConfig {

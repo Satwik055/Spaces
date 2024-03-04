@@ -6,7 +6,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.example.designsystem.R
+import com.satwik.designsystem.R
 
 val poppins = FontFamily(
     Font(R.font.poppins_extra_light, FontWeight.ExtraLight),

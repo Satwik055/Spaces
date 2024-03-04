@@ -1,5 +1,5 @@
 
-package com.satwik.spaces.features.explore.presentation.explore_screen
+package com.satwik.explore.explore.presentation.explore_screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -25,11 +25,11 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.satwik.spaces.core.ui.theme.Black
-import com.satwik.spaces.core.ui.theme.Grey
-import com.satwik.spaces.core.ui.theme.White
-import com.satwik.spaces.features.explore.presentation.explore_screen.tabs.screens.CoffeeshopTabScreen
-import com.satwik.spaces.features.explore.presentation.explore_screen.tabs.screens.LoungeTabScreen
+import com.satwik.designsystem.theme.Black
+import com.satwik.designsystem.theme.Grey
+import com.satwik.designsystem.theme.White
+import com.satwik.explore.explore.presentation.explore_screen.tabs.screens.CoffeeshopTabScreen
+import com.satwik.explore.explore.presentation.explore_screen.tabs.screens.LoungeTabScreen
 import com.satwik.spaces.features.explore.presentation.explore_screen.tabs.screens.MeetingroomTabScreen
 import com.satwik.spaces.features.explore.presentation.explore_screen.tabs.screens.WorkspaceTabScreen
 

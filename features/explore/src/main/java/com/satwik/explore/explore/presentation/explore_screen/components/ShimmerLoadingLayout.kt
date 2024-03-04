@@ -1,4 +1,4 @@
-package com.satwik.spaces.features.explore.presentation.explore_screen.components
+package com.satwik.explore.explore.presentation.explore_screen.components
 
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column
@@ -12,9 +12,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.satwik.spaces.core.ui.components.AnimatedShimmerCard
-import com.satwik.spaces.core.ui.components.AnimatedShimmerText
-import com.satwik.spaces.core.ui.components.CardSize
+import com.satwik.designsystem.components.AnimatedShimmerCard
+import com.satwik.designsystem.components.AnimatedShimmerText
+import com.satwik.designsystem.components.CardSize
 
 @Composable
 fun ShimmerLoadingLayout() {
