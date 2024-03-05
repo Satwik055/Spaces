@@ -55,4 +55,6 @@ dependencies {
     implementation(libs.bundles.compose)
     implementation(libs.coil)
 
+    implementation(project(":core:common"))
+
 }

@@ -1,12 +1,12 @@
 package com.satwik.property.data
 
 import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.firestore.toObject
 import com.satwik.common.PropertyType
-import com.satwik.spaces.data.property.domain.model.Property
-import com.satwik.property.domain.repository.PropertyRepository
 import com.satwik.exceptions.NoPropertiesFound
+import com.satwik.property.domain.repository.PropertyRepository
 import com.satwik.qualifiers.PropertyCollection
+import com.satwik.spaces.data.property.domain.model.Property
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 

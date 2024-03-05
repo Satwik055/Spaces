@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,10 +33,10 @@ fun BottomBarSection(
             .background(color = Black)
 
     ){
-        Divider(
-            color = Grey,
+        HorizontalDivider(
+            modifier = Modifier.align(Alignment.TopCenter),
             thickness = 1.dp,
-            modifier = Modifier.align(Alignment.TopCenter)
+            color = Grey
         )
         Text(
             text = price,

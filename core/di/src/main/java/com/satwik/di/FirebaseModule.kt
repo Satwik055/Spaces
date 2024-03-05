@@ -36,13 +36,13 @@ object BookingsModule {
 
     @Provides
     @Singleton
-    @Tempone
+    one
     fun providesPropertyCollectionRef(): CollectionReference {
         return Firebase.firestore.collection("Property")
     }
     @Singleton
     @Provides
-    @Temptwo
+    @UserCollection
     fun providesUserCollectionRef(): CollectionReference {
         return Firebase.firestore.collection("User")
     }

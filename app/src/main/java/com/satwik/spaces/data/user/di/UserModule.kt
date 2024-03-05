@@ -2,7 +2,7 @@ package com.satwik.spaces.data.user.di
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
-import com.satwik.spaces.core.utils.qualifiers.UserCollection
+import com.satwik.qualifiers.UserCollection
 import com.satwik.spaces.data.user.data.repository.UserRepositoryImpl
 import com.satwik.spaces.data.user.domain.repository.UserRepository
 import dagger.Module

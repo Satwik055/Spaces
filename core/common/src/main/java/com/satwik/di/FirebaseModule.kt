@@ -1,33 +1,20 @@
 package com.satwik.di
 
+import android.app.Application
+import android.content.Context
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.satwik.common.Constants
+import com.satwik.qualifiers.BookingCollection
+import com.satwik.qualifiers.PropertyCollection
+import com.satwik.qualifiers.UserCollection
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Qualifier
 import javax.inject.Singleton
-
-
-@Qualifier
-@Retention(AnnotationRetention.BINARY)
-annotation class Tempone
-
-@Qualifier
-@Retention(AnnotationRetention.BINARY)
-annotation class Temptwo
-
-@Qualifier
-@Retention(AnnotationRetention.BINARY)
-annotation class Tempthree
-
-@Qualifier
-@Retention(AnnotationRetention.BINARY)
-annotation class Tempfour
-
 
 
 @Module
@@ -36,25 +23,27 @@ object BookingsModule {
 
     @Provides
     @Singleton
-    @Tempone
+    @PropertyCollection
     fun providesPropertyCollectionRef(): CollectionReference {
-        return Firebase.firestore.collection("Property")
+        return Firebase.firestore.collection(Constants.PROPERTIES)
     }
     @Singleton
     @Provides
-    @Temptwo
+    @UserCollection
     fun providesUserCollectionRef(): CollectionReference {
         return Firebase.firestore.collection("User")
     }
     @Singleton
     @Provides
-    @Tempthree
+    @BookingCollection
     fun providesBookingCollectionRef(): CollectionReference {
         return Firebase.firestore.collection("Booking")
     }
 
     @Provides
     @Singleton
-    @Tempfour
     fun provideFirebaseAuth():FirebaseAuth = FirebaseAuth.getInstance()
+
+    @Provides
+    fun provideContext(application: Application): Context = application.applicationContext
 }

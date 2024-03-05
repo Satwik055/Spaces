@@ -22,6 +22,7 @@
             <option value="$PROJECT_DIR$/data/booking" />
             <option value="$PROJECT_DIR$/data/payment" />
             <option value="$PROJECT_DIR$/data/property" />
+            <option value="$PROJECT_DIR$/data/search" />
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/auth" />
             <option value="$PROJECT_DIR$/features/booking" />

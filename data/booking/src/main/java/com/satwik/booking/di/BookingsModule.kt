@@ -5,10 +5,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.satwik.booking.data.BookingRepositoryImpl
 import com.satwik.booking.domain.repository.BookingsRepository
-import com.satwik.di.Tempfour
-import com.satwik.di.Tempone
-import com.satwik.di.Tempthree
-import com.satwik.di.Temptwo
+import com.satwik.qualifiers.BookingCollection
+import com.satwik.qualifiers.PropertyCollection
+import com.satwik.qualifiers.UserCollection
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,9 +22,9 @@ object BookingsModule {
     @Provides
     @Singleton
     fun providesBookingRepository(
-        @Tempthree bookingCollectionReference: CollectionReference,
-        @Temptwo userCollection: CollectionReference,
-        @Tempone propertyCollection: CollectionReference,
-        @Tempfour firebaseAuth: FirebaseAuth
+        @BookingCollection bookingCollectionReference: CollectionReference,
+        @UserCollection userCollection: CollectionReference,
+        @PropertyCollection propertyCollection: CollectionReference,
+        firebaseAuth: FirebaseAuth
     ): BookingsRepository = BookingRepositoryImpl(bookingCollectionReference, userCollection, propertyCollection, firebaseAuth)
 }

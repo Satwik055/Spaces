@@ -21,17 +21,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.satwik.common.User
 import com.satwik.designsystem.theme.White
 import com.satwik.designsystem.theme.poppins
-
-
-data class User(
-    val uid:String = "",
-    val name:String = "",
-    val email:String = "",
-    val profilePicture:String = "",
-    val bookings:List<String> = emptyList()
-)
 
 @Composable
 fun DrawerHeader(

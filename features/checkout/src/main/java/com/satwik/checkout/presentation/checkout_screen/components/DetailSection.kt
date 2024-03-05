@@ -13,7 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -52,13 +52,13 @@ fun BookingReviewSection(
             address = address,
             thumbnailUrl = thumbnailUrl
         )
-        Divider(thickness = 1.dp, color = Grey)
+        HorizontalDivider(thickness = 1.dp, color = Grey)
         DateSection(
             startDate = startDate,
             endDate = endDate,
             people = people
         )
-        Divider(thickness = 1.dp, color = Grey)
+        HorizontalDivider(thickness = 1.dp, color = Grey)
         Spacer(modifier = Modifier.height(5.dp))
         PriceSection(
             currency = currency,

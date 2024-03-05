@@ -2,7 +2,7 @@ package com.satwik.booking.data
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.firestore.toObject
 import com.satwik.booking.domain.repository.BookingsRepository
 import com.satwik.common.BookedProperty
 import com.satwik.exceptions.NoBookingsFound

@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
@@ -69,7 +69,7 @@ fun ExploreScreen(
                 edgePadding = 0.dp,
                 contentColor = Color.Transparent,
                 containerColor = Color.Transparent,
-                divider = { Divider(thickness = Dp.Hairline) },
+                divider = { HorizontalDivider(thickness = Dp.Hairline) },
 
                 ) {
                 tabItems.forEachIndexed{ index, item ->

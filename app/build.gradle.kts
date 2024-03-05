@@ -123,8 +123,14 @@ dependencies {
     implementation(project(":features:detail"))
     implementation(project(":features:location"))
     implementation(project(":features:checkout"))
+    implementation(project(":features:search"))
+
 
     implementation(project(":data:auth"))
+    implementation(project(":core:designsystem"))
+    implementation(project(":core:common"))
+
+
 
 
 

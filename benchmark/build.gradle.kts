@@ -4,8 +4,8 @@ plugins {
 }
 
 android {
-    namespace = "com.example.benchmark"
-    compileSdk = 33
+    namespace = "com.satwik.benchmark"
+    compileSdk = 34
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -18,7 +18,7 @@ android {
 
     defaultConfig {
         minSdk = 26
-        targetSdk = 33
+        targetSdk = 34
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

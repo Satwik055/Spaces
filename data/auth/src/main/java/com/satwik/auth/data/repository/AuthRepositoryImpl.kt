@@ -4,15 +4,15 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.ktx.toObject
-import com.satwik.auth.domain.model.User
+import com.google.firebase.firestore.toObject
 import com.satwik.auth.domain.repository.AuthRepository
-import com.satwik.di.Temptwo
+import com.satwik.common.User
+import com.satwik.qualifiers.UserCollection
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
-    @Temptwo private val usersCollection: CollectionReference,
+    @UserCollection private val usersCollection: CollectionReference,
     private val firebaseAuth:FirebaseAuth
 ) : AuthRepository {
 

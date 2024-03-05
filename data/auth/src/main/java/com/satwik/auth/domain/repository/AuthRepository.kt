@@ -1,7 +1,7 @@
 package com.satwik.auth.domain.repository
 
 import com.google.firebase.auth.FirebaseUser
-import com.satwik.auth.domain.model.User
+import com.satwik.common.User
 
 
 interface AuthRepository {

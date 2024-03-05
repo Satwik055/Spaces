@@ -17,11 +17,11 @@ import com.satwik.common.Constants.CHECKOUT_SCREEN_ARGUMENT_KEY
 import com.satwik.common.Resource
 import com.satwik.datastore.DateStore
 import com.satwik.datastore.PeopleStore
-import com.satwik.di.Tempthree
-import com.satwik.di.Temptwo
 import com.satwik.payment.domain.use_case.GetCustomerUseCase
 import com.satwik.payment.domain.use_case.InitiatePaymentRequestUseCase
 import com.satwik.property.domain.use_case.GetPropertyByIdUseCase
+import com.satwik.qualifiers.BookingCollection
+import com.satwik.qualifiers.UserCollection
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
@@ -37,8 +37,8 @@ class CheckoutScreenViewModel @Inject constructor(
     private val getPropertyByIdUseCase: GetPropertyByIdUseCase,
     private val initiatePaymentRequestUseCase: InitiatePaymentRequestUseCase,
     private val getCustomerUseCase: GetCustomerUseCase,
-    @Tempthree private val bookingCollectionReference: CollectionReference,
-    @Temptwo private val userCollection: CollectionReference,
+    @BookingCollection private val bookingCollectionReference: CollectionReference,
+    @UserCollection private val userCollection: CollectionReference,
     private val firebaseAuth: FirebaseAuth,
     private val dateStore: DateStore,
     private val peopleStore: PeopleStore,

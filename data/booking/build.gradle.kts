@@ -48,6 +48,7 @@ dependencies {
     implementation(libs.firebase.auth.ktx)
 
 
+    //Hilt
     implementation(libs.bundles.hilt)
     kapt(libs.bundles.hilt.compiler)
 
