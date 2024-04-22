@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.satwik.common"
+    namespace = "com.example.common"
     compileSdk = 33
 
     defaultConfig {

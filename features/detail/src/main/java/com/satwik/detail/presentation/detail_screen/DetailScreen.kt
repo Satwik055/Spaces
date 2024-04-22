@@ -44,7 +44,7 @@ import com.satwik.designsystem.theme.White
 import com.satwik.designsystem.theme.poppins
 import com.satwik.detail.presentation.detail_screen.components.BottomBarSection
 import com.satwik.detail.presentation.detail_screen.components.PropertyInfoSection
-import com.satwik.spaces.data.property.domain.model.Property
+import com.satwik.property.domain.model.Property
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -97,7 +97,7 @@ fun DetailScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun Content(
-    property:Property,
+    property: Property,
     checkinDate:String,
     checkoutDate:String,
     navController: NavController

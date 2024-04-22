@@ -27,15 +27,15 @@ ui-text-google-fonts = "1.6.2"
 maxkeppeler-calender = "1.2.0"
 stevdza-onetapsignin = "1.0.9"
 
-android-application = "8.1.1"
+android-application = "8.1.4"
 android-kotlin = "1.8.10"
-google-gms = "2.44"
-firebase-crashlytics-gradle = "2.9.8"
+google-gms = "4.4.1"
+firebase-crashlytics-gradle = "2.9.9"
 appcompat = "1.6.1"
 material = "1.11.0"
 
-firebase-bom = "32.7.3"
-compose-bom = "2024.02.01"
+firebase-bom = "32.8.0"
+compose-bom = "2024.03.00"
 org-jetbrains-kotlin-jvm = "1.8.10"
 
 
@@ -46,7 +46,6 @@ androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", versi
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore-preferences" }
 androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso-core" }
 androidx-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-junit" }
-androidx-ui-text-google-fonts = { module = "androidx.compose.ui:ui-text-google-fonts", version.ref = "ui-text-google-fonts" }
 core-testing = { module = "android.arch.core:core-testing", version.ref = "core-testing" }
 firebase-crashlytics-gradle = { module = "com.google.firebase:firebase-crashlytics-gradle", version.ref = "google-firebase-crashlytics-gradle" }
 google-services = { module = "com.google.gms:google-services", version.ref = "google-services" }

@@ -1,4 +1,4 @@
-package com.satwik.spaces.data.property.domain.model
+package com.satwik.property.domain.model
 
 data class Property(
     val id:String = "",

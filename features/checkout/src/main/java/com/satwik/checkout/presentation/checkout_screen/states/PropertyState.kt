@@ -1,6 +1,6 @@
 package com.satwik.spaces.features.checkout.presentation.checkout_screen.states
 
-import com.satwik.spaces.data.property.domain.model.Property
+import com.satwik.property.domain.model.Property
 
 data class PropertyState(
     val isLoading:Boolean = false,

@@ -10,7 +10,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.satwik.common.Screen
 import com.satwik.designsystem.components.ListingCard
-import com.satwik.spaces.data.property.domain.model.Property
+import com.satwik.property.domain.model.Property
 
 
 fun LazyListScope.NearYouSection(
