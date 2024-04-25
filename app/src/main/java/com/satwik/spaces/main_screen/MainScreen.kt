@@ -3,12 +3,19 @@ package com.satwik.spaces.main_screen
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -18,6 +25,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -29,6 +37,7 @@ import com.satwik.designsystem.theme.Black
 import com.satwik.explore.explore.presentation.explore_screen.ExploreScreen
 import com.satwik.explore.explore.presentation.explore_screen.components.TopAppBar
 import com.satwik.spaces.R
+import com.satwik.spaces.navigation.model.Graph
 import com.satwik.spaces.navigation.model.Screen
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -71,6 +80,32 @@ fun MainScreen(
                                 drawerState.close()
                             }
                         }
+                    )
+                }
+                Spacer(modifier = Modifier.weight(1f))
+
+
+                HorizontalDivider( modifier = Modifier.padding(horizontal = 16.dp))
+                TextButton(
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp, vertical = 8.dp)
+                        .fillMaxWidth()
+                        .height(50.dp),
+                    shape = RoundedCornerShape(5.dp),
+                    onClick = {
+                        viewModel.logout()
+                        navController.popBackStack()
+                        navController.navigate(Graph.Auth.route) {
+                            popUpTo(Screen.Main.route) { inclusive = true }
+                        }
+                    },
+
+                    ) {
+                    Text(
+                        text = "Logout",
+                        color = Color.Red,
+                        textAlign = TextAlign.Start,
+                        modifier = Modifier.fillMaxWidth()
                     )
                 }
             }

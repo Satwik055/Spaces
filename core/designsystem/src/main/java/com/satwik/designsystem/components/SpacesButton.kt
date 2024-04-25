@@ -29,8 +29,8 @@ enum class ButtonType{
 
 @Composable
 fun SpacesButton(
-    type: ButtonType = ButtonType.REGULAR,
     modifier:Modifier = Modifier,
+    type: ButtonType = ButtonType.REGULAR,
     color:Color = Purple,
     textColor:Color = White,
     text:String,

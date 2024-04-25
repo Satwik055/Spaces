@@ -4,6 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.satwik.auth.domain.repository.AuthRepository
 import com.satwik.auth.domain.use_case.GetCurrentUserUseCase
 import com.satwik.common.User
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,7 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainScreenViewModel @Inject constructor(
-    private val getCurrentSpacesUser: GetCurrentUserUseCase
+    private val getCurrentSpacesUser: GetCurrentUserUseCase,
+    private val authRepository: AuthRepository
 ):ViewModel() {
 
     private val _user=  mutableStateOf(User())
@@ -26,5 +28,9 @@ class MainScreenViewModel @Inject constructor(
         viewModelScope.launch{
             _user.value = getCurrentSpacesUser.invoke()
         }
+    }
+
+    fun logout(){
+        authRepository.logout()
     }
 }

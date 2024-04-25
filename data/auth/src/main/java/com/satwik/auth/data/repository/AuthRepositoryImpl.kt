@@ -38,6 +38,10 @@ class AuthRepositoryImpl @Inject constructor(
         return firebaseUser!!
     }
 
+    override fun logout() {
+        firebaseAuth.signOut()
+    }
+
     override suspend fun getCurrentUser(): User {
         return usersCollection.document(firebaseAuth.uid!!).get().await().toObject<User>()!!
     }
