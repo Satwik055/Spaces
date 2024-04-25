@@ -9,7 +9,7 @@ plugins {
 
 android {
     namespace = "com.satwik.booking"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 24
