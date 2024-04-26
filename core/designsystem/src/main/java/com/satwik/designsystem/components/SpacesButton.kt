@@ -36,7 +36,7 @@ fun SpacesButton(
     text:String,
     fontSize:TextUnit = 18.sp,
     fontWeight: FontWeight = FontWeight.Normal,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ){
     Button(
         onClick = onClick,

@@ -121,6 +121,7 @@ fun SignUpScreen(
             SpacesTextField(
                 text = passwordText,
                 onValueChange ={passwordText=it},
+                isPassword = true,
                 placeholder = "Password",
                 errorText = errorText,
                 isError = isError,

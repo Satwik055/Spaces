@@ -101,6 +101,7 @@ fun LoginScreen(
             SpacesTextField(
                 text = passwordText,
                 onValueChange ={passwordText=it},
+                isPassword = true,
                 placeholder = "Password",
                 modifier = Modifier
                     .fillMaxWidth()

@@ -9,6 +9,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.satwik.designsystem.theme.Grey
@@ -25,6 +27,7 @@ fun SpacesTextField(
     placeholder:String,
     errorText: String = "",
     enabled:Boolean = true,
+    isPassword:Boolean = false,
     isError:Boolean = false
 ){
     OutlinedTextField(
@@ -52,7 +55,10 @@ fun SpacesTextField(
                 fontFamily = fontFamily,
                 fontWeight = FontWeight.Normal
             )
-        }
+        },
+        visualTransformation =
+        if(isPassword){ PasswordVisualTransformation(mask = '\u25CF')}
+        else { VisualTransformation.None },
     )
 
 }
