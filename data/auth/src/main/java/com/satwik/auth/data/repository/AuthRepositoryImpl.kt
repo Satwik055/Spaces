@@ -42,7 +42,7 @@ class AuthRepositoryImpl @Inject constructor(
         firebaseAuth.signOut()
     }
 
-    override suspend fun getCurrentUser(): User {
+    override suspend fun getSpacesCurrentUser(): User {
         return usersCollection.document(firebaseAuth.uid!!).get().await().toObject<User>()!!
     }
 

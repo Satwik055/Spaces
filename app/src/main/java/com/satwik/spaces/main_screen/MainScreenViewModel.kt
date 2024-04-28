@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.satwik.auth.domain.repository.AuthRepository
-import com.satwik.auth.domain.use_case.GetCurrentUserUseCase
+import com.satwik.auth.domain.use_case.GetCurrentSpacesUserUseCase
 import com.satwik.common.User
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainScreenViewModel @Inject constructor(
-    private val getCurrentSpacesUser: GetCurrentUserUseCase,
+    private val getCurrentSpacesUser: GetCurrentSpacesUserUseCase,
     private val authRepository: AuthRepository
 ):ViewModel() {
 

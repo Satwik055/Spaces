@@ -184,6 +184,12 @@ fun SignUpScreen(
                 navController.navigate(Screen.Main.route)
             }
         }
+//        val context = LocalContext.current
+//        if (!oneTapSignInState.successfull){
+//            LaunchedEffect(Unit) {
+//                Toast.makeText(context, "Sign in failed", Toast.LENGTH_SHORT).show()
+//            }
+//        }
 
         if (state.error?.isNotEmpty() == true){
             isError = true
