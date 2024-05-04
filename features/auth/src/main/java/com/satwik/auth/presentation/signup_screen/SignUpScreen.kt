@@ -1,6 +1,7 @@
 package com.satwik.auth.presentation.signup_screen
 
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -25,6 +26,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -52,10 +55,25 @@ fun SignUpScreen(
 ){
 
     val state = viewModel.state.value
+    val formState = viewModel.formState
     val oneTapSignInState = viewModel.oneTapSignInState.value
 
+    val context = LocalContext.current
     var errorText by remember { mutableStateOf("") }
     var isError by remember { mutableStateOf(false) }
+
+    LaunchedEffect(key1 = context) {
+        viewModel.validationEvents.collect{ event->
+            when(event){
+                is SignupScreenViewModel.ValidationEvent.Success ->{
+                    viewModel.signup(formState.email, formState.password, "Test")
+                    Log.d("@@@@", "Thats a Suc")
+                }
+            }
+
+        }
+
+    }
 
     Box (
         modifier = Modifier
@@ -108,19 +126,26 @@ fun SignUpScreen(
 
             var emailText by remember { mutableStateOf("") }
             SpacesTextField(
-                text = emailText,
-                onValueChange ={emailText=it},
+                text = formState.email,
+//                onValueChange ={emailText=it},
+                onValueChange ={ viewModel.onEvent(SignupFormEvent.EmailChanged(it)) },
+                isError = formState.emailError != null,
                 placeholder = "Email",
                 modifier = Modifier
                     .fillMaxWidth()
             )
 
+            if(formState.emailError!=null){
+                Text(text = formState.emailError!!, color = Color.Red)
+            }
+
             Spacer(modifier = Modifier.height(15.dp))
 
             var passwordText by remember { mutableStateOf("") }
             SpacesTextField(
-                text = passwordText,
-                onValueChange ={passwordText=it},
+                text = formState.password,
+//                onValueChange ={passwordText=it},
+                onValueChange = { viewModel.onEvent(SignupFormEvent.PasswordChanged(it)) },
                 isPassword = true,
                 placeholder = "Password",
                 errorText = errorText,
@@ -138,7 +163,10 @@ fun SignUpScreen(
                     true -> ButtonType.LOADING
                     false -> ButtonType.REGULAR
                 }
-            ) {viewModel.signup(emailText, passwordText, usernameText)}
+            ) {
+//                viewModel.signup(emailText, passwordText, usernameText)
+                viewModel.onEvent(SignupFormEvent.Submit)
+            }
 
             Spacer(modifier = Modifier.height(8.dp))
             PrivacyPolicyText()
@@ -211,11 +239,11 @@ fun PrivacyPolicyText() {
     Text(
         text = buildAnnotatedString {
             append("By signing up you agree our ")
-            withStyle(style = SpanStyle(color = Purple)){
+            withStyle(style = SpanStyle(color = Purple)) {
                 append("Privacy Policy ")
             }
             append("and ")
-            withStyle(style = SpanStyle(color = Purple)){
+            withStyle(style = SpanStyle(color = Purple)) {
                 append("Terms and Conditions")
             }
         },

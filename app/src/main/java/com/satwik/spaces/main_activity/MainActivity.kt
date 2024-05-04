@@ -19,7 +19,6 @@ class MainActivity : ComponentActivity() {
     private val viewModel by viewModels<MainActivityViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         installSplashScreen().apply {
             setKeepOnScreenCondition{!viewModel.isReady.value}
         }

@@ -3,7 +3,6 @@ package com.satwik.spaces.details.domain.use_case.get_properties_by_type
 import com.google.common.truth.Truth.assertThat
 import com.satwik.spaces.core.utils.PropertyType
 import com.satwik.spaces.core.utils.Resource
-import com.satwik.spaces.details.data.repository.MockRepository
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
 import org.junit.Before

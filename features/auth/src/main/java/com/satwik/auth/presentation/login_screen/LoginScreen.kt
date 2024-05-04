@@ -49,12 +49,12 @@ fun LoginScreen(
     var errorText by remember { mutableStateOf("") }
     var isError by remember { mutableStateOf(false) }
 
-    Box (
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .padding(start = 16.dp, end = 16.dp)
     ){
-        Column {
+        Column{
 
             Spacer(modifier = Modifier.height(14.dp))
 
@@ -134,7 +134,7 @@ fun LoginScreen(
         )
 
         }
-        if (state.error?.isNotEmpty() == true){
+        if (state.error?.isNotEmpty() == true) {
             isError = true
             errorText = state.error.toString()
         }
@@ -142,7 +142,7 @@ fun LoginScreen(
         state.user?.let {
             LaunchedEffect(Unit){
                 navController.navigate(Screen.Main.route){
-                    popUpTo(Graph.Auth.route) {inclusive=true}
+                    popUpTo(Graph.Auth.route) { inclusive=true}
                 }
             }
         }

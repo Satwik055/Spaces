@@ -66,7 +66,7 @@ dependencies {
     kapt(libs.bundles.hilt.compiler)
 
     //Firebase
-    implementation(platform(libs.firebase.bom))
+//    implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.auth.ktx)
 

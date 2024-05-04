@@ -1,13 +1,13 @@
 @file:Suppress("KOTLIN_SCOPE_VIOLATION")
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
+    id("org.jetbrains.kotlin.android")
     id ("kotlin-kapt")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp") version "1.8.10-1.0.9"
     id("com.google.firebase.crashlytics")
-    id("com.google.devtools.ksp") version "1.6.10-1.0.2"
 }
 
 kotlin {
@@ -84,9 +84,8 @@ dependencies {
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose)
 
-    implementation(platform(libs.firebase.bom))
+//    implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth.ktx)
-    implementation(libs.firebase.crashlytics.ktx)
     implementation(libs.firebase.analytics.ktx)
     implementation(libs.firebase.firestore)
 

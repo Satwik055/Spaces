@@ -43,7 +43,13 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getSpacesCurrentUser(): User {
-        return usersCollection.document(firebaseAuth.uid!!).get().await().toObject<User>()!!
+        val currentUser = usersCollection.document(firebaseAuth.uid!!).get().await().toObject<User>()
+        try {
+            return currentUser!!
+        }
+        catch (e:NullPointerException){
+            throw Exception("No user found")
+        }
     }
 
     override suspend fun oneTapSignIn(tokenId: String) {

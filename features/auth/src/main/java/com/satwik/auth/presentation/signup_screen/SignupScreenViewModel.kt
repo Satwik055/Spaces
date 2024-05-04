@@ -2,27 +2,42 @@ package com.satwik.auth.presentation.signup_screen
 
 
 import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.satwik.auth.SignupFormState
+import com.satwik.auth.ValidateEmailUsecase
+import com.satwik.auth.ValidatePasswordUsecase
 import com.satwik.auth.domain.use_case.OneTapSignInUseCase
 import com.satwik.auth.domain.use_case.SignupUseCase
 import com.satwik.auth.presentation.OneTapSignInState
 import com.satwik.common.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 @HiltViewModel
 class SignupScreenViewModel @Inject constructor(
     private  val signupUseCase: SignupUseCase,
-    private val oneTapSignInUseCase: OneTapSignInUseCase
+    private val oneTapSignInUseCase: OneTapSignInUseCase,
+    private val validateEmailUsecase: ValidateEmailUsecase,
+    private val validatePasswordUsecase: ValidatePasswordUsecase
 ) :ViewModel() {
 
     private val _state = mutableStateOf(SignupUiState())
     val state: State<SignupUiState> = _state
+
+    var formState by mutableStateOf(SignupFormState())
+
+    private val validationEventChannel = Channel<ValidationEvent>()
+    val validationEvents = validationEventChannel.receiveAsFlow()
 
     private val _oneTapSignInState = mutableStateOf(OneTapSignInState())
     val oneTapSignInState: State<OneTapSignInState> = _oneTapSignInState
@@ -46,4 +61,50 @@ class SignupScreenViewModel @Inject constructor(
             }
         }.launchIn(viewModelScope)
     }
+
+    fun onEvent(event:SignupFormEvent){
+        when(event){
+            is SignupFormEvent.EmailChanged ->{
+                formState = formState.copy(email = event.email)
+
+            }
+            is SignupFormEvent.PasswordChanged ->{
+                formState = formState.copy(password = event.password)
+            }
+
+            is SignupFormEvent.Submit -> {
+                submitData()
+            }
+        }
+
+    }
+
+    private fun submitData() {
+        val emailResult = validateEmailUsecase.execute(formState.email)
+        val passwordResult = validatePasswordUsecase.execute(formState.password)
+
+        val hasError = listOf(
+            emailResult,
+            passwordResult
+        ).any{!it.successfull}
+
+        if(hasError){
+            formState = formState.copy(
+                emailError = emailResult.errorMessage,
+                passwordError = passwordResult.errorMessage
+            )
+            return
+        }
+
+        viewModelScope.launch {
+            validationEventChannel.send(ValidationEvent.Success)
+        }
+    }
+
+    sealed class ValidationEvent{
+        object Success:ValidationEvent()
+    }
+
+
+
 }

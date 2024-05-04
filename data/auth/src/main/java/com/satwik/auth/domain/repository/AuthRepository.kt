@@ -8,7 +8,8 @@ interface AuthRepository {
 
     suspend fun signup(email:String, password:String, username:String): FirebaseUser
     suspend fun login(email:String, password:String): FirebaseUser
-    fun logout()
     suspend fun getSpacesCurrentUser(): User
     suspend fun oneTapSignIn(tokenId:String)
+    fun logout()
+
 }
