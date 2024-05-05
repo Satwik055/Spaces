@@ -1,7 +1,6 @@
 package com.satwik.auth.presentation.signup_screen
 
 
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -27,7 +26,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
@@ -49,6 +47,7 @@ import com.satwik.designsystem.theme.White
 import com.stevdzasan.onetap.OneTapSignInWithGoogle
 import com.stevdzasan.onetap.rememberOneTapSignInState
 
+
 @Composable
 fun SignUpScreen(
     navController: NavController,
@@ -60,12 +59,11 @@ fun SignUpScreen(
     val oneTapSignInState = viewModel.oneTapSignInState.value
 
     val context = LocalContext.current
-    var errorText by remember { mutableStateOf("") }
-    var isError by remember { mutableStateOf(false) }
+    var firebaseErrorText by remember { mutableStateOf("") }
 
     var isFormValidated by remember { mutableStateOf(false) }
 
-    LaunchedEffect(context) {
+    LaunchedEffect(Unit) {
         viewModel.validationEvents.collect{ event->
             when(event){
                 is SignupScreenViewModel.ValidationEvent.Success ->{
@@ -79,8 +77,28 @@ fun SignUpScreen(
         viewModel.signup(formState.email, formState.password, "Test")
     }
 
-    LaunchedEffect(errorText) {
-        Toast.makeText(context, errorText, Toast.LENGTH_SHORT ).show()
+    LaunchedEffect(firebaseErrorText) {
+        if(firebaseErrorText.isNotBlank()){
+            Toast.makeText(context, firebaseErrorText, Toast.LENGTH_SHORT ).show()
+        }
+    }
+
+    if (state.error?.isNotEmpty() == true){
+        firebaseErrorText = state.error.toString()
+    }
+
+    state.user?.let {
+        LaunchedEffect(Unit){
+            navController.navigate(Screen.Main.route){
+                popUpTo(Graph.Auth.route) {inclusive=true}
+            }
+        }
+    }
+
+    if(oneTapSignInState.successfull){
+        LaunchedEffect(Unit){
+            navController.navigate(Screen.Main.route)
+        }
     }
 
     Box (
@@ -123,44 +141,36 @@ fun SignUpScreen(
 
             var usernameText by remember { mutableStateOf("") }
             SpacesTextField(
-                text = usernameText,
-                onValueChange ={usernameText=it},
+                text = formState.name,
+                onValueChange ={viewModel.onEvent(SignupFormEvent.NameChanged(it))},
+                isError = formState.nameError != null,
+                errorText = formState.nameError?:"",
                 placeholder = "Name",
-                modifier = Modifier
-                    .fillMaxWidth()
+                modifier = Modifier.fillMaxWidth()
             )
 
             Spacer(modifier = Modifier.height(15.dp))
 
-            var emailText by remember { mutableStateOf("") }
             SpacesTextField(
                 text = formState.email,
-//                onValueChange ={emailText=it},
                 onValueChange ={ viewModel.onEvent(SignupFormEvent.EmailChanged(it)) },
                 isError = formState.emailError != null,
+                errorText = formState.emailError?:"",
                 placeholder = "Email",
                 modifier = Modifier.fillMaxWidth()
             )
 
-            if(formState.emailError!=null){
-                Text(text = formState.emailError!!, color = Color.Red)
-            }
 
             Spacer(modifier = Modifier.height(15.dp))
 
-            var passwordText by remember { mutableStateOf("") }
             SpacesTextField(
                 text = formState.password,
-//                onValueChange ={passwordText=it},
                 onValueChange = { viewModel.onEvent(SignupFormEvent.PasswordChanged(it)) },
                 placeholder = "Password",
-                errorText = errorText,
+                errorText = formState.passwordError?:"",
                 isError = formState.passwordError != null,
                 modifier = Modifier.fillMaxWidth()
             )
-            if(formState.passwordError!=null){
-                Text(text = formState.passwordError!!, color = Color.Red)
-            }
 
             Spacer(modifier = Modifier.height(30.dp))
 
@@ -172,11 +182,7 @@ fun SignUpScreen(
                     false -> ButtonType.REGULAR
                 }
             ) {
-//                viewModel.signup(emailText, passwordText, usernameText)
                 viewModel.onEvent(SignupFormEvent.Submit)
-                Log.d("@Email", formState.email)
-                Log.d("@Password", formState.password)
-
             }
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -194,7 +200,7 @@ fun SignUpScreen(
                 state = tapState,
                 clientId = CLIENT_ID,
                 onTokenIdReceived = { tokenId -> viewModel.oneTapSignIn(tokenId) },
-                onDialogDismissed = { message -> errorText = message }
+                onDialogDismissed = { message -> firebaseErrorText = message }
             )
 
             SpacesButton(
@@ -205,44 +211,32 @@ fun SignUpScreen(
             ) { tapState.open() }
         }
 
-        Text(
-            text = buildAnnotatedString {
-                append("Already have an account ? ")
-                withStyle(style = SpanStyle(color = Purple)){
-                    append("Login")
-                }
-            },
-            style = MaterialTheme.typography.labelSmall,
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .clickable { navController.navigate(Screen.Login.route) }
+        LoginText(
+            onClick = { navController.navigate(Screen.Login.route) },
+            modifier = Modifier.align(Alignment.BottomCenter)
         )
 
-        if(oneTapSignInState.successfull){
-            LaunchedEffect(Unit){
-                navController.navigate(Screen.Main.route)
-            }
-        }
-//        val context = LocalContext.current
-//        if (!oneTapSignInState.successfull){
-//            LaunchedEffect(Unit) {
-//                Toast.makeText(context, "Sign in failed", Toast.LENGTH_SHORT).show()
-//            }
-//        }
 
-        if (state.error?.isNotEmpty() == true){
-            isError = true
-            errorText = state.error.toString()
-        }
 
-        state.user?.let {
-            LaunchedEffect(Unit){
-                navController.navigate(Screen.Main.route){
-                    popUpTo(Graph.Auth.route) {inclusive=true}
-                }
-            }
-        }
+
     }
+}
+
+@Composable
+fun LoginText(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+){
+    Text(
+        modifier = modifier.clickable { onClick.invoke() },
+        style = MaterialTheme.typography.labelSmall,
+        text = buildAnnotatedString {
+            append("Already have an account ? ")
+            withStyle(style = SpanStyle(color = Purple)){
+                append("Login")
+            }
+        },
+    )
 }
 
 @Composable

@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.satwik.auth.SignupFormState
 import com.satwik.auth.ValidateEmailUsecase
+import com.satwik.auth.ValidateNameUsecase
 import com.satwik.auth.ValidatePasswordUsecase
 import com.satwik.auth.domain.use_case.OneTapSignInUseCase
 import com.satwik.auth.domain.use_case.SignupUseCase
@@ -26,7 +27,8 @@ class SignupScreenViewModel @Inject constructor(
     private  val signupUseCase: SignupUseCase,
     private val oneTapSignInUseCase: OneTapSignInUseCase,
     private val validateEmailUsecase: ValidateEmailUsecase,
-    private val validatePasswordUsecase: ValidatePasswordUsecase
+    private val validatePasswordUsecase: ValidatePasswordUsecase,
+    private val validateNameUsecase: ValidateNameUsecase
 ) :ViewModel() {
 
     private val _state = mutableStateOf(SignupUiState())
@@ -67,31 +69,38 @@ class SignupScreenViewModel @Inject constructor(
         when(event){
             is SignupFormEvent.EmailChanged ->{
                 _formState.value = _formState.value.copy(email = event.email)
-
             }
             is SignupFormEvent.PasswordChanged ->{
                 _formState.value = _formState.value.copy(password = event.password)
+            }
+            is SignupFormEvent.NameChanged -> {
+                _formState.value = _formState.value.copy(name = event.name)
             }
 
             is SignupFormEvent.Submit -> {
                 submitData()
             }
+
+
         }
     }
 
     private fun submitData() {
         val emailResult = validateEmailUsecase.execute(_formState.value.email)
         val passwordResult = validatePasswordUsecase.execute(_formState.value.password)
+        val nameResult = validateNameUsecase.execute(_formState.value.name)
 
         val hasError = listOf(
             emailResult,
-            passwordResult
+            passwordResult,
+            nameResult
         ).any{!it.successfull}
 
         if(hasError){
             _formState.value = _formState.value.copy(
                 emailError = emailResult.errorMessage,
-                passwordError = passwordResult.errorMessage
+                passwordError = passwordResult.errorMessage,
+                nameError = nameResult.errorMessage
             )
         }
 
