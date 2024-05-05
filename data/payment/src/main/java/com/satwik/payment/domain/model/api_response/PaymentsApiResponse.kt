@@ -6,6 +6,6 @@ import com.satwik.payment.domain.model.payment_intents.PaymentIntent
 
 data class PaymentsApiResponse(
     val customer: Customer,
-    val ephemeralKey: EphemeralKey,
+    var ephemeralKey: EphemeralKey,
     val paymentIntent: PaymentIntent
 )

@@ -2,6 +2,7 @@ package com.satwik.auth.presentation.signup_screen
 
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -55,24 +56,31 @@ fun SignUpScreen(
 ){
 
     val state = viewModel.state.value
-    val formState = viewModel.formState
+    val formState = viewModel.formState.value
     val oneTapSignInState = viewModel.oneTapSignInState.value
 
     val context = LocalContext.current
     var errorText by remember { mutableStateOf("") }
     var isError by remember { mutableStateOf(false) }
 
-    LaunchedEffect(key1 = context) {
+    var isFormValidated by remember { mutableStateOf(false) }
+
+    LaunchedEffect(context) {
         viewModel.validationEvents.collect{ event->
             when(event){
                 is SignupScreenViewModel.ValidationEvent.Success ->{
-                    viewModel.signup(formState.email, formState.password, "Test")
-                    Log.d("@@@@", "Thats a Suc")
+                    isFormValidated = true
                 }
             }
-
         }
+    }
 
+    if(isFormValidated){
+        viewModel.signup(formState.email, formState.password, "Test")
+    }
+
+    LaunchedEffect(errorText) {
+        Toast.makeText(context, errorText, Toast.LENGTH_SHORT ).show()
     }
 
     Box (
@@ -131,8 +139,7 @@ fun SignUpScreen(
                 onValueChange ={ viewModel.onEvent(SignupFormEvent.EmailChanged(it)) },
                 isError = formState.emailError != null,
                 placeholder = "Email",
-                modifier = Modifier
-                    .fillMaxWidth()
+                modifier = Modifier.fillMaxWidth()
             )
 
             if(formState.emailError!=null){
@@ -146,13 +153,14 @@ fun SignUpScreen(
                 text = formState.password,
 //                onValueChange ={passwordText=it},
                 onValueChange = { viewModel.onEvent(SignupFormEvent.PasswordChanged(it)) },
-                isPassword = true,
                 placeholder = "Password",
                 errorText = errorText,
-                isError = isError,
-                modifier = Modifier
-                    .fillMaxWidth()
+                isError = formState.passwordError != null,
+                modifier = Modifier.fillMaxWidth()
             )
+            if(formState.passwordError!=null){
+                Text(text = formState.passwordError!!, color = Color.Red)
+            }
 
             Spacer(modifier = Modifier.height(30.dp))
 
@@ -166,6 +174,9 @@ fun SignUpScreen(
             ) {
 //                viewModel.signup(emailText, passwordText, usernameText)
                 viewModel.onEvent(SignupFormEvent.Submit)
+                Log.d("@Email", formState.email)
+                Log.d("@Password", formState.password)
+
             }
 
             Spacer(modifier = Modifier.height(8.dp))

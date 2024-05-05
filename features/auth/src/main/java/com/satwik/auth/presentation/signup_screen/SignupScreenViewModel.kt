@@ -2,9 +2,7 @@ package com.satwik.auth.presentation.signup_screen
 
 
 import androidx.compose.runtime.State
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.satwik.auth.SignupFormState
@@ -34,7 +32,10 @@ class SignupScreenViewModel @Inject constructor(
     private val _state = mutableStateOf(SignupUiState())
     val state: State<SignupUiState> = _state
 
-    var formState by mutableStateOf(SignupFormState())
+    private val _formState = mutableStateOf(SignupFormState())
+    val formState: State<SignupFormState> = _formState
+
+
 
     private val validationEventChannel = Channel<ValidationEvent>()
     val validationEvents = validationEventChannel.receiveAsFlow()
@@ -65,23 +66,22 @@ class SignupScreenViewModel @Inject constructor(
     fun onEvent(event:SignupFormEvent){
         when(event){
             is SignupFormEvent.EmailChanged ->{
-                formState = formState.copy(email = event.email)
+                _formState.value = _formState.value.copy(email = event.email)
 
             }
             is SignupFormEvent.PasswordChanged ->{
-                formState = formState.copy(password = event.password)
+                _formState.value = _formState.value.copy(password = event.password)
             }
 
             is SignupFormEvent.Submit -> {
                 submitData()
             }
         }
-
     }
 
     private fun submitData() {
-        val emailResult = validateEmailUsecase.execute(formState.email)
-        val passwordResult = validatePasswordUsecase.execute(formState.password)
+        val emailResult = validateEmailUsecase.execute(_formState.value.email)
+        val passwordResult = validatePasswordUsecase.execute(_formState.value.password)
 
         val hasError = listOf(
             emailResult,
@@ -89,11 +89,10 @@ class SignupScreenViewModel @Inject constructor(
         ).any{!it.successfull}
 
         if(hasError){
-            formState = formState.copy(
+            _formState.value = _formState.value.copy(
                 emailError = emailResult.errorMessage,
                 passwordError = passwordResult.errorMessage
             )
-            return
         }
 
         viewModelScope.launch {
@@ -104,7 +103,4 @@ class SignupScreenViewModel @Inject constructor(
     sealed class ValidationEvent{
         object Success:ValidationEvent()
     }
-
-
-
 }

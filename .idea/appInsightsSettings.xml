@@ -9,10 +9,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.satwik.spaces" />
-                  <option name="mobileSdkAppId" value="1:507948844102:android:63afc678af29d877503647" />
-                  <option name="projectId" value="spaces-c4a39" />
-                  <option name="projectNumber" value="507948844102" />
+                  <option name="appId" value="PLACEHOLDER" />
+                  <option name="mobileSdkAppId" value="" />
+                  <option name="projectId" value="" />
+                  <option name="projectNumber" value="" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
