@@ -1,4 +1,4 @@
-package com.satwik.auth
+package com.satwik.auth.presentation.signup_screen.states
 
 data class SignupFormState(
     val email:String = "",

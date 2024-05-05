@@ -1,4 +1,4 @@
-package com.satwik.auth.presentation
+package com.satwik.auth.presentation.signup_screen.states
 
 data class OneTapSignInState(
     val successfull:Boolean = false,

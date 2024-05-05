@@ -1,9 +1,9 @@
-package com.satwik.auth
+package com.satwik.auth.domain.use_case.precondition
 
 import javax.inject.Inject
 
 class ValidateNameUsecase @Inject constructor() {
-    fun execute(name:String):ValidationResult{
+    fun execute(name:String): ValidationResult {
         if(name.isBlank()){
             return ValidationResult(false, errorMessage = "Please enter your name")
         }

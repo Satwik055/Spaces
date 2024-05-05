@@ -1,10 +1,10 @@
-package com.satwik.auth
+package com.satwik.auth.domain.use_case.precondition
 
 import javax.inject.Inject
 
 class ValidatePasswordUsecase @Inject constructor() {
 
-    fun execute(password:String):ValidationResult{
+    fun execute(password:String): ValidationResult {
         if(password.isBlank()){
             return ValidationResult(false, errorMessage = "Please enter a password")
         }

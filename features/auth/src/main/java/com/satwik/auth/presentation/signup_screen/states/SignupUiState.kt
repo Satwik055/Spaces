@@ -1,4 +1,4 @@
-package com.satwik.auth.presentation.signup_screen
+package com.satwik.auth.presentation.signup_screen.states
 
 import com.google.firebase.auth.FirebaseUser
 
