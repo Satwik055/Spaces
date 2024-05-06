@@ -1,7 +1,6 @@
 package com.satwik.auth.presentation.signup_screen
 
 
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -63,7 +62,7 @@ fun SignUpScreen(
 
     var isFormValidated by remember { mutableStateOf(false) }
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(context) {
         viewModel.validationEvents.collect{ event->
             when(event){
                 is SignupScreenViewModel.ValidationEvent.Success ->{
@@ -77,11 +76,11 @@ fun SignUpScreen(
         viewModel.signup(formState.email, formState.password, "Test")
     }
 
-    LaunchedEffect(firebaseErrorText) {
-        if(firebaseErrorText.isNotBlank()){
-            Toast.makeText(context, firebaseErrorText, Toast.LENGTH_SHORT ).show()
-        }
-    }
+//    LaunchedEffect(firebaseErrorText) {
+//        if(firebaseErrorText.isNotBlank()){
+//            Toast.makeText(context, firebaseErrorText, Toast.LENGTH_SHORT ).show()
+//        }
+//    }
 
     if (state.error?.isNotEmpty() == true){
         firebaseErrorText = state.error.toString()
@@ -139,7 +138,6 @@ fun SignUpScreen(
 
             Spacer(modifier = Modifier.height(53.dp))
 
-            var usernameText by remember { mutableStateOf("") }
             SpacesTextField(
                 text = formState.name,
                 onValueChange ={viewModel.onEvent(SignupFormEvent.NameChanged(it))},
@@ -167,6 +165,7 @@ fun SignUpScreen(
                 text = formState.password,
                 onValueChange = { viewModel.onEvent(SignupFormEvent.PasswordChanged(it)) },
                 placeholder = "Password",
+                isPassword = true,
                 errorText = formState.passwordError?:"",
                 isError = formState.passwordError != null,
                 modifier = Modifier.fillMaxWidth()

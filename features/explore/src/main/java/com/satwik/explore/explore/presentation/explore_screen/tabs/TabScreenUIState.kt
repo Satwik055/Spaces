@@ -1,4 +1,4 @@
-package com.satwik.spaces.features.explore.presentation.explore_screen.tabs
+package com.satwik.explore.explore.presentation.explore_screen.tabs
 
 import com.satwik.property.domain.model.Property
 

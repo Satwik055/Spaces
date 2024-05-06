@@ -4,8 +4,9 @@ import com.satwik.common.Booking
 import com.satwik.property.domain.model.Property
 
 data class CheckoutScreenUIState(
-    val error: String? = null,
+    val error: String = "",
     val isLoading: Boolean = false,
     val booking: Booking? = null,
-    var property: Property? = null
+    var property: Property? = null,
+    val propertyState: PropertyState = PropertyState(),
 )

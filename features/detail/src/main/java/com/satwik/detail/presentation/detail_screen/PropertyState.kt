@@ -5,5 +5,5 @@ import com.satwik.property.domain.model.Property
 data class PropertyState(
     val isLoading:Boolean = false,
     val property: Property? = null,
-    val error: String? = null
+    val error: String = ""
 )

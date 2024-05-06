@@ -54,13 +54,12 @@ val Typography = Typography(
         color = White,
         fontSize = 18.sp,
     ) ,
-
-
     labelSmall = TextStyle(
         fontFamily = fontFamily,
         fontWeight = FontWeight.Medium,
         color = White,
         fontSize = 14.sp,
     ),
+
 )
 

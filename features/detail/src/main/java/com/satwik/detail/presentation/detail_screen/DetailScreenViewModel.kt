@@ -61,7 +61,7 @@ class DetailScreenViewModel@Inject constructor(
                     _state.value.copy(propertyState = PropertyState(property = result.data))
 
                 is Resource.Error -> _state.value =
-                    _state.value.copy(propertyState = PropertyState(error = result.message))
+                    _state.value.copy(propertyState = PropertyState(error = result.message.toString()))
 
                 is Resource.Loading -> _state.value =
                     _state.value.copy(propertyState = PropertyState(isLoading = true))

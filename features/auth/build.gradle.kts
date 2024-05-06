@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.auth"
+    namespace = "com.satwik.auth"
     compileSdk = 34
 
     defaultConfig {

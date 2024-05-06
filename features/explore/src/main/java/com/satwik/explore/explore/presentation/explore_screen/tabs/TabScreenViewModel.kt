@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.satwik.common.PropertyType
 import com.satwik.common.Resource
 import com.satwik.property.domain.use_case.GetPropertiesByTypeUseCase
-import com.satwik.spaces.features.explore.presentation.explore_screen.tabs.TabScreenUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

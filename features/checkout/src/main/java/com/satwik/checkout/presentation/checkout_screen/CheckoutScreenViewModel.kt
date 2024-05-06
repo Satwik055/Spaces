@@ -12,6 +12,7 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FieldValue
 import com.satwik.checkout.presentation.checkout_screen.states.CheckoutScreenUIState
 import com.satwik.checkout.presentation.checkout_screen.states.PaymentsApiResponseState
+import com.satwik.checkout.presentation.checkout_screen.states.PropertyState
 import com.satwik.common.Booking
 import com.satwik.common.Constants.CHECKOUT_SCREEN_ARGUMENT_KEY
 import com.satwik.common.Resource
@@ -52,16 +53,15 @@ class CheckoutScreenViewModel @Inject constructor(
     val paymentsApiResponseState: State<PaymentsApiResponseState> = _paymentsApiResponseState
 
     init {
-        savedStateHandle.get<String>(CHECKOUT_SCREEN_ARGUMENT_KEY)?.let {
+        savedStateHandle.get<String>(CHECKOUT_SCREEN_ARGUMENT_KEY)?.let { propertyId->
             initiateBooking(
                 uid = firebaseAuth.uid!!,
                 checkinDate = getCheckinDateFromDataStore(),
                 checkoutDate = getCheckoutDateFromDataStore(),
-                propertyId = it,
+                propertyId = propertyId,
                 people = getPeopleFromDataStore()
             )
         }
-
     }
 
     private fun getCheckinDateFromDataStore(): String {
@@ -110,13 +110,13 @@ class CheckoutScreenViewModel @Inject constructor(
         getPropertyByIdUseCase(propertyId).onEach { result->
             when(result){
                 is Resource.Success->
-                    _checkoutScreenUIState.value = _checkoutScreenUIState.value.copy(property = result.data)
+                    _checkoutScreenUIState.value = _checkoutScreenUIState.value.copy(propertyState = PropertyState(property = result.data))
 
                 is Resource.Error->
-                    _checkoutScreenUIState.value =_checkoutScreenUIState.value.copy(error = result.message?:"An unexpected error occurred")
+                    _checkoutScreenUIState.value =_checkoutScreenUIState.value.copy(propertyState = PropertyState(error = result.message?:"An unexpected error occurred"))
 
                 is Resource.Loading->
-                    _checkoutScreenUIState.value = _checkoutScreenUIState.value.copy(isLoading = true)
+                    _checkoutScreenUIState.value = _checkoutScreenUIState.value.copy(propertyState = PropertyState(isLoading = true))
             }
         }.launchIn(viewModelScope)
     }
@@ -136,7 +136,7 @@ class CheckoutScreenViewModel @Inject constructor(
             if(error==null){
                 initiatePaymentRequestUseCase(customerId.getCompleted(), amount).onEach { response->
                     when(response){
-                        is Resource.Error -> _paymentsApiResponseState.value = PaymentsApiResponseState(error = response.message)
+                        is Resource.Error -> _paymentsApiResponseState.value = PaymentsApiResponseState(error = response.message.toString())
                         is Resource.Success -> _paymentsApiResponseState.value = PaymentsApiResponseState(data = response.data)
                         is Resource.Loading -> {}
                     }

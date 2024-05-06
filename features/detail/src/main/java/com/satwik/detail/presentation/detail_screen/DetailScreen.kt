@@ -63,33 +63,35 @@ fun DetailScreen(
 
     ) {
 
-        if(propertyState.isLoading){
-            CircularProgressIndicator(
-                modifier = Modifier.align(Alignment.Center),
-                color = Purple
-            )
-        }
+        when {
+            propertyState.isLoading -> {
+                CircularProgressIndicator(
+                    modifier = Modifier.align(Alignment.Center),
+                    color = Purple
+                )
+            }
 
-        if(propertyState.error?.isNotBlank() == true) {
-            Text(
-                text = propertyState.error,
-                style = TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = false)),
-                fontFamily = poppins,
-                fontWeight = FontWeight.Normal,
-                color = White,
-                fontSize = 15.sp,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.align(Alignment.Center)
-            )
-        }
+            propertyState.error.isNotBlank() ->
+                Text(
+                    text = propertyState.error,
+                    style = TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = false)),
+                    fontFamily = poppins,
+                    fontWeight = FontWeight.Normal,
+                    color = White,
+                    fontSize = 15.sp,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.align(Alignment.Center)
+                )
 
-        propertyState.property?.let {
-            Content(
-                property = propertyState.property,
-                checkinDate = checkinDate,
-                checkoutDate =  checkoutDate,
-                navController = navController
-            )
+            else->
+                propertyState.property?.let {
+                    Content(
+                        property = propertyState.property,
+                        checkinDate = checkinDate,
+                        checkoutDate =  checkoutDate,
+                        navController = navController
+                    )
+                }
         }
     }
 }
