@@ -10,9 +10,8 @@ import com.satwik.auth.domain.use_case.SignupUseCase
 import com.satwik.auth.domain.use_case.precondition.ValidateEmailUsecase
 import com.satwik.auth.domain.use_case.precondition.ValidateNameUsecase
 import com.satwik.auth.domain.use_case.precondition.ValidatePasswordUsecase
-import com.satwik.auth.presentation.signup_screen.states.OneTapSignInState
+import com.satwik.auth.presentation.signup_screen.states.AuthenticationState
 import com.satwik.auth.presentation.signup_screen.states.SignupFormState
-import com.satwik.auth.presentation.signup_screen.states.SignupUiState
 import com.satwik.common.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -32,26 +31,24 @@ class SignupScreenViewModel @Inject constructor(
     private val validateNameUsecase: ValidateNameUsecase
 ) :ViewModel() {
 
-    private val _state = mutableStateOf(SignupUiState())
-    val state: State<SignupUiState> = _state
+    private val _emailAuthState = mutableStateOf(AuthenticationState())
+    val emailAuthState: State<AuthenticationState> = _emailAuthState
 
     private val _formState = mutableStateOf(SignupFormState())
     val formState: State<SignupFormState> = _formState
 
-
-
     private val validationEventChannel = Channel<ValidationEvent>()
     val validationEvents = validationEventChannel.receiveAsFlow()
 
-    private val _oneTapSignInState = mutableStateOf(OneTapSignInState())
-    val oneTapSignInState: State<OneTapSignInState> = _oneTapSignInState
+    private val _googleAuthState = mutableStateOf(AuthenticationState())
+    val googleAuthState: State<AuthenticationState> = _googleAuthState
 
     fun oneTapSignIn(tokenId:String){
         oneTapSignInUseCase(tokenId).onEach {result->
             when(result){
-                is Resource.Error -> _oneTapSignInState.value = OneTapSignInState(error = result.message)
-                is Resource.Success -> _oneTapSignInState.value = OneTapSignInState(successfull = true)
-                is Resource.Loading -> {}
+                is Resource.Error -> _googleAuthState.value = AuthenticationState(error = result.message.toString())
+                is Resource.Success -> _googleAuthState.value = AuthenticationState(successfull = true)
+                is Resource.Loading -> {_googleAuthState.value = AuthenticationState(isLoading = true)}
             }
         }.launchIn(viewModelScope)
     }
@@ -59,9 +56,9 @@ class SignupScreenViewModel @Inject constructor(
     fun signup(email:String, password:String, username:String){
         signupUseCase(email, password, username).onEach {result->
             when(result){
-                is Resource.Error -> _state.value = SignupUiState(error = result.message)
-                is Resource.Loading -> _state.value = SignupUiState(isLoading = true)
-                is Resource.Success -> _state.value = SignupUiState(user = result.data)
+                is Resource.Error -> _emailAuthState.value = AuthenticationState(error = result.message.toString())
+                is Resource.Loading -> _emailAuthState.value = AuthenticationState(isLoading = true)
+                is Resource.Success -> _emailAuthState.value = AuthenticationState(successfull = true)
             }
         }.launchIn(viewModelScope)
     }
@@ -104,9 +101,10 @@ class SignupScreenViewModel @Inject constructor(
                 nameError = nameResult.errorMessage
             )
         }
-
-        viewModelScope.launch {
-            validationEventChannel.send(ValidationEvent.Success)
+        else{
+            viewModelScope.launch {
+                validationEventChannel.send(ValidationEvent.Success)
+            }
         }
     }
 

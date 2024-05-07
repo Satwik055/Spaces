@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.satwik.booking"
+    namespace = "com.example.booking"
     compileSdk = 34
 
     defaultConfig {

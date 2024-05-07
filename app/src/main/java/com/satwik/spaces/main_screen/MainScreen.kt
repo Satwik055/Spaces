@@ -51,7 +51,7 @@ fun MainScreen(
 
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
-    val user = viewModel.user.value
+    val currentUser = viewModel.user.value
 
     val drawerItems = listOf(
         DrawerItemData(label = "Explore", icon = R.drawable.ic_map),
@@ -67,7 +67,7 @@ fun MainScreen(
                 modifier= Modifier.width(310.dp),
                 drawerContainerColor = Color(0xFF101010)
             ){
-                DrawerHeader(user)
+                DrawerHeader(currentUser)
                 drawerItems.forEachIndexed{index, item ->
                     DrawerItem(
                         label = item.label,

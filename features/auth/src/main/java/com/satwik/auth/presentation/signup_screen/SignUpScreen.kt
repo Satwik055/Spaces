@@ -1,9 +1,9 @@
 package com.satwik.auth.presentation.signup_screen
 
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -34,6 +34,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.satwik.auth.presentation.signup_screen.states.AuthenticationState
+import com.satwik.auth.presentation.signup_screen.states.SignupFormState
 import com.satwik.common.Constants.CLIENT_ID
 import com.satwik.common.Graph
 import com.satwik.common.Screen
@@ -43,6 +45,7 @@ import com.satwik.designsystem.components.SpacesTextField
 import com.satwik.designsystem.theme.Black
 import com.satwik.designsystem.theme.Purple
 import com.satwik.designsystem.theme.White
+import com.stevdzasan.onetap.OneTapSignInState
 import com.stevdzasan.onetap.OneTapSignInWithGoogle
 import com.stevdzasan.onetap.rememberOneTapSignInState
 
@@ -52,15 +55,19 @@ fun SignUpScreen(
     navController: NavController,
     viewModel: SignupScreenViewModel = hiltViewModel(),
 ){
-
-    val state = viewModel.state.value
+    val emailAuthState = viewModel.emailAuthState.value
+    val googleAuthState = viewModel.googleAuthState.value
     val formState = viewModel.formState.value
-    val oneTapSignInState = viewModel.oneTapSignInState.value
-
     val context = LocalContext.current
-    var firebaseErrorText by remember { mutableStateOf("") }
-
     var isFormValidated by remember { mutableStateOf(false) }
+    val tapState = rememberOneTapSignInState()
+
+    OneTapSignInWithGoogle(
+        state = tapState,
+        clientId = CLIENT_ID,
+        onTokenIdReceived = { tokenId -> viewModel.oneTapSignIn(tokenId) },
+        onDialogDismissed = { message -> Toast.makeText(context, message, Toast.LENGTH_SHORT).show() }
+    )
 
     LaunchedEffect(context) {
         viewModel.validationEvents.collect{ event->
@@ -72,152 +79,157 @@ fun SignUpScreen(
         }
     }
 
-    if(isFormValidated){
-        viewModel.signup(formState.email, formState.password, "Test")
-    }
-
-//    LaunchedEffect(firebaseErrorText) {
-//        if(firebaseErrorText.isNotBlank()){
-//            Toast.makeText(context, firebaseErrorText, Toast.LENGTH_SHORT ).show()
-//        }
-//    }
-
-    if (state.error?.isNotEmpty() == true){
-        firebaseErrorText = state.error.toString()
-    }
-
-    state.user?.let {
-        LaunchedEffect(Unit){
-            navController.navigate(Screen.Main.route){
-                popUpTo(Graph.Auth.route) {inclusive=true}
+    when{
+        emailAuthState.error.isNotBlank() || googleAuthState.error.isNotBlank() ->
+            LaunchedEffect(Unit) {
+                Toast.makeText(context, emailAuthState.error, Toast.LENGTH_SHORT ).show()
             }
-        }
+        googleAuthState.error.isNotBlank() ->
+            LaunchedEffect(Unit) {
+                Toast.makeText(context,googleAuthState.error, Toast.LENGTH_SHORT ).show()
+            }
+
+        emailAuthState.successfull || googleAuthState.successfull ->
+            LaunchedEffect(Unit){
+                navController.navigate(Screen.Main.route){
+                    popUpTo(Graph.Auth.route) {inclusive=true} 
+                } 
+            }
     }
 
-    if(oneTapSignInState.successfull){
-        LaunchedEffect(Unit){
-            navController.navigate(Screen.Main.route)
-        }
-    }
+    Content(
+        viewModel = viewModel,
+        navController = navController,
+        formState = formState,
+        emailAuthState = emailAuthState,
+        googleAuthState = googleAuthState,
+        isFormValidated = isFormValidated,
+        tapState = tapState
+    )
+}
 
-    Box (
+@Composable
+internal fun Content(
+    viewModel: SignupScreenViewModel,
+    navController: NavController,
+    formState: SignupFormState,
+    emailAuthState: AuthenticationState,
+    googleAuthState: AuthenticationState,
+    isFormValidated: Boolean,
+    tapState: OneTapSignInState
+    ) {
+    Column (
         modifier = Modifier
             .fillMaxSize()
             .background(Black)
             .padding(start = 16.dp, end = 16.dp)
     ){
 
-        Column {
+        Spacer(modifier = Modifier.height(14.dp))
 
-            Spacer(modifier = Modifier.height(14.dp))
-
-            IconButton(onClick = { /*TODO*/},
-                modifier = Modifier
-                    .size(45.dp)
-                    .align(Alignment.Start)
-            ) {
-                Icon(
-                    painter = painterResource(id = com.satwik.designsystem.R.drawable.ic_caretleft),
-                    contentDescription = null,
-                    tint = White,
-                    modifier = Modifier.offset(x= (-10).dp)
-                )
-            }
-
-            Spacer(modifier = Modifier.height(30.dp))
-
-            Text(
-                text = "Sign Up",
-                style = MaterialTheme.typography.headlineLarge
+        IconButton(
+            onClick = {/*TODO*/},
+            modifier = Modifier
+                .size(45.dp)
+                .align(Alignment.Start)
+        ) {
+            Icon(
+                painter = painterResource(id = com.satwik.designsystem.R.drawable.ic_caretleft),
+                contentDescription = null,
+                tint = White,
+                modifier = Modifier.offset(x= (-10).dp)
             )
-
-            Text(
-                text = "Please signup to continue",
-                style = MaterialTheme.typography.titleMedium
-            )
-
-            Spacer(modifier = Modifier.height(53.dp))
-
-            SpacesTextField(
-                text = formState.name,
-                onValueChange ={viewModel.onEvent(SignupFormEvent.NameChanged(it))},
-                isError = formState.nameError != null,
-                errorText = formState.nameError?:"",
-                placeholder = "Name",
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            Spacer(modifier = Modifier.height(15.dp))
-
-            SpacesTextField(
-                text = formState.email,
-                onValueChange ={ viewModel.onEvent(SignupFormEvent.EmailChanged(it)) },
-                isError = formState.emailError != null,
-                errorText = formState.emailError?:"",
-                placeholder = "Email",
-                modifier = Modifier.fillMaxWidth()
-            )
-
-
-            Spacer(modifier = Modifier.height(15.dp))
-
-            SpacesTextField(
-                text = formState.password,
-                onValueChange = { viewModel.onEvent(SignupFormEvent.PasswordChanged(it)) },
-                placeholder = "Password",
-                isPassword = true,
-                errorText = formState.passwordError?:"",
-                isError = formState.passwordError != null,
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            Spacer(modifier = Modifier.height(30.dp))
-
-            SpacesButton(
-                text = "Signup",
-                type =
-                when(state.isLoading){
-                    true -> ButtonType.LOADING
-                    false -> ButtonType.REGULAR
-                }
-            ) {
-                viewModel.onEvent(SignupFormEvent.Submit)
-            }
-
-            Spacer(modifier = Modifier.height(8.dp))
-            PrivacyPolicyText()
-
-
-            Spacer(modifier = Modifier.height(50.dp))
-
-            HorizontalDivider()
-
-            Spacer(modifier = Modifier.height(30.dp))
-
-            val tapState = rememberOneTapSignInState()
-            OneTapSignInWithGoogle(
-                state = tapState,
-                clientId = CLIENT_ID,
-                onTokenIdReceived = { tokenId -> viewModel.oneTapSignIn(tokenId) },
-                onDialogDismissed = { message -> firebaseErrorText = message }
-            )
-
-            SpacesButton(
-                text = "Continue with google",
-                color = White,
-                fontSize = 16.sp,
-                textColor = Black
-            ) { tapState.open() }
         }
 
-        LoginText(
-            onClick = { navController.navigate(Screen.Login.route) },
-            modifier = Modifier.align(Alignment.BottomCenter)
+        Spacer(modifier = Modifier.height(30.dp))
+
+        Text(
+            text = "Sign Up",
+            style = MaterialTheme.typography.headlineLarge
+        )
+
+        Text(
+            text = "Please signup to continue",
+            style = MaterialTheme.typography.titleMedium
+        )
+
+        Spacer(modifier = Modifier.height(53.dp))
+
+        SpacesTextField(
+            text = formState.name,
+            onValueChange ={viewModel.onEvent(SignupFormEvent.NameChanged(it))},
+            isError = formState.nameError != null,
+            errorText = formState.nameError?:"",
+            placeholder = "Name",
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Spacer(modifier = Modifier.height(15.dp))
+
+        SpacesTextField(
+            text = formState.email,
+            onValueChange ={ viewModel.onEvent(SignupFormEvent.EmailChanged(it)) },
+            isError = formState.emailError != null,
+            errorText = formState.emailError?:"",
+            placeholder = "Email",
+            modifier = Modifier.fillMaxWidth()
         )
 
 
+        Spacer(modifier = Modifier.height(15.dp))
 
+        SpacesTextField(
+            text = formState.password,
+            onValueChange = { viewModel.onEvent(SignupFormEvent.PasswordChanged(it)) },
+            placeholder = "Password",
+            isPassword = true,
+            errorText = formState.passwordError?:"",
+            isError = formState.passwordError != null,
+            modifier = Modifier.fillMaxWidth()
+        )
 
+        Spacer(modifier = Modifier.height(30.dp))
+
+        SpacesButton(
+            text = "Signup",
+            type = when(emailAuthState.isLoading){
+                true -> ButtonType.LOADING
+                false -> ButtonType.REGULAR
+            },
+            onClick = {
+                viewModel.onEvent(SignupFormEvent.Submit)
+                if(isFormValidated){
+                    viewModel.signup(formState.email, formState.password, formState.name)
+                }
+            }
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+
+        PrivacyPolicyText()
+
+        Spacer(modifier = Modifier.height(50.dp))
+
+        HorizontalDivider()
+
+        Spacer(modifier = Modifier.height(30.dp))
+
+        SpacesButton(
+            text = "Continue with google",
+            color = White,
+            fontSize = 16.sp,
+            textColor = Black,
+            onClick = { tapState.open() },
+            type = when (googleAuthState.isLoading) {
+                true -> ButtonType.LOADING
+                false -> ButtonType.REGULAR
+            }
+        )
+
+        Spacer(modifier = Modifier.weight(1f))
+
+        LoginText(
+            onClick = { navController.navigate(Screen.Login.route) },
+        )
     }
 }
 

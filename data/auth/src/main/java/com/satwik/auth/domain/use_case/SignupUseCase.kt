@@ -12,7 +12,7 @@ class SignupUseCase @Inject constructor(private val repository: AuthRepository) 
             emit(Resource.Success(repository.signup(email, password, username)))
         }
         catch (e:Exception){
-            emit(Resource.Error(e.localizedMessage?:"Something went wrong"))
+            emit(Resource.Error(e.message?:"Something went wrong"))
             e.printStackTrace()
         }
     }

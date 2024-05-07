@@ -21,6 +21,7 @@ class MainScreenViewModel @Inject constructor(
     val user: State<User> = _user
 
     init {
+        //Gets current user to display it in nav-drawer header
         getCurrentSpacesUser()
     }
 
