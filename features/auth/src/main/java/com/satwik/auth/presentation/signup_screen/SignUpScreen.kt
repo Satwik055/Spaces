@@ -34,8 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.satwik.auth.presentation.signup_screen.states.AuthenticationState
-import com.satwik.auth.presentation.signup_screen.states.SignupFormState
+import com.satwik.auth.common.AuthenticationState
 import com.satwik.common.Constants.CLIENT_ID
 import com.satwik.common.Graph
 import com.satwik.common.Screen
@@ -88,7 +87,6 @@ fun SignUpScreen(
             LaunchedEffect(Unit) {
                 Toast.makeText(context,googleAuthState.error, Toast.LENGTH_SHORT ).show()
             }
-
         emailAuthState.successfull || googleAuthState.successfull ->
             LaunchedEffect(Unit){
                 navController.navigate(Screen.Main.route){
@@ -117,7 +115,8 @@ internal fun Content(
     googleAuthState: AuthenticationState,
     isFormValidated: Boolean,
     tapState: OneTapSignInState
-    ) {
+    )
+{
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -228,6 +227,7 @@ internal fun Content(
         Spacer(modifier = Modifier.weight(1f))
 
         LoginText(
+            modifier = Modifier.align(Alignment.CenterHorizontally),
             onClick = { navController.navigate(Screen.Login.route) },
         )
     }
@@ -266,3 +266,4 @@ fun PrivacyPolicyText() {
         style = MaterialTheme.typography.labelSmall,
     )
 }
+

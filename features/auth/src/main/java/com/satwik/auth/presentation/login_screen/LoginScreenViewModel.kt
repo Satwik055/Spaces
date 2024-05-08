@@ -4,9 +4,10 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.satwik.auth.common.AuthenticationState
 import com.satwik.auth.domain.use_case.LoginUseCase
-import com.satwik.auth.domain.use_case.precondition.ValidateEmailUsecase
-import com.satwik.auth.domain.use_case.precondition.ValidatePasswordUsecase
+import com.satwik.auth.domain.use_case.login_precondition.ValidateEmailUsecase
+import com.satwik.auth.domain.use_case.login_precondition.ValidatePasswordUsecase
 import com.satwik.common.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -18,13 +19,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginScreenViewModel @Inject constructor(
-    private  val loginUseCase: LoginUseCase,
+    private val loginUseCase: LoginUseCase,
     private val validateEmailUsecase: ValidateEmailUsecase,
     private val validatePasswordUsecase: ValidatePasswordUsecase
 ) : ViewModel() {
 
-    private val _state = mutableStateOf(LoginUiState())
-    val state: State<LoginUiState> = _state
+    private val _emailAuthState = mutableStateOf(AuthenticationState())
+    val emailAuthState: State<AuthenticationState> = _emailAuthState
 
     private val _formState = mutableStateOf(LoginFormState())
     val formState: State<LoginFormState> = _formState
@@ -58,9 +59,10 @@ class LoginScreenViewModel @Inject constructor(
                 passwordError = passwordResult.errorMessage,
             )
         }
-
-        viewModelScope.launch {
-            validationEventChannel.send(ValidationEvent.Success)
+        else{
+            viewModelScope.launch {
+                validationEventChannel.send(ValidationEvent.Success)
+            }
         }
     }
 
@@ -68,9 +70,9 @@ class LoginScreenViewModel @Inject constructor(
     fun login(email:String, password:String){
         loginUseCase(email, password).onEach {result->
             when(result){
-                is Resource.Error -> _state.value = LoginUiState(error = result.message)
-                is Resource.Loading -> _state.value = LoginUiState(isLoading = true)
-                is Resource.Success -> _state.value = LoginUiState(user = result.data)
+                is Resource.Error -> _emailAuthState.value = AuthenticationState(error = result.message.toString())
+                is Resource.Loading -> _emailAuthState.value = AuthenticationState(isLoading = true)
+                is Resource.Success -> _emailAuthState.value = AuthenticationState(successfull = true)
             }
         }.launchIn(viewModelScope)
     }

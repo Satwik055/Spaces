@@ -1,4 +1,4 @@
-package com.satwik.auth.domain.use_case.precondition
+package com.satwik.auth.domain.use_case.signup_precondition
 
 import android.util.Patterns
 import javax.inject.Inject

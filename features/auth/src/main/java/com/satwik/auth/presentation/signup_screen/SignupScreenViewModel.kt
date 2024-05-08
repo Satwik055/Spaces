@@ -5,13 +5,12 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.satwik.auth.common.AuthenticationState
 import com.satwik.auth.domain.use_case.OneTapSignInUseCase
 import com.satwik.auth.domain.use_case.SignupUseCase
-import com.satwik.auth.domain.use_case.precondition.ValidateEmailUsecase
-import com.satwik.auth.domain.use_case.precondition.ValidateNameUsecase
-import com.satwik.auth.domain.use_case.precondition.ValidatePasswordUsecase
-import com.satwik.auth.presentation.signup_screen.states.AuthenticationState
-import com.satwik.auth.presentation.signup_screen.states.SignupFormState
+import com.satwik.auth.domain.use_case.signup_precondition.ValidateEmailUsecase
+import com.satwik.auth.domain.use_case.signup_precondition.ValidateNameUsecase
+import com.satwik.auth.domain.use_case.signup_precondition.ValidatePasswordUsecase
 import com.satwik.common.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -48,7 +47,8 @@ class SignupScreenViewModel @Inject constructor(
             when(result){
                 is Resource.Error -> _googleAuthState.value = AuthenticationState(error = result.message.toString())
                 is Resource.Success -> _googleAuthState.value = AuthenticationState(successfull = true)
-                is Resource.Loading -> {_googleAuthState.value = AuthenticationState(isLoading = true)}
+                is Resource.Loading -> {_googleAuthState.value = AuthenticationState(isLoading = true)
+                }
             }
         }.launchIn(viewModelScope)
     }

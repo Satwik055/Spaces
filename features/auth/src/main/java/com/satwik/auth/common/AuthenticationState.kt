@@ -1,4 +1,4 @@
-package com.satwik.auth.presentation.signup_screen.states
+package com.satwik.auth.common
 
 
 data class AuthenticationState(
