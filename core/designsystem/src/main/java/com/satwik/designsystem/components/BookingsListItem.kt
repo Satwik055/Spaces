@@ -43,7 +43,7 @@ fun BookingsListItem(
         modifier = modifier
             .height(80.dp)
             .border(1.dp, Grey, RoundedCornerShape(10.dp))
-            .padding(10.dp)
+            .padding(vertical = 10.dp, horizontal = 6.dp)
     ) {
 
 //        AsyncImage(
@@ -71,6 +71,8 @@ fun BookingsListItem(
                 style = TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = false)),
             )
         }
+
+        Spacer(modifier = Modifier.weight(1f))
 
 
         IconButton(
