@@ -65,6 +65,8 @@ dependencies {
     implementation(project(":data:booking"))
     implementation(project(":core:designsystem"))
     implementation(project(":core:common"))
+    implementation(project(":core:model"))
+
 
 
 //    implementation(project("com.github.Satwik055:LocusUI:1.1"))

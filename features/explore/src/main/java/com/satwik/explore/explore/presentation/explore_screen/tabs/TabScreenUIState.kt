@@ -1,6 +1,7 @@
 package com.satwik.explore.explore.presentation.explore_screen.tabs
 
-import com.satwik.property.domain.model.Property
+import com.satwik.spaces.model.Property
+
 
 data class TabScreenUIState(
     val isLoading:Boolean = false,

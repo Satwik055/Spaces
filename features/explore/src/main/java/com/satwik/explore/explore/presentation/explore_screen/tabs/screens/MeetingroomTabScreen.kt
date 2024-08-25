@@ -1,4 +1,4 @@
-package com.satwik.spaces.features.explore.presentation.explore_screen.tabs.screens
+package com.satwik.explore.explore.presentation.explore_screen.tabs.screens
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -39,9 +39,11 @@ fun MeetingroomTabScreen(
 
         if(state.isLoading){
             ShimmerLoadingLayout()
+            println("Loading")
         }
 
         if(state.error.isNotBlank()) {
+            println(state.error)
             Text(
                 text = state.error,
                 fontFamily = poppins,
@@ -55,6 +57,7 @@ fun MeetingroomTabScreen(
 
 
         if(state.properties.isNotEmpty()){
+            println(state.properties)
             LazyColumn(
                 modifier = Modifier.fillMaxSize()
             ){

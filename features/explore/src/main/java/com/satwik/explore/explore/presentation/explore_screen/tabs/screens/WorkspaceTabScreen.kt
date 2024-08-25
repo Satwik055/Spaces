@@ -1,4 +1,4 @@
-package com.satwik.spaces.features.explore.presentation.explore_screen.tabs.screens
+package com.satwik.explore.explore.presentation.explore_screen.tabs.screens
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -29,6 +29,7 @@ fun WorkspaceTabScreen(
     val propertyType = PropertyType.WORKSPACE
     val state = viewModel.state.value
 
+    println(propertyType)
     LaunchedEffect(Unit){
         viewModel.getPropertiesByType(propertyType)
     }

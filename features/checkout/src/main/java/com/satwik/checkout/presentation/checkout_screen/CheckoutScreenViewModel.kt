@@ -53,7 +53,7 @@ class CheckoutScreenViewModel @Inject constructor(
     val paymentsApiResponseState: State<PaymentsApiResponseState> = _paymentsApiResponseState
 
     init {
-        savedStateHandle.get<String>(CHECKOUT_SCREEN_ARGUMENT_KEY)?.let { propertyId->
+        savedStateHandle.get<Int>(CHECKOUT_SCREEN_ARGUMENT_KEY)?.let { propertyId->
             initiateBooking(
                 uid = firebaseAuth.uid!!,
                 checkinDate = getCheckinDateFromDataStore(),
@@ -95,7 +95,7 @@ class CheckoutScreenViewModel @Inject constructor(
         return peopleCount.value
     }
 
-    private fun initiateBooking(uid:String, checkinDate:String,checkoutDate:String, propertyId:String, people:String){
+    private fun initiateBooking(uid:String, checkinDate:String,checkoutDate:String, propertyId:Int, people:String){
 
         val booking = Booking(
             uid = uid,

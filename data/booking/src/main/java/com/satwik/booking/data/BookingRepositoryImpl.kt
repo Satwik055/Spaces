@@ -5,10 +5,12 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.toObject
 import com.satwik.booking.domain.repository.BookingsRepository
 import com.satwik.common.BookedProperty
+import com.satwik.common.Booking
 import com.satwik.exceptions.NoBookingsFound
 import com.satwik.qualifiers.BookingCollection
 import com.satwik.qualifiers.PropertyCollection
 import com.satwik.qualifiers.UserCollection
+import com.satwik.spaces.model.Property
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
@@ -29,8 +31,8 @@ class BookingRepositoryImpl @Inject constructor(
         }
         else{
             for(bookingId in bookingIdArray){
-                val booking = bookingCollection.document(bookingId).get().await().toObject<com.satwik.common.Booking>()
-                val property = propertyCollection.document(booking!!.propertyId).get().await().toObject<com.satwik.common.Property>()!!
+                val booking = bookingCollection.document(bookingId).get().await().toObject<Booking>()
+                val property = propertyCollection.document(booking!!.propertyId.toString()).get().await().toObject<Property>()!!
                 val bookedProperty = BookedProperty(
                     checkInDate = booking.checkInDate,
                     checkOutDate = booking.checkOutDate,

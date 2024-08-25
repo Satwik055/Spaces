@@ -22,7 +22,6 @@ class MainActivity : ComponentActivity() {
         installSplashScreen().apply {
             setKeepOnScreenCondition{!viewModel.isReady.value}
         }
-
         setContent {
             SpacesTheme {
                 SetupNavGraph(navController = rememberNavController())

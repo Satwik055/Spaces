@@ -30,8 +30,8 @@ import com.satwik.designsystem.theme.Grey
 import com.satwik.designsystem.theme.White
 import com.satwik.explore.explore.presentation.explore_screen.tabs.screens.CoffeeshopTabScreen
 import com.satwik.explore.explore.presentation.explore_screen.tabs.screens.LoungeTabScreen
-import com.satwik.spaces.features.explore.presentation.explore_screen.tabs.screens.MeetingroomTabScreen
-import com.satwik.spaces.features.explore.presentation.explore_screen.tabs.screens.WorkspaceTabScreen
+import com.satwik.explore.explore.presentation.explore_screen.tabs.screens.MeetingroomTabScreen
+import com.satwik.explore.explore.presentation.explore_screen.tabs.screens.WorkspaceTabScreen
 
 @Composable
 fun ExploreScreen(

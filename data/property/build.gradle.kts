@@ -53,11 +53,17 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.auth.ktx)
 
+    //Retrofit
+    implementation(libs.bundles.retrofit)
 
     implementation(libs.bundles.hilt)
     kapt(libs.bundles.hilt.compiler)
 
     implementation(project(":core:common"))
+    implementation(project(":core:network"))
+    implementation(project(":core:model"))
+
+
 
 
 }

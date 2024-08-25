@@ -6,5 +6,5 @@ data class Booking(
     val people:String = "",
     val checkInDate: String = "",
     val checkOutDate: String = "",
-    val propertyId:String = "",
+    val propertyId:Int = 1,
 )

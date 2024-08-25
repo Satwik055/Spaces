@@ -2,10 +2,10 @@ package com.satwik.search.data.repository
 
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.toObject
-import com.satwik.common.Property
 import com.satwik.exceptions.NoPropertiesFound
 import com.satwik.qualifiers.PropertyCollection
 import com.satwik.search.domain.repository.SearchRepository
+import com.satwik.spaces.model.Property
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject

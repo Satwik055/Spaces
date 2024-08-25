@@ -31,11 +31,11 @@ class DetailScreenViewModel@Inject constructor(
 
     init {
         savedStateHandle.get<String>(DETAIL_SCREEN_ARGUMENT_KEY)?.let {
-            loadDataIntoStates(it)
+            loadDataIntoStates(it.toInt())
         }
     }
 
-    private fun loadDataIntoStates(propertyId: String){
+    private fun loadDataIntoStates(propertyId: Int){
         getBookingDates()
         getPropertyById(propertyId)
     }
@@ -54,7 +54,7 @@ class DetailScreenViewModel@Inject constructor(
         }
     }
 
-    private fun getPropertyById(propertyId: String) {
+    private fun getPropertyById(propertyId: Int) {
         getPropertyByIdUseCase(propertyId).onEach { result ->
             when (result) {
                 is Resource.Success -> _state.value =

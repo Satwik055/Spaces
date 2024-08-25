@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class GetPropertyByIdUseCase @Inject constructor(private val repository: PropertyRepository) {
-    operator fun invoke(propertyId:String) = flow{
+    operator fun invoke(propertyId:Int) = flow{
         try{
             emit(Resource.Loading())
             val property= repository.getPropertyById(propertyId)

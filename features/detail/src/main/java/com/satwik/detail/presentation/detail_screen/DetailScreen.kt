@@ -1,5 +1,7 @@
 package com.satwik.detail.presentation.detail_screen
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -44,10 +46,11 @@ import com.satwik.designsystem.theme.White
 import com.satwik.designsystem.theme.poppins
 import com.satwik.detail.presentation.detail_screen.components.BottomBarSection
 import com.satwik.detail.presentation.detail_screen.components.PropertyInfoSection
-import com.satwik.property.domain.model.Property
+import com.satwik.spaces.model.Property
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DetailScreen(
     state: State<DetailScreenUiState>,
@@ -96,6 +99,7 @@ fun DetailScreen(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun Content(

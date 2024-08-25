@@ -52,5 +52,8 @@ dependencies {
     //Datastore
     implementation (libs.androidx.datastore.preferences)
 
+    implementation(project(":core:model"))
+
+
 
 }

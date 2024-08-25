@@ -40,7 +40,6 @@ import com.satwik.designsystem.theme.Purple
 import com.satwik.designsystem.theme.White
 import com.satwik.designsystem.theme.poppins
 import com.satwik.payment.domain.model.api_response.PaymentsApiResponse
-import com.satwik.property.domain.model.Property
 import com.stripe.android.PaymentConfiguration
 import com.stripe.android.paymentsheet.PaymentSheet
 import com.stripe.android.paymentsheet.PaymentSheetResult
@@ -172,7 +171,7 @@ private fun presentPaymentSheet(
 internal fun Content(
     navController: NavController,
     viewModel: CheckoutScreenViewModel,
-    property: Property,
+    property: com.satwik.spaces.model.Property,
     booking: Booking,
     apiResponse: PaymentsApiResponse,
     paymentSheet: PaymentSheet,

@@ -1,13 +1,13 @@
 package com.satwik.property.di
 
-import com.google.firebase.firestore.CollectionReference
 import com.satwik.property.data.PropertyRepositoryImpl
+import com.satwik.property.domain.remote.SupabaseAPI
 import com.satwik.property.domain.repository.PropertyRepository
-import com.satwik.qualifiers.PropertyCollection
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import retrofit2.Retrofit
 import javax.inject.Singleton
 
 
@@ -18,8 +18,14 @@ object PropertyModule {
     @Provides
     @Singleton
     fun providesPropertyRepository(
-        @PropertyCollection propertyCollection: CollectionReference,
+        api: SupabaseAPI
         ): PropertyRepository {
-        return PropertyRepositoryImpl(propertyCollection)
+        return PropertyRepositoryImpl(api)
     }
+
+    @Provides
+    @Singleton
+    fun provideSupabaseAPI(retrofit: Retrofit): SupabaseAPI = retrofit.create(SupabaseAPI::class.java)
+
+
 }

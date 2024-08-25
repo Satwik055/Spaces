@@ -27,6 +27,10 @@ class LocationScreenViewModel @Inject constructor(
         dateStore.saveCheckoutDate(date)
     }
 
+    fun getCheckinDate() = dateStore.getCheckinDate
+
+    fun getCheckoutDate() = dateStore.getCheckoutDate
+
     fun saveLocation(location:String) = viewModelScope.launch {
         locationStore.saveLocation(location)
     }

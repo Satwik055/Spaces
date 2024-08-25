@@ -52,7 +52,10 @@ dependencies {
     implementation(libs.bundles.hilt)
     kapt(libs.bundles.hilt.compiler)
 
+    implementation(project(":core:model"))
     implementation(project(":core:common"))
+
+
 
 
 }
